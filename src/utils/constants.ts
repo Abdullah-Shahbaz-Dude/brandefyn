@@ -1,0 +1,174 @@
+export const NAV_ITEMS = [
+  { label: 'Home', path: '/' },
+  { label: 'Case Studies', path: '/case-studies' },
+  { label: 'Services', path: '/services' },
+  { label: 'Resources', path: '/resources' },
+  { label: 'Free Audit', path: '#free-audit' },
+];
+
+export const SOCIAL_LINKS = {
+  whatsapp: 'https://wa.me/18004563796',
+  email: 'mailto:info@brandefyn.com',
+  linkedin: 'https://www.linkedin.com/company/brandefyn',
+  youtube: 'https://www.youtube.com/@brandefyn',
+  instagram: 'https://www.instagram.com/brandefyn',
+  facebook: 'https://www.facebook.com/brandefyn',
+};
+
+export const CONTACT_INFO = {
+  phone: '+1 (800) 456 37 96',
+  email: 'info@brandefyn.com',
+  address: '7901 4TH ST N #21957, ST. PETERSBURG, FL 33702 US',
+};
+
+export const METRICS = [
+  { value: 500, suffix: 'M+', label: 'Impressions' },
+  { value: 136, suffix: 'M+', label: 'Sales' },
+  { value: 200, suffix: '+', label: 'Clients' },
+];
+
+export const SERVICES = [
+  {
+    title: 'Amazon PPC Management',
+    description: 'Building Your Amazon Brand Through Strategic Advertising',
+    features: [
+      'In-depth PPC Strategy Audit',
+      'Campaign Setup & Optimization',
+      'Bid & Budget Management',
+      'Search Term Optimization',
+      'Brand Defense & Competitor Targeting',
+      'ACoS & TACoS Reduction Strategies',
+      'Data Analytics & Reporting',
+      'DSP (Demand-Side Platform) Advertising',
+    ],
+  },
+  {
+    title: 'Brand Management',
+    description: 'Comprehensive brand management for Amazon success',
+    features: [
+      'Catalog & Supply Chain Planning',
+      'Listing SEO & Optimization',
+      'Customer Support & Reputation',
+      'Compliance & Risk Management',
+      'Promotions, Coupons, Deals',
+      'Returns, Refunds & Reimbursements',
+      'Case Log Management Issue Resolution',
+      'Pricing Adjustment',
+    ],
+  },
+  {
+    title: 'Launch CPG Brand',
+    description: 'Complete CPG brand launch on Amazon',
+    features: [
+      'Product Research & Niche Validation',
+      'FDA Compliance & Product Sourcing',
+      'Brand Development & Packaging Design',
+      'Amazon Listing Optimization & SEO',
+      'Post Launch & Ranking Strategy',
+      'Inventory & Supply Chain Management',
+      'Handle Compliance & Risk',
+      'Scaling Brand & Profitability',
+    ],
+  },
+];
+
+export const CASE_STUDIES = [
+  {
+    id: 1,
+    title: 'Journey of Liquidation to Replenishment',
+    subtitle: 'From debts to a stable business & a side hustle',
+    quote: 'We started working with a client in the mid September 2024 who wanted to close his business. He hired us for the sake of selling inventory profitably so that he can pay his lendings/depts and shut down on Amazon.',
+    author: 'Ben',
+    role: 'Digital Manager, Athletic Annex',
+    learnMore: true,
+  },
+  {
+    id: 2,
+    title: 'Achieving 900% Profit Growth & 340% Revenue Surge for Flower Power® on Amazon',
+    subtitle: 'From a lineage of strong, hardworking businesswomen',
+    quote: 'From a lineage of strong, hardworking businesswomen, the founder of Flower Power® built the brand with one core belief—caring for people comes first. Their vision was simple yet powerful: to create a brand that prioritizes women\'s well-being, offering safe, natural, and science-backed solutions for feminine health',
+    author: 'Tai',
+    role: 'IPW Industries',
+    learnMore: true,
+  },
+];
+
+export const REVIEWS = [
+  { platform: 'Trustpilot', rating: 4.7, stars: 5, count: 6442 },
+  { platform: 'Google', rating: 4.9, stars: 5, count: 6442 },
+];
+
+export const INDUSTRIES = [
+  'Health & Wellness Supplements',
+  'Beauty & Skincare',
+  'Food & Beverages',
+  'Pet Care',
+  'Home & Personal Care',
+];
+
+// Placeholder for trusted by logos - user will add actual logos
+export const TRUSTED_BY_LOGOS = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  name: `Client ${i + 1}`,
+  logo: `/src/assets/images/trusted-by/logo-${i + 1}.png`,
+}));
+
+import testimonial1 from '../assets/videos/testimonial-1.mp4';
+import testimonial2 from '../assets/videos/testimonial-2.mp4';
+import testimonial3 from '../assets/videos/testimonial-3.mp4';
+
+// Testimonial videos
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    name: 'Client Name',
+    company: 'Company Name',
+    role: 'CEO',
+    video: 'https://www.youtube.com/embed/3ljAT7eCDLg',
+    videoSource: testimonial1,
+    thumbnail: 'https://img.youtube.com/vi/3ljAT7eCDLg/maxresdefault.jpg',
+    isYouTube: true,
+  },
+  {
+    id: 2,
+    name: 'Client Name',
+    company: 'Company Name',
+    role: 'Founder',
+    video: 'https://www.youtube.com/embed/N8kAX07dJoE',
+    videoSource: testimonial2,
+    thumbnail: 'https://img.youtube.com/vi/N8kAX07dJoE/maxresdefault.jpg',
+    isYouTube: true,
+  },
+  {
+    id: 3,
+    name: 'Client Name',
+    company: 'Company Name',
+    role: 'CEO',
+    video: 'https://www.youtube.com/embed/3ljAT7eCDLg',
+    videoSource: testimonial3,
+    thumbnail: 'https://img.youtube.com/vi/3ljAT7eCDLg/maxresdefault.jpg',
+    isYouTube: true,
+  },
+];
+
+// Client testimonials for sliding carousel
+export const CLIENT_TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "Wanted to send an email of appreciation to you all. Not only is my account consistently growing, but the peace of mind of not having to come up with ideas, edit, and post has been life-changing for my work/life balance. I get to do what I love, which is educate and act, and you all do the rest. I'm so grateful for everything that you guys do.",
+    name: 'Client Name',
+    company: 'Company Name',
+  },
+  {
+    id: 2,
+    quote: "Working with Brandefyn has transformed our Amazon business. Their strategic approach to PPC management increased our sales by 300% in just 6 months. The team is professional, responsive, and truly understands the Amazon ecosystem.",
+    name: 'Sarah Johnson',
+    company: 'Wellness Brands Inc.',
+  },
+  {
+    id: 3,
+    quote: "The best decision we made was partnering with Brandefyn. They took our struggling brand and turned it into a top performer. Their expertise in brand management and optimization is unmatched.",
+    name: 'Michael Chen',
+    company: 'Premium Products LLC',
+  },
+];
