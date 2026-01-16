@@ -1,71 +1,50 @@
 import { motion } from "framer-motion";
-import AnimatedCounter from "../ui/AnimatedCounter";
-import Button from "../ui/Button";
 import { METRICS } from "../../utils/constants";
 
 export default function Metrics() {
   return (
-    <section className="py-24 bg-black">
-      <div className="container mx-auto px-4">
+    <section className="relative py-24 purple-glow-bg-subtle ">
+      {/* Additional Purple Glow Orbs for seamless flow - Reduced intensity */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/8 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-900/10 rounded-full blur-[100px] -z-10" />
+      {/* Glow extending into TrustedBy section */}
+      <div className="absolute -bottom-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
+      <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
+        {/* Title */}
         <motion.div
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: false }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Our Numbers Speak
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Our Number Speaks
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {/* Glass Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {METRICS.map((metric, index) => (
             <motion.div
               key={index}
-              initial={{ scale: 0.8 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: false }}
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 15,
-                delay: index * 0.1,
-              }}
-              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-8 text-center"
             >
-              <div className="text-6xl md:text-7xl font-bold text-primary mb-6 glow-purple-hover">
-                <AnimatedCounter end={metric.value} suffix={metric.suffix} />
-              </div>
-              <p className="text-xl md:text-2xl text-white font-bold">
+              <p className="text-[52px] font-extrabold leading-none mb-2 tracking-tighter text-white">
+                {metric.prefix || ""}
+                {metric.value}
+                {metric.suffix}
+              </p>
+              <p className="text-[14px] font-semibold tracking-tight text-white">
                 {metric.label}
               </p>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: false }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15,
-            delay: 0.4,
-          }}
-          className="text-center"
-        >
-          <a href="#free-audit">
-            <Button size="lg" className="text-lg px-8 py-4">
-              Get Free Audit →
-            </Button>
-          </a>
-        </motion.div>
       </div>
     </section>
   );

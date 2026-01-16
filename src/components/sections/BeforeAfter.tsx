@@ -1,222 +1,346 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { motion } from "framer-motion";
 import { CASE_STUDIES } from "../../utils/constants";
-// Images will be imported when available
-const liquidationBefore =
-  "/src/assets/images/case-studies/liquidation-before.jpg";
-const liquidationAfter =
-  "/src/assets/images/case-studies/liquidation-after.jpg";
-const flowerPowerBefore =
-  "/src/assets/images/case-studies/flower-power-before.jpg";
-const flowerPowerAfter =
-  "/src/assets/images/case-studies/flower-power-after.jpg";
+
+import pmBefore from "../../assets/home/before-after/pm-1.png";
+import pmAfter from "../../assets/home/before-after/pm-2.png";
+import ppcBefore from "../../assets/home/before-after/ppc-1.png";
+import ppcAfter from "../../assets/home/before-after/ppc-2.png";
+import salesBefore from "../../assets/home/before-after/sales-1.png";
+import salesAfter from "../../assets/home/before-after/sales-2.png";
 
 const caseStudyImages = {
-  1: { before: liquidationBefore, after: liquidationAfter },
-  2: { before: flowerPowerBefore, after: flowerPowerAfter },
+  1: { before: pmBefore, after: pmAfter },
+  2: { before: ppcBefore, after: ppcAfter },
+  3: { before: salesBefore, after: salesAfter },
 };
 
 export default function BeforeAfter() {
-  const [expandedId, setExpandedId] = useState<number | null>(null);
-
   return (
-    <section className="py-24 bg-black">
-      <div className="container mx-auto px-4">
+    <section className="relative py-24 purple-glow-bg overflow-hidden">
+      {/* Purple Glow Orbs - Bottom extending into VideoSalesLetter below for seamless transition - Reduced intensity */}
+      <div className="absolute left-0 -bottom-20 w-[500px] h-[500px] bg-primary/12 rounded-full blur-[120px] -z-10" />
+      <div className="absolute right-0 -bottom-30 w-[600px] h-[600px] bg-purple-900/15 rounded-full blur-[120px] -z-10" />
+      
+      <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
+        {/* Header Section */}
         <motion.div
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: false }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 15,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            CLIENT BEFORE & AFTER RESULTS
+            Client Before & After Results
           </h2>
-          <p className="text-xl md:text-2xl text-white font-bold">
+          <p className="text-base text-white">
             We Work With New & Established Accounts
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {CASE_STUDIES.flatMap((study) => {
-            const images =
-              caseStudyImages[study.id as keyof typeof caseStudyImages];
-            const isExpanded = expandedId === study.id;
+        {/* First Row: Large Before/After Image Cards */}
+        <div className="mb-12">
+          <div
+            className="rounded-[35px] border border-[#828282] p-8 md:p-12"
+            style={{ borderColor: "rgb(130, 130, 130)" }}
+          >
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
+              {CASE_STUDIES.slice(0, 1).map((study) => {
+                const images =
+                  caseStudyImages[study.id as keyof typeof caseStudyImages];
+                if (!images) return null;
 
-            if (!images) return [];
+                return (
+                  <>
+                    {/* Before Card */}
+                    <motion.div
+                      key={`${study.id}-before`}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative min-w-0"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative ">
+                        <p className="text-white text-lg font-semibold mb-4">
+                          Before
+                        </p>
+                        <div className="relative">
+                          <img
+                            src={images.before}
+                            alt={`${study.title} - Before`}
+                            className="w-full h-[290px] object-cover rounded-[23px]"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
 
-            // Create two cards: one for Before, one for After
-            return [
-              // Before Card
-              <motion.div
-                key={`${study.id}-before`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.6 }}
-                className="rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-xl shadow-purple-500/20 overflow-hidden hover:shadow-2xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all hover:scale-[1.02]"
-              >
-                {/* Before Image */}
-                <div className="bg-black">
-                  <p className="text-sm font-bold text-white mb-2 px-4 pt-4 bg-gray-950">
-                    Before
-                  </p>
-                  <img
-                    src={images.before}
-                    alt={`${study.title} - Before`}
-                    className="w-full h-64 md:h-80 object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                </div>
-                {/* Content */}
-                <div className="p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    {study.title}
-                  </h3>
-                  <p className="text-base text-white mb-5 italic font-semibold">
-                    {study.subtitle}
-                  </p>
-                  <p className="text-white mb-5 line-clamp-3 font-semibold text-lg">
-                    {study.quote}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-bold text-white text-lg">
-                        — {study.author}
-                      </p>
-                      <p className="text-base text-white font-semibold">
-                        {study.role}
-                      </p>
-                    </div>
-                    {study.learnMore && (
-                      <button
-                        onClick={() =>
-                          setExpandedId(isExpanded ? null : study.id)
-                        }
-                        className="flex items-center gap-2 text-purple-400 transition-all font-bold bg-gray-900 px-4 py-2 hover:bg-primary hover:text-white shadow-lg hover:shadow-xl hover:shadow-purple-500/50"
-                      >
-                        {isExpanded ? (
-                          <>
-                            <span>Show Less</span>
-                            <FaChevronUp />
-                          </>
-                        ) : (
-                          <>
-                            <span>Learn More</span>
-                            <FaChevronDown />
-                          </>
-                        )}
-                      </button>
-                    )}
-                  </div>
-                  {/* Expanded Content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="mt-4 pt-4 border-t border-gray-800"
-                      >
-                        <p className="text-white mb-4 font-medium">
-                          {study.quote}
+                    {/* After Card */}
+                    <motion.div
+                      key={`${study.id}-after`}
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className="relative min-w-0"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
+                        <p className="text-white text-lg font-semibold mb-4">
+                          After
                         </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </motion.div>,
-              // After Card
-              <motion.div
-                key={`${study.id}-after`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="rounded-xl bg-gradient-to-br from-gray-900 via-purple-950/30 to-gray-800 border border-gray-800 shadow-xl shadow-purple-500/20 overflow-hidden hover:shadow-2xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all hover:scale-[1.02]"
-              >
-                {/* After Image */}
-                <div className="bg-black">
-                  <p className="text-sm font-bold text-white mb-2 px-4 pt-4 bg-gray-950">
-                    After
-                  </p>
-                  <img
-                    src={images.after}
-                    alt={`${study.title} - After`}
-                    className="w-full h-64 md:h-80 object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                </div>
-                {/* Content */}
-                <div className="p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    {study.title}
-                  </h3>
-                  <p className="text-base text-white mb-5 italic font-semibold">
-                    {study.subtitle}
-                  </p>
-                  <p className="text-white mb-5 line-clamp-3 font-semibold text-lg">
-                    {study.quote}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-bold text-white text-lg">
-                        — {study.author}
-                      </p>
-                      <p className="text-base text-white font-semibold">
-                        {study.role}
-                      </p>
-                    </div>
-                    {study.learnMore && (
-                      <button
-                        onClick={() =>
-                          setExpandedId(isExpanded ? null : study.id)
-                        }
-                        className="flex items-center gap-2 text-purple-400 transition-all font-bold bg-gray-900 px-4 py-2 hover:bg-primary hover:text-white shadow-lg hover:shadow-xl hover:shadow-purple-500/50"
-                      >
-                        {isExpanded ? (
-                          <>
-                            <span>Show Less</span>
-                            <FaChevronUp />
-                          </>
-                        ) : (
-                          <>
-                            <span>Learn More</span>
-                            <FaChevronDown />
-                          </>
-                        )}
-                      </button>
-                    )}
-                  </div>
-                  {/* Expanded Content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="mt-4 pt-4 border-t border-gray-800"
-                      >
-                        <p className="text-white mb-4 font-medium">
-                          {study.quote}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </motion.div>,
-            ];
-          })}
+                        <div className="relative">
+                          <img
+                            src={images.after}
+                            alt={`${study.title} - After`}
+                            className="w-full h-[290px] object-cover rounded-[23px]"
+                          />
+                          {/* Purple Ellipse Decoration */}
+                          <svg
+                            className="absolute top-4 right-4 w-[138px] h-[70px]"
+                            viewBox="0 0 138 70"
+                            fill="none"
+                            style={{
+                              transform: "rotate(7.2deg)",
+                            }}
+                          >
+                            <ellipse
+                              cx="69"
+                              cy="35"
+                              rx="68"
+                              ry="34"
+                              stroke="rgba(185, 169, 254, 1)"
+                              strokeWidth="1"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
         </div>
+
+        {/* Second Row: Glass Cards with Price Tags */}
+        <div className="mb-12">
+          <div
+            className="rounded-[35px] border border-[#828282] p-8 md:p-12"
+            style={{ borderColor: "rgb(130, 130, 130)" }}
+          >
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
+              {CASE_STUDIES.slice(0, 1).map((study) => {
+                const images =
+                  caseStudyImages[study.id as keyof typeof caseStudyImages];
+                if (!images) return null;
+
+                return (
+                  <>
+                    {/* Before Card with Price */}
+                    <motion.div
+                      key={`${study.id}-before-price`}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="text-white text-lg font-semibold">
+                            Before
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="bg-white px-3 py-1 rounded">
+                              <p className="text-black text-xs font-semibold">
+                                {study.beforePrice || "$283,440"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={images.before}
+                            alt={`${study.title} - Before`}
+                            className="w-full h-[238px] object-cover rounded-[18px]"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* After Card with Price */}
+                    <motion.div
+                      key={`${study.id}-after-price`}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className="relative"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="text-white text-lg font-semibold">
+                            After
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="bg-white px-3 py-1 rounded">
+                              <p className="text-black text-xs font-semibold">
+                                {study.afterPrice || "$955,284"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={images.after}
+                            alt={`${study.title} - After`}
+                            className="w-full h-[238px] object-cover rounded-[18px]"
+                          />
+                          {/* Purple Ellipse Decoration */}
+                          <svg
+                            className="absolute top-4 right-4 w-[77px] h-[39px]"
+                            viewBox="0 0 77 39"
+                            fill="none"
+                            style={{
+                              transform: "rotate(7.2deg)",
+                            }}
+                          >
+                            <ellipse
+                              cx="38.5"
+                              cy="19.5"
+                              rx="37.5"
+                              ry="18.5"
+                              stroke="rgba(185, 169, 254, 1)"
+                              strokeWidth="6"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Third Row: Glass Cards with Price Tags */}
+        <div>
+          <div
+            className="rounded-[35px] border border-[#828282] p-8 md:p-12"
+            style={{ borderColor: "rgb(130, 130, 130)" }}
+          >
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
+              {CASE_STUDIES.slice(1, 2).map((study) => {
+                const images =
+                  caseStudyImages[study.id as keyof typeof caseStudyImages];
+                if (!images) return null;
+
+                return (
+                  <>
+                    {/* Before Card with Price */}
+                    <motion.div
+                      key={`${study.id}-before-price`}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="text-white text-lg font-semibold">
+                            Before
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="bg-white px-3 py-1 rounded">
+                              <p className="text-black text-xs font-semibold">
+                                {study.beforePrice || "$283,440"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={images.before}
+                            alt={`${study.title} - Before`}
+                            className="w-full h-[310px] object-cover rounded-[18px]"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* After Card with Price */}
+                    <motion.div
+                      key={`${study.id}-after-price`}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                      className="relative"
+                    >
+                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
+                        <div className="flex items-center justify-between mb-4">
+                          <p className="text-white text-lg font-semibold">
+                            After
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <div className="bg-white px-3 py-1 rounded">
+                              <p className="text-black text-xs font-semibold">
+                                {study.afterPrice || "$955,284"}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="relative">
+                          <img
+                            src={images.after}
+                            alt={`${study.title} - After`}
+                            className="w-full h-[310px] object-cover rounded-[18px]"
+                          />
+                          {/* Purple Ellipse Decoration */}
+                          <svg
+                            className="absolute top-4 right-4 w-[77px] h-[39px]"
+                            viewBox="0 0 77 39"
+                            fill="none"
+                            style={{
+                              transform: "rotate(7.2deg)",
+                            }}
+                          >
+                            <ellipse
+                              cx="38.5"
+                              cy="19.5"
+                              rx="37.5"
+                              ry="18.5"
+                              stroke="rgba(185, 169, 254, 1)"
+                              strokeWidth="6"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center mt-12"
+        >
+          <button
+            className="px-6 py-3 bg-[#1F1446] border border-white rounded-md text-white font-semibold text-sm hover:bg-primary/20 btn-glow transition-all"
+            style={{ backgroundColor: "rgb(31, 20, 70)" }}
+          >
+            View All Case Studies
+          </button>
+        </motion.div>
       </div>
     </section>
   );

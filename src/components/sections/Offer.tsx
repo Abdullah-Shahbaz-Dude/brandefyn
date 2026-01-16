@@ -3,7 +3,7 @@ import Button from '../ui/Button';
 
 export default function Offer() {
   return (
-    <section className="py-24 bg-black text-white">
+    <section className="relative py-24 bg-black text-white ">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

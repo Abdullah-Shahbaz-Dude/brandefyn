@@ -5,7 +5,7 @@ import { CASE_STUDIES } from '../../utils/constants';
 
 export default function CaseStudies() {
   return (
-    <section className="py-24 bg-black">
+    <section className="relative py-24 overflow-visible">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

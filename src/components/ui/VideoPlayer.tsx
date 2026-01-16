@@ -130,7 +130,7 @@ export default function VideoPlayer({
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 glow-purple-hover"
+                className="w-20 h-20 bg-[#271E51] rounded-full flex items-center justify-center shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 glow-purple-hover"
               >
                 <FaPlay className="text-white text-2xl ml-1" />
               </motion.div>

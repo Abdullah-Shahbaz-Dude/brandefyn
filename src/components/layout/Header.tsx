@@ -83,12 +83,14 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-black shadow-lg shadow-purple-500/20">
-      <nav className="container mx-auto px-4 py-4">
+    <header 
+      className="fixed top-0 left-0 right-0 z-50 purple-glow-header bg-transparent  w-full"
+    >
+      <nav className="container mx-auto px-4 py-4 max-w-full overflow-x-hidden">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-purple-400 px-3 py-1 bg-gray-950">Brandefyn</span>
+            <span className="text-2xl font-bold text-white px-3 py-1 backdrop-blur-sm rounded">Brandefyn</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -111,8 +113,9 @@ export default function Header() {
                         ? 'text-purple-400' 
                         : 'text-white hover:text-purple-400'
                     }`}
+                    style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}
                   >
-                    <span className="relative z-10 font-bold">{item.label}</span>
+                    <span className="relative z-10 font-bold" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>{item.label}</span>
                     {/* Active underline - always visible for active item */}
                     {active && (
                       <motion.div
@@ -175,7 +178,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white hover:text-purple-400 bg-gray-950 hover:bg-gray-900 p-2"
+            className="md:hidden text-white hover:text-purple-400 p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -200,8 +203,8 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-4 py-2 font-bold transition-colors ${
                     active
-                      ? 'text-purple-400 bg-gray-950'
-                      : 'text-white hover:bg-gray-950 hover:text-purple-400'
+                      ? 'text-purple-400'
+                      : 'text-white hover:text-purple-400'
                   }`}
                 >
                   {item.label}

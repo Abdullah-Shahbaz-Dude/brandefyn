@@ -3,7 +3,7 @@ import EmailCapture from '../forms/EmailCapture';
 
 export default function EmailForm() {
   return (
-    <section id="free-audit" className="py-24 bg-black">
+    <section id="free-audit" className="relative py-24 bg-black overflow-visible">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

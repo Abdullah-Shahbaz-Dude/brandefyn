@@ -7,7 +7,7 @@ import launchImage from "../../assets/home/EMOJIES/cpg.webp";
 
 export default function Services() {
   return (
-    <section className="py-24 bg-black">
+    <section className="relative py-24 purple-glow-bg-medium overflow-x-hidden overflow-y-visible">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -36,7 +36,7 @@ export default function Services() {
                 index % 2 === 0
                   ? "from-gray-900 to-gray-800"
                   : "from-gray-900 via-purple-950/30 to-gray-800"
-              } border border-gray-800 shadow-xl shadow-purple-500/20 p-10 min-h-[320px] hover:shadow-2xl hover:shadow-purple-500/40 hover:border-purple-500/50 transition-all hover:scale-[1.02] relative overflow-hidden`}
+              } border border-gray-800 shadow-xl shadow-purple-500/20 p-10 min-h-[320px] card-glow-hover hover:border-purple-500/50 transition-all hover:scale-[1.02] relative overflow-hidden`}
               style={
                 service.title === "Amazon PPC Management"
                   ? {

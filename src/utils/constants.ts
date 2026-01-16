@@ -22,9 +22,10 @@ export const CONTACT_INFO = {
 };
 
 export const METRICS = [
-  { value: 500, suffix: 'M+', label: 'Impressions' },
-  { value: 136, suffix: 'M+', label: 'Sales' },
-  { value: 200, suffix: '+', label: 'Clients' },
+  { value: 10, suffix: ' B+', label: 'Views generated' },
+  { value: 500, suffix: ' M+', label: 'Impressions' },
+  { value: 300, suffix: ' M+', label: 'Sales', prefix: '$' },
+  { value: 250, suffix: ' +', label: 'Clients' },
 ];
 
 export const SERVICES = [
@@ -81,6 +82,8 @@ export const CASE_STUDIES = [
     author: 'Ben',
     role: 'Digital Manager, Athletic Annex',
     learnMore: true,
+    beforePrice: '$283,440',
+    afterPrice: '$955,284',
   },
   {
     id: 2,
@@ -90,6 +93,8 @@ export const CASE_STUDIES = [
     author: 'Tai',
     role: 'IPW Industries',
     learnMore: true,
+    beforePrice: '$283,440',
+    afterPrice: '$955,284',
   },
 ];
 
@@ -155,18 +160,21 @@ export const TESTIMONIALS = [
 export const CLIENT_TESTIMONIALS = [
   {
     id: 1,
-    quote: "Wanted to send an email of appreciation to you all. Not only is my account consistently growing, but the peace of mind of not having to come up with ideas, edit, and post has been life-changing for my work/life balance. I get to do what I love, which is educate and act, and you all do the rest. I'm so grateful for everything that you guys do.",
-    name: 'Client Name',
-    company: 'Company Name',
+    headline: "How we grew Farm To Pet by $419,000 YoY in H1, 2024 (+70.55% YoY)",
+    quote: "The big advantage from working with the team is they're constantly available. We meet at least every other week, but they're also available on Slack, and anytime we run into issues, we're able to jump on them and resolve them really quickly.",
+    name: 'Jackson',
+    company: 'Founder, Farm To Pet',
   },
   {
     id: 2,
+    headline: "How we increased sales by 300% in just 6 months",
     quote: "Working with Brandefyn has transformed our Amazon business. Their strategic approach to PPC management increased our sales by 300% in just 6 months. The team is professional, responsive, and truly understands the Amazon ecosystem.",
     name: 'Sarah Johnson',
     company: 'Wellness Brands Inc.',
   },
   {
     id: 3,
+    headline: "From struggling brand to top performer",
     quote: "The best decision we made was partnering with Brandefyn. They took our struggling brand and turned it into a top performer. Their expertise in brand management and optimization is unmatched.",
     name: 'Michael Chen',
     company: 'Premium Products LLC',
