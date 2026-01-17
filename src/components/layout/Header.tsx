@@ -1,18 +1,29 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaEnvelope, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaFacebook, FaBars, FaTimes } from 'react-icons/fa';
 import { NAV_ITEMS, SOCIAL_LINKS } from '../../utils/constants';
-// Logo will be imported when available
-// import brandefynLogo from '../../assets/images/logo/brandefyn-logo.png';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [underlineStyle, setUnderlineStyle] = useState({ left: 0, width: 0 });
-  const [activeUnderlineStyle, setActiveUnderlineStyle] = useState({ left: 0, width: 0 });
-  const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 50;
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Check initial scroll position
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   // Check if a nav item is active
   const isActive = (path: string) => {
@@ -23,157 +34,81 @@ export default function Header() {
     return location.pathname === path;
   };
 
-  useEffect(() => {
-    // Reset hover underline when route changes
-    setHoveredIndex(null);
-    
-    // Set active item underline position after a small delay to ensure refs are set
-    const timer = setTimeout(() => {
-      const activeIndex = NAV_ITEMS.findIndex(item => {
-        // Hash links are not routes, so skip them
-        if (item.path.startsWith('#')) {
-          return false;
-        }
-        return location.pathname === item.path;
-      });
-      
-      if (activeIndex !== -1 && navRefs.current[activeIndex]) {
-        const element = navRefs.current[activeIndex];
-        if (element) {
-          // Since the underline is absolutely positioned within the Link element,
-          // we just need the width. The left should be 0 relative to the Link.
-          setActiveUnderlineStyle({
-            left: 0,
-            width: element.offsetWidth,
-          });
-        }
-      } else {
-        setActiveUnderlineStyle({ left: 0, width: 0 });
-      }
-    }, 0);
-    
-    return () => clearTimeout(timer);
-  }, [location]);
-
-  const handleMouseEnter = (index: number, event: React.MouseEvent<HTMLAnchorElement>) => {
-    setHoveredIndex(index);
-    const element = event.currentTarget;
-    // Since underline is absolutely positioned within the Link, use left: 0 and element width
-    setUnderlineStyle({
-      left: 0,
-      width: element.offsetWidth,
-    });
-  };
-
-  const handleMouseMove = (index: number, event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (hoveredIndex === index) {
-      const element = event.currentTarget;
-      // Since underline is absolutely positioned within the Link, use left: 0 and element width
-      setUnderlineStyle({
-        left: 0,
-        width: element.offsetWidth,
-      });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-    // Reset hover underline position when mouse leaves
-    setUnderlineStyle({ left: 0, width: 0 });
-  };
-
   return (
     <header 
-      className="fixed top-0 left-0 right-0 z-50 purple-glow-header bg-transparent  w-full"
+      className={`fixed top-0 left-0 right-0 z-50 purple-glow-header w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/95 backdrop-blur-sm' 
+          : 'bg-transparent'
+      }`}
     >
       <nav className="container mx-auto px-4 py-4 max-w-full overflow-x-hidden">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-bold text-white px-3 py-1 backdrop-blur-sm rounded">Brandefyn</span>
+            <span className="text-white text-xl font-bold">
+              Brande<span className="italic">fyn</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 relative">
-            {NAV_ITEMS.map((item, index) => {
-              const isFreeAudit = item.label === 'Free Audit';
+          <div className="hidden md:flex items-center space-x-6 relative">
+            {NAV_ITEMS.filter(item => item.label !== 'Free Audit').map((item) => {
               const active = isActive(item.path);
               return (
-                <div key={item.path} className="flex items-center gap-2">
-                  <Link
-                    to={item.path}
-                    ref={(el) => {
-                      navRefs.current[index] = el;
-                    }}
-                    onMouseEnter={(e) => !active && handleMouseEnter(index, e)}
-                    onMouseMove={(e) => !active && handleMouseMove(index, e)}
-                    onMouseLeave={handleMouseLeave}
-                    className={`relative px-2 py-2 transition-all duration-300 group ${
-                      active 
-                        ? 'text-purple-400' 
-                        : 'text-white hover:text-purple-400'
-                    }`}
-                    style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}
-                  >
-                    <span className="relative z-10 font-bold" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>{item.label}</span>
-                    {/* Active underline - always visible for active item */}
-                    {active && (
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-1 bg-purple-500 shadow-lg shadow-purple-500/50"
-                        initial={{ width: 0 }}
-                        animate={{
-                          left: activeUnderlineStyle.left,
-                          width: activeUnderlineStyle.width,
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                    {/* Hover underline - only for non-active items */}
-                    {!active && hoveredIndex === index && (
-                      <motion.div
-                        className="absolute bottom-0 left-0 h-1 bg-purple-500 shadow-lg shadow-purple-500/50"
-                        initial={{ width: 0 }}
-                        animate={{
-                          width: underlineStyle.width,
-                        }}
-                        transition={{ duration: 0.2 }}
-                        style={{ left: 0 }}
-                      />
-                    )}
-                  </Link>
-                  {/* Social Icons next to Free Audit */}
-                  {isFreeAudit && (
-                    <div className="flex items-center space-x-3 ml-2">
-                      <a
-                        href={SOCIAL_LINKS.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-green-400 transition-colors"
-                        aria-label="WhatsApp"
-                      >
-                        <FaWhatsapp className="w-5 h-5" />
-                      </a>
-                      <a
-                        href={SOCIAL_LINKS.email}
-                        className="text-gray-400 hover:text-purple-400 transition-colors"
-                        aria-label="Email"
-                      >
-                        <FaEnvelope className="w-5 h-5" />
-                      </a>
-                      <a
-                        href={SOCIAL_LINKS.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-purple-400 transition-colors"
-                        aria-label="LinkedIn"
-                      >
-                        <FaLinkedin className="w-5 h-5" />
-                      </a>
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative px-4 py-2 transition-all duration-300 ${
+                    active 
+                      ? 'bg-gray-600/40 border border-white rounded-md text-white shadow-lg shadow-white/20' 
+                      : 'text-white hover:text-white/80'
+                  }`}
+                  style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}
+                >
+                  <span className="relative z-10 font-bold" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>{item.label}</span>
+                </Link>
               );
             })}
+          </div>
+
+          {/* Free Audit Button and Social Icons */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Free Audit Button */}
+            <button className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors">
+              Free Audit
+            </button>
+            
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-3">
+              <a
+                href={SOCIAL_LINKS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-green-400 transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-pink-400 transition-colors"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="w-5 h-5" />
+              </a>
+              <a
+                href={SOCIAL_LINKS.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-400 transition-colors"
+                aria-label="Facebook"
+              >
+                <FaFacebook className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -213,15 +148,18 @@ export default function Header() {
             })}
             <div className="flex items-center space-x-4 px-4 py-2">
               <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <FaWhatsapp className="w-5 h-5 text-green-400" />
+                <FaWhatsapp className="w-5 h-5 text-white" />
               </a>
-              <a href={SOCIAL_LINKS.email} aria-label="Email">
-                <FaEnvelope className="w-5 h-5 text-purple-400" />
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram className="w-5 h-5 text-white" />
               </a>
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <FaLinkedin className="w-5 h-5 text-purple-400" />
+              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FaFacebook className="w-5 h-5 text-white" />
               </a>
             </div>
+            <button className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors">
+              Free Audit
+            </button>
           </motion.div>
         )}
       </nav>
