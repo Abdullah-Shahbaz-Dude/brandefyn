@@ -98,6 +98,78 @@ export const CASE_STUDIES = [
   },
 ];
 
+// Case Studies for the main Case Studies page (2x2 grid)
+export const CASE_STUDIES_GRID = [
+  {
+    id: 3,
+    title: 'Health & Wellness Supplement',
+    description: 'We helped a fast-growing supplement brand reduce wasted ad spend and scale profitably through full PPC restructuring and advanced keyword expansion—resulting in strong ROAS improvement within 90 days.',
+    category: 'Health & Wellness',
+    image: '/src/assets/images/case-studies/liquidation-before.jpg',
+    fullDetails: {
+      quote: 'We helped a fast-growing supplement brand reduce wasted ad spend and scale profitably through full PPC restructuring and advanced keyword expansion—resulting in strong ROAS improvement within 90 days.',
+      author: 'Client',
+      role: 'Health & Wellness Brand',
+      metrics: {
+        roasImprovement: 'Strong ROAS improvement',
+        timeframe: '90 days',
+        focus: 'PPC restructuring and keyword expansion',
+      },
+    },
+  },
+  {
+    id: 4,
+    title: 'Beauty & Skincare Brand',
+    description: 'By improving ad visibility and optimizing listings for conversions, this beauty brand achieved rapid revenue growth and profitable scaling in just 60 days.',
+    category: 'Beauty & Skincare',
+    image: '/src/assets/images/case-studies/flower-power-before.jpg',
+    fullDetails: {
+      quote: 'By improving ad visibility and optimizing listings for conversions, this beauty brand achieved rapid revenue growth and profitable scaling in just 60 days.',
+      author: 'Client',
+      role: 'Beauty & Skincare Brand',
+      metrics: {
+        growth: 'Rapid revenue growth',
+        timeframe: '60 days',
+        focus: 'Ad visibility and listing optimization',
+      },
+    },
+  },
+  {
+    id: 5,
+    title: 'Food & Beverages Brand',
+    description: 'We optimized campaign structure and bidding strategies to boost impressions and drive consistent sales growth while keeping ACoS under control.',
+    category: 'Food & Beverages',
+    image: '/src/assets/images/case-studies/liquidation-after.jpg',
+    fullDetails: {
+      quote: 'We optimized campaign structure and bidding strategies to boost impressions and drive consistent sales growth while keeping ACoS under control.',
+      author: 'Client',
+      role: 'Food & Beverages Brand',
+      metrics: {
+        result: 'Consistent sales growth',
+        focus: 'Campaign structure and bidding optimization',
+        control: 'ACoS under control',
+      },
+    },
+  },
+  {
+    id: 6,
+    title: 'Home & Personal Care Brand',
+    description: 'Our data-driven Amazon ads strategy unlocked scalable growth, improved conversion rates, and delivered long-term profitability for a competitive category.',
+    category: 'Home & Personal Care',
+    image: '/src/assets/images/case-studies/flower-power-after.jpg',
+    fullDetails: {
+      quote: 'Our data-driven Amazon ads strategy unlocked scalable growth, improved conversion rates, and delivered long-term profitability for a competitive category.',
+      author: 'Client',
+      role: 'Home & Personal Care Brand',
+      metrics: {
+        result: 'Scalable growth and improved conversion rates',
+        focus: 'Data-driven strategy',
+        outcome: 'Long-term profitability',
+      },
+    },
+  },
+];
+
 export const REVIEWS = [
   { platform: 'Trustpilot', rating: 4.7, stars: 5, count: 6442 },
   { platform: 'Google', rating: 4.9, stars: 5, count: 6442 },
@@ -109,6 +181,25 @@ export const INDUSTRIES = [
   'Food & Beverages',
   'Pet Care',
   'Home & Personal Care',
+];
+
+// Benefits for Case Studies page
+export const BENEFITS = [
+  {
+    id: 1,
+    title: 'Reduced Ad Waste',
+    image: '/src/assets/images/case-studies/liquidation-before.jpg',
+  },
+  {
+    id: 2,
+    title: 'Increased Visibility',
+    image: '/src/assets/images/case-studies/flower-power-before.jpg',
+  },
+  {
+    id: 3,
+    title: 'Sustainable Growth',
+    image: '/src/assets/images/case-studies/liquidation-after.jpg',
+  },
 ];
 
 // Placeholder for trusted by logos - user will add actual logos

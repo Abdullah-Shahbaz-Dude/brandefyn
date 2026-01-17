@@ -338,4 +338,9 @@
     position: relative;
     z-index: 10;
   }
+
+  /* Glow path for SVG connections */
+  .glow-path {
+    filter: drop-shadow(0 0 10px rgba(157, 102, 255, 0.6));
+  }
 }

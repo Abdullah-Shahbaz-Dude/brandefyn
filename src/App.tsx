@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import CaseStudies from "./pages/CaseStudies";
 import Services from "./pages/Services";
 import Resources from "./pages/Resources";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

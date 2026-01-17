@@ -75,9 +75,12 @@ export default function Header() {
           {/* Free Audit Button and Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Free Audit Button */}
-            <button className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors">
+            <Link 
+              to="/contact"
+              className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors"
+            >
               Free Audit
-            </button>
+            </Link>
             
             {/* Social Media Icons */}
             <div className="flex items-center space-x-3">
@@ -157,9 +160,13 @@ export default function Header() {
                 <FaFacebook className="w-5 h-5 text-white" />
               </a>
             </div>
-            <button className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors">
+            <Link 
+              to="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
+            >
               Free Audit
-            </button>
+            </Link>
           </motion.div>
         )}
       </nav>
