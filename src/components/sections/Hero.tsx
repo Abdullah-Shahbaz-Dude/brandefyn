@@ -7,6 +7,7 @@ import {
   MdLink,
 } from "react-icons/md";
 import heroImage from "../../assets/images/hero/hero.png";
+import lineImage from "../../assets/images/hero/linhero.png"
 
 export default function Hero() {
   return (
@@ -35,29 +36,8 @@ export default function Hero() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[300px] grid-floor -z-10 opacity-40" />
 
       {/* SVG Animated Line */}
-      <svg
-        className="absolute top-[45%] left-0 w-full h-[400px] -z-10 pointer-events-none hidden md:block"
-        preserveAspectRatio="none"
-        viewBox="0 0 1440 400"
-      >
-        <defs>
-          <linearGradient id="hero-line-grad" x1="0%" x2="100%" y1="0%" y2="0%">
-            <stop offset="0%" stopColor="#D946EF" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#D946EF" stopOpacity="0.2" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M-50 80 C 200 150, 400 350, 720 350 S 1240 150, 1490 80"
-          fill="none"
-          stroke="url(#hero-line-grad)"
-          strokeDasharray="10 15"
-          strokeLinecap="round"
-          strokeWidth="3"
-        />
-      </svg>
+      <img src={lineImage} alt="Line Image" className="absolute top-[45%] left-0 w-full h-[400px] -z-10 pointer-events-none hidden md:block" />
 
-      {/* Main Content */}
       <div className="max-w-5xl mx-auto text-center px-6 relative z-10">
         {/* Free Audit Badge */}
         <motion.div
@@ -112,7 +92,13 @@ export default function Hero() {
       </div>
 
       {/* Glass Cards Container */}
-      <div className="w-full max-w-[1400px] mx-auto relative h-[500px] mt-16 hidden md:block z-30">
+      <div className="w-full  mx-auto relative h-[500px] mt-30 hidden md:block z-30">
+        {/* Line Image Background - Behind Cards */}
+        <img 
+          src={lineImage} 
+          alt="Line Image" 
+          className="absolute  " 
+        />
         {/* Statistics Card (Left) */}
         <motion.div
           initial={{ opacity: 0, x: -50, rotate: -10 }}
