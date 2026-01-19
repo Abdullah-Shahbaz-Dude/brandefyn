@@ -53,18 +53,23 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before Card */}
+                        <p className="text-white text-xl  font-semibold text-center">
+                          Before
+                        </p>
+                        {/* After Card */}
+                        <p className="text-white text-xl font-semibold text-center">
+                          After
+                        </p>
+              
                     <motion.div
                       key={`${study.id}-before`}
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6 }}
-                      className="relative min-w-0"
+                      className="relative min-w-0 "
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative ">
-                        <p className="text-white text-lg font-semibold mb-4">
-                          Before
-                        </p>
+                      <div className="table-card rounded-[36px] p-6 relative">
                         <div className="relative">
                           <img
                             src={images.before}
@@ -73,9 +78,8 @@ export default function BeforeAfter() {
                           />
                         </div>
                       </div>
-                    </motion.div>
+                    </motion.div>  
 
-                    {/* After Card */}
                     <motion.div
                       key={`${study.id}-after`}
                       initial={{ opacity: 0, x: 30 }}
@@ -84,10 +88,7 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative min-w-0"
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
-                        <p className="text-white text-lg font-semibold mb-4">
-                          After
-                        </p>
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative">
                           <img
                             src={images.after}
@@ -115,6 +116,7 @@ export default function BeforeAfter() {
                         </div>
                       </div>
                     </motion.div>
+                  
                   </>
                 );
               })}
@@ -137,6 +139,24 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before Card with Price */}
+                    <div className="flex flex-col gap-2"> 
+                    <p className="text-white text-xl font-semibold text-center">
+                          Before
+                    </p>
+                      <p className="text-white text-xl font-semibold text-center">
+                        PPC Sales = $32K
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2"> 
+                    <p className="text-white text-xl font-semibold text-center">
+                          After
+                    </p>
+                      <p className="text-white text-xl font-semibold text-center">
+                        PPC Sales = $70K
+                      </p>
+                    </div>
+
                     <motion.div
                       key={`${study.id}-before-price`}
                       initial={{ opacity: 0, y: 30 }}
@@ -145,19 +165,8 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6 }}
                       className="relative"
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="flex items-center justify-between mb-4">
-                          <p className="text-white text-lg font-semibold">
-                            Before
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <div className="bg-white px-3 py-1 rounded">
-                              <p className="text-black text-xs font-semibold">
-                                {study.beforePrice || "$283,440"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                        
                         <div className="relative">
                           <img
                             src={images.before}
@@ -177,19 +186,8 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative"
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="flex items-center justify-between mb-4">
-                          <p className="text-white text-lg font-semibold">
-                            After
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <div className="bg-white px-3 py-1 rounded">
-                              <p className="text-black text-xs font-semibold">
-                                {study.afterPrice || "$955,284"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                        
                         <div className="relative">
                           <img
                             src={images.after}
@@ -239,6 +237,25 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before Card with Price */}
+
+
+                    <div className="flex flex-col gap-2"> 
+                    <p className="text-white text-xl font-semibold text-center">
+                          Before
+                    </p>
+                      <p className="text-white text-xl font-semibold text-center">
+                       $283,440 is sales of 2024
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2"> 
+                    <p className="text-white text-xl font-semibold text-center">
+                          After
+                    </p>
+                      <p className="text-white text-xl font-semibold text-center">
+                        $955,284 is sales of 2025
+                      </p>
+                    </div>
                     <motion.div
                       key={`${study.id}-before-price`}
                       initial={{ opacity: 0, y: 30 }}
@@ -247,19 +264,7 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6 }}
                       className="relative"
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="flex items-center justify-between mb-4">
-                          <p className="text-white text-lg font-semibold">
-                            Before
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <div className="bg-white px-3 py-1 rounded">
-                              <p className="text-black text-xs font-semibold">
-                                {study.beforePrice || "$283,440"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative">
                           <img
                             src={images.before}
@@ -279,19 +284,8 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative"
                     >
-                      <div className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="flex items-center justify-between mb-4">
-                          <p className="text-white text-lg font-semibold">
-                            After
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <div className="bg-white px-3 py-1 rounded">
-                              <p className="text-black text-xs font-semibold">
-                                {study.afterPrice || "$955,284"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                        
                         <div className="relative">
                           <img
                             src={images.after}

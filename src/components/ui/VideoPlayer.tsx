@@ -7,6 +7,7 @@ interface VideoPlayerProps {
   thumbnail?: string;
   className?: string;
   autoplay?: boolean;
+  aspectRatio?: string;
 }
 
 export default function VideoPlayer({
@@ -14,6 +15,7 @@ export default function VideoPlayer({
   thumbnail,
   className = "",
   autoplay = false,
+  aspectRatio = "video",
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
@@ -67,9 +69,15 @@ export default function VideoPlayer({
     };
   }, [src, thumbnail]);
 
+  const aspectRatioClass = aspectRatio === "video" ? "aspect-video" : aspectRatio === "1212/572" ? "aspect-[1212/572]" : "aspect-video";
+  const aspectRatioStyle = aspectRatio !== "video" && aspectRatio !== "1212/572" ? { aspectRatio: aspectRatio } : {};
+
   return (
     <div className={`relative w-full ${className}`}>
-      <div className="relative aspect-video bg-black overflow-hidden shadow-lg hover:shadow-xl hover:shadow-purple-500/30 transition-all">
+      <div 
+        className={`relative ${aspectRatioClass} bg-black overflow-hidden shadow-lg hover:shadow-xl hover:shadow-purple-500/30 transition-all`}
+        style={aspectRatioStyle}
+      >
         {/* Hidden video and canvas for capturing first frame */}
         {!thumbnail && (
           <>
@@ -130,7 +138,7 @@ export default function VideoPlayer({
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="w-20 h-20 bg-[#271E51] rounded-full flex items-center justify-center shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 glow-purple-hover"
+                className="w-[80px] h-[80px] bg-[#261E51] rounded-full flex items-center justify-center shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/70 glow-purple-hover"
               >
                 <FaPlay className="text-white text-2xl ml-1" />
               </motion.div>

@@ -38,7 +38,7 @@ export default function VideoSalesLetter() {
             className="relative"
           >
             <div className="rounded-[30px] overflow-hidden">
-              <VideoPlayer src={heroVideo} className="w-full" />
+              <VideoPlayer src={heroVideo} className="w-full" aspectRatio="1212/572" />
             </div>
           </motion.div>
         </motion.div>

@@ -32,7 +32,7 @@ export default function Metrics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card glass-card-glow card-glow-hover rounded-[36px] p-8 text-center"
+              className="glass-card  card-glow-hover rounded-[36px] p-8 text-center"
             >
               <p className="text-[52px] font-extrabold leading-none mb-2 tracking-tighter text-white">
                 {metric.prefix || ""}

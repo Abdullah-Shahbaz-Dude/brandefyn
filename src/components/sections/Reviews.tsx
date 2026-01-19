@@ -48,7 +48,7 @@ export default function Reviews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card glass-card-glow card-glow-hover rounded-[50px] p-8 text-center"
+              className="glass-card  card-glow-hover rounded-[50px] p-8 text-center"
             >
               {/* Logo */}
               <div className="flex justify-center mb-6">

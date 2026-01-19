@@ -23,6 +23,8 @@ export default function Testimonials() {
   const testimonials = CLIENT_TESTIMONIALS.slice(0, 3).map((testimonial, index) => ({
     ...testimonial,
     image: testimonialImages[index] || testimonialImages[0],
+    thumbnail: TESTIMONIALS[index]?.thumbnail || "",
+    videoSource: TESTIMONIALS[index]?.videoSource || "",
     video: TESTIMONIALS[index]?.video || "",
     isYouTube: TESTIMONIALS[index]?.isYouTube || false,
   }));
@@ -95,7 +97,7 @@ export default function Testimonials() {
                       <div className="glass-card glass-card-glow rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative w-full md:w-[440px] h-[340px]">
                           <img
-                            src={testimonial.image}
+                            src={testimonial.thumbnail || testimonial.image}
                             alt={testimonial.name}
                             className="w-full h-full object-cover rounded-[23px]"
                           />

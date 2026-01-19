@@ -97,6 +97,13 @@
     border-color: rgba(139, 92, 246, 0.8);
   }
 
+  /* Table card effect - matches Figma design */
+  .table-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 1px 31.3px rgba(255, 255, 255, 0.18);
+  }
+
   .btn-glow {
     transition: all 0.3s ease;
   }
