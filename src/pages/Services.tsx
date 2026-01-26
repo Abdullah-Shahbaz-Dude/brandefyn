@@ -187,8 +187,8 @@ export default function ServicesPage() {
               {/* Left Side - Cards */}
               <div className="flex-1 w-full lg:max-w-[579px] space-y-6 ">
                 {/* Top Card: Transparent Results */}
-                <div className="glass-card rounded-[36px] p-6 md:p-8 lg:p-12 bg-white/10 backdrop-blur-md">
-                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8 mb-6 justify-between">
+                <div className="glass-card rounded-[36px]  lg:p-12 bg-white/10 backdrop-blur-md relative min-h-[500px]">
+                  <div className="flex flex-col sm:flex-row items-start sm:gap-6 md:gap-8 mb-6 justify-between">
                     {/* Purple Icon */}
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-[#7854FF] rounded-full flex items-center justify-center flex-shrink-0">
                       <MdBarChart className="text-white text-2xl md:text-3xl" />
@@ -208,7 +208,8 @@ export default function ServicesPage() {
                       <LazyImage 
                         src={images.service3} 
                         alt="Transparent Results for All Brands" 
-                        className="w-full h-full object-cover mb-4" 
+                        className="w-full mt-[50px] absolute bottom-0 left-0 right-0 object-cover rounded-b-[36px]" 
+                        style={{ height: 'calc(100% - 180px)' }}
                       />
                     )}
                 </div>
@@ -290,13 +291,13 @@ export default function ServicesPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="absolute top-0 left-[10%] z-[10] w-full max-w-md"
+                className="absolute top-[-50px] left-[10%] z-[10] w-full max-w-md"
                 style={{ 
                   transform: 'perspective(1000px) rotateZ(-6deg) rotateX(-10deg)',
                   transformStyle: 'preserve-3d'
                 }}
               >
-                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
+                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ transform: 'rotate(-6deg)', width: '550px' }}>
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
@@ -314,10 +315,10 @@ export default function ServicesPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
-                className="absolute top-[400px] right-[10%] z-[30] w-full max-w-md"
+                className="absolute top-[420px] right-[10%] z-[30] w-full max-w-md"
                 style={{ transform: 'rotate(6deg)' }}
               >
-                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
+                <div className="bg-[#1a1a1a] w-[550px] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ transform: 'rotate(4deg)' }}>
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
@@ -337,10 +338,10 @@ export default function ServicesPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.1 }}
-                className="absolute top-[750px] left-[10%] z-[40] w-full max-w-md"
+                className="absolute top-[815px] left-[12%] z-[40] w-full max-w-md"
                 style={{ transform: 'rotate(-6deg)' }}
               >
-                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
+                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ width: '550px', transform: 'rotate(6deg)' }}>
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
@@ -358,7 +359,7 @@ export default function ServicesPage() {
                   <LazyImage 
                     src={images.service2} 
                     alt="Connecting spiral path" 
-                    className="absolute inset-0 left-[36%] top-[59%] transform rotate-90 pointer-events-none z-[1] object-contain opacity-70" 
+                    className="absolute inset-0 left-[50%] top-[68%] transform rotate-90 pointer-events-none z-[1] object-contain opacity-70" 
                   />
                 )}
             </div>
