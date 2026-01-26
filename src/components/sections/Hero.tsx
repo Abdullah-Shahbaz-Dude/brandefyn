@@ -81,7 +81,7 @@ export default function Hero() {
       </div>
 
       {/* Glass Cards Container */}
-      <div className="w-full  mx-auto relative h-[500px] mt-30 hidden md:block z-30">
+      <div className="w-full  mx-auto relative h-[500px] mt-30 hidden md:block z-30 ">
         {/* Line Image Background - Behind Cards */}
         <img 
           src={lineImage} 
@@ -93,7 +93,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -50, rotate: -10 }}
           animate={{ opacity: 1, x: 0, rotate: 10 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="absolute left-[8%] top-[80px] glass-card  card-glow-hover p-8 rounded-[36px] w-[280px] rotate-[10deg] transform z-30"
+          className="absolute left-[8%] top-[80px] bg-transparent border-2 glass-card  card-glow-hover p-8 rounded-[36px] w-[280px] rotate-[10deg] transform z-30"
         >
           <p className="text-[52px] font-extrabold leading-none mb-2 tracking-tighter text-white">
             10 B+
@@ -108,7 +108,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50, rotate: 8 }}
           animate={{ opacity: 1, y: 0, rotate: -8 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="absolute left-1/3 top-[120px] -translate-x-1/2 w-[480px] max-w-[90vw] glass-card  card-glow-hover rounded-[36px] p-8 -rotate-[8deg] transform z-20"
+          className="absolute left-1/3 top-[120px] -translate-x-1/2 w-[480px] max-w-[90vw] bg-transparent border-2 glass-card  card-glow-hover rounded-[36px] p-8 -rotate-[8deg] transform z-20"
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
@@ -181,7 +181,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50, rotate: 3 }}
           animate={{ opacity: 1, x: 0, rotate: -3 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="absolute right-[1%] top-[100px]  glass-card  card-glow-hover p-8 rounded-[36px] w-[380px] max-w-[90vw] -rotate-[3deg] transform z-30"
+          className="absolute right-[1%] top-[100px] bg-transparent border-2 glass-card  card-glow-hover p-8 rounded-[36px] w-[380px] max-w-[90vw] -rotate-[3deg] transform z-30"
         >
           <div className="flex items-center gap-4 mb-6 ">
             <img

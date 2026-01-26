@@ -1,33 +1,31 @@
 import { motion } from "framer-motion";
 import heroImage from "../assets/images/hero/hero.png";
+import servicePageImage from '../assets/images/caseStudy/caseStudy-1.png';
+import servicePageImage2 from '../assets/images/caseStudy/caseStudy-2.png';
+import servicePageImage3 from '../assets/images/caseStudy/caseStudy-3.png';
+import servicePageImage4 from '../assets/images/caseStudy/caseStudy-4.png';
+import servicePageImage5 from '../assets/images/caseStudy/caseStudy-5.png';
+import servicePageImage6 from '../assets/images/caseStudy/caseStudy-6.png';
+import servicePageImage7 from '../assets/images/caseStudy/caseStudy-7.png';
 
-// Placeholder images - can be replaced with actual assets later
-const placeholderImage1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='379' height='258'%3E%3Crect width='379' height='258' fill='%23933ef7'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EGuide 1%3C/text%3E%3C/svg%3E";
-const placeholderImage2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='379' height='258'%3E%3Crect width='379' height='258' fill='%237c3aed'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EGuide 2%3C/text%3E%3C/svg%3E";
-const placeholderImage3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='379' height='258'%3E%3Crect width='379' height='258' fill='%236d28d9'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='24' font-family='Arial'%3EGuide 3%3C/text%3E%3C/svg%3E";
 
-// Placeholder images for card grid section
-const cardImage1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='384'%3E%3Crect width='600' height='384' fill='%23933ef7'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3ECard 1%3C/text%3E%3C/svg%3E";
-const cardImage2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='384'%3E%3Crect width='600' height='384' fill='%237c3aed'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3ECard 2%3C/text%3E%3C/svg%3E";
-const cardImage3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='384'%3E%3Crect width='600' height='384' fill='%236d28d9'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3ECard 3%3C/text%3E%3C/svg%3E";
-const cardImage4 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='384'%3E%3Crect width='600' height='384' fill='%235b21b6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='32' font-family='Arial'%3ECard 4%3C/text%3E%3C/svg%3E";
 
 export default function ResourcesPage() {
   const guides = [
     {
-      image: placeholderImage1,
+      image: servicePageImage,
       title: "Amazon PPC Mastery Guide",
       description:
         "Learn the fundamentals of Amazon PPC advertising and how to optimize your campaigns for maximum ROI.",
     },
     {
-      image: placeholderImage2,
+      image: servicePageImage2,
       title: "CPG Brand Launch Strategy",
       description:
         "A comprehensive guide for launching your CPG brand on Amazon successfully and scaling your business.",
     },
     {
-      image: placeholderImage3,
+      image: servicePageImage3,
       title: "Advanced Amazon SEO",
       description:
         "Discover proven strategies to improve your Amazon listing rankings and visibility to drive more sales.",
@@ -36,22 +34,22 @@ export default function ResourcesPage() {
 
   const gridCards = [
     {
-      image: cardImage1,
+      image: servicePageImage6,
       heading1: "Card Title 1",
       heading2: "Card Subtitle 1",
     },
     {
-      image: cardImage2,
+      image: servicePageImage7,
       heading1: "Card Title 2",
       heading2: "Card Subtitle 2",
     },
     {
-      image: cardImage3,
+      image: servicePageImage4,
       heading1: "Card Title 3",
       heading2: "Card Subtitle 3",
     },
     {
-      image: cardImage4,
+      image: servicePageImage5,
       heading1: "Card Title 4",
       heading2: "Card Subtitle 4",
     },
@@ -60,7 +58,7 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-black purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"
@@ -92,7 +90,7 @@ export default function ResourcesPage() {
         </div>
       </div>
 
-      <div className="py-24 bg-black purple-glow-bg">
+      <div className="py-24 purple-glow-bg">
         <div className="container mx-auto px-4 max-w-[1400px]">
           {/* Heading Section */}
           <motion.div

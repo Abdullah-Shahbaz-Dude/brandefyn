@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { MdArrowForward, MdBarChart, MdHandshake, MdHub } from "react-icons/md";
-import ppcImage from "../assets/home/EMOJIES/ppc-removebg-preview.png";
 import heroImage from "../assets/images/hero/hero.png";
+import servicePageImage from '../assets/images/Service-page/servicePage-1.png';
+import servicePageImage2 from '../assets/images/Service-page/serviceCard-2.png';
+import servicePageImage3 from '../assets/images/Service-page/serviceCard-3.png';
 
 const serviceItems = [
   "SEO & Listing Optimization",
@@ -13,7 +15,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-black purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0 "
@@ -104,7 +106,7 @@ export default function ServicesPage() {
             {/* Image */}
             <div className="w-full h-[200px] sm:h-[250px] md:h-[313px] rounded-[20px] md:rounded-[30px] overflow-hidden">
               <img
-                src={ppcImage}
+                src={servicePageImage}
                 alt="Amazon Advertising Management"
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -150,18 +152,18 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-24 md:mt-32 relative max-w-[1441px] mx-auto"
+            className="mt-24 md:mt-32 relative w-screen left-[calc(-50vw+50%)]"
           >
             {/* Background with white overlay */}
-            <div className="absolute inset-0 bg-white/10 rounded-[36px] -z-10"></div>
+            <div className="absolute inset-0 bg-white/10  w-full h-full -z-10"></div>
             
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 p-6 md:p-8 lg:p-12">
               
               {/* Left Side - Cards */}
-              <div className="flex-1 w-full lg:max-w-[579px] space-y-6">
+              <div className="flex-1 w-full lg:max-w-[579px] space-y-6 ">
                 {/* Top Card: Transparent Results */}
                 <div className="glass-card rounded-[36px] p-6 md:p-8 lg:p-12 bg-white/10 backdrop-blur-md">
-                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8 mb-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 md:gap-8 mb-6 justify-between">
                     {/* Purple Icon */}
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-[#7854FF] rounded-full flex items-center justify-center flex-shrink-0">
                       <MdBarChart className="text-white text-2xl md:text-3xl" />
@@ -169,14 +171,15 @@ export default function ServicesPage() {
                     
                     {/* Text Content */}
                     <div className="flex-1 space-y-3 md:space-y-4 lg:space-y-6">
-                      <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">
                         Transparent Results for All Brands
+                      <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">
                       </h3>
                       <p className="text-sm md:text-base text-white leading-relaxed">
                         Success should be accessible to every Amazon seller, regardless of size or category. We remove inefficiencies so every brand can maximize sales and profitability.
                       </p>
                     </div>
                   </div>
+                    <img src={servicePageImage3} alt="Transparent Results for All Brands" className=" w-full h-full  object-cover mb-4" />
                 </div>
 
                 {/* Bottom Card: Growth Isn't Optional */}
@@ -199,16 +202,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Image */}
-                  <div className="w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[509px] rounded-[16px] overflow-hidden mt-4 md:mt-6">
-                    <img
-                      src={ppcImage}
-                      alt="Growth Strategy"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
-                    />
-                  </div>
+                  
                 </div>
               </div>
 
@@ -251,189 +245,23 @@ export default function ServicesPage() {
 
             {/* Cards Container with Absolute Positioning */}
             <div className="relative z-10 w-full max-w-6xl mx-auto h-[1000px] hidden lg:block">
-              {/* Connecting SVG Lines - Spiral Flow Connecting All Cards */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none overflow-visible z-[1]"
-                fill="none"
-                viewBox="0 0 1200 1000"
-                preserveAspectRatio="none"
-              >
-                <defs>
-                  <filter id="glow-purple-cards" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <linearGradient id="spiralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#9d66ff" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#ba9fff" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#9d66ff" stopOpacity="0.8" />
-                  </linearGradient>
-                </defs>
-                
-                {/* Primary Spiral Path - Continuous flow from card 1 → card 2 → card 3 */}
-                <path
-                  className="glow-path z-[2]"
-                  d="M 344 200 
-                     C 380 250, 450 300, 520 350
-                     C 590 400, 650 450, 700 500
-                     C 750 550, 780 600, 800 650
-                     C 820 700, 820 720, 800 750
-                     C 780 780, 720 800, 650 820
-                     C 580 840, 500 880, 450 920
-                     C 400 960, 380 1000, 344 1050"
-                  opacity="0.7"
-                  stroke="url(#spiralGradient)"
-                  strokeDasharray="12 6"
-                  strokeLinecap="round"
-                  strokeWidth="3.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                
-                {/* Secondary Spiral Path - More pronounced curves with spiral effect */}
-                <path
-                  className="glow-path z-[2]"
-                  d="M 344 220
-                     C 400 280, 480 340, 560 380
-                     C 640 420, 720 480, 760 540
-                     C 800 600, 810 660, 800 700
-                     C 790 740, 750 760, 700 780
-                     C 650 800, 580 840, 520 880
-                     C 460 920, 400 980, 344 1030"
-                  opacity="0.6"
-                  stroke="#9d66ff"
-                  strokeDasharray="10 5"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                
-                {/* Tertiary Spiral Path - Subtle accent with tighter spiral */}
-                <path
-                  className="glow-path z-[2]"
-                  d="M 344 240
-                     C 420 300, 500 360, 580 400
-                     C 660 440, 740 500, 780 560
-                     C 820 620, 830 680, 800 720
-                     C 770 760, 720 780, 670 800
-                     C 620 820, 550 860, 480 900
-                     C 410 940, 360 1000, 344 1040"
-                  opacity="0.45"
-                  stroke="#ba9fff"
-                  strokeDasharray="8 4"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                
-                {/* Additional flowing spiral accent path */}
-                <path
-                  className="glow-path z-[2]"
-                  d="M 344 210
-                     C 360 260, 400 310, 460 360
-                     C 520 410, 600 470, 680 520
-                     C 760 570, 820 630, 840 680
-                     C 860 730, 840 750, 800 770
-                     C 760 790, 700 810, 630 840
-                     C 560 870, 490 910, 430 950
-                     C 370 990, 340 1020, 344 1060"
-                  opacity="0.35"
-                  stroke="#9d66ff"
-                  strokeDasharray="6 3"
-                  strokeLinecap="round"
-                  strokeWidth="1.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                
-                {/* Spiral accent circles at connection points */}
-                <circle
-                  className="glow-path z-[2]"
-                  cx="520"
-                  cy="350"
-                  r="18"
-                  opacity="0.6"
-                  stroke="#9d66ff"
-                  strokeDasharray="4 4"
-                  strokeWidth="2"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                <circle
-                  className="glow-path z-[2]"
-                  cx="800"
-                  cy="700"
-                  r="18"
-                  opacity="0.6"
-                  stroke="#9d66ff"
-                  strokeDasharray="4 4"
-                  strokeWidth="2"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                <circle
-                  className="glow-path z-[2]"
-                  cx="450"
-                  cy="920"
-                  r="18"
-                  opacity="0.6"
-                  stroke="#9d66ff"
-                  strokeDasharray="4 4"
-                  strokeWidth="2"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                
-                {/* Additional smaller accent circles along the spiral */}
-                <circle
-                  className="glow-path z-[2]"
-                  cx="600"
-                  cy="450"
-                  r="12"
-                  opacity="0.4"
-                  stroke="#ba9fff"
-                  strokeDasharray="3 3"
-                  strokeWidth="1.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                <circle
-                  className="glow-path"
-                  cx="750"
-                  cy="600"
-                  r="12"
-                  opacity="0.4"
-                  stroke="#ba9fff"
-                  strokeDasharray="3 3"
-                  strokeWidth="1.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-                <circle
-                  className="glow-path"
-                  cx="650"
-                  cy="820"
-                  r="12"
-                  opacity="0.4"
-                  stroke="#ba9fff"
-                  strokeDasharray="3 3"
-                  strokeWidth="1.5"
-                  fill="none"
-                  filter="url(#glow-purple-cards)"
-                />
-              </svg>
+              {/* Connecting Spiral Image - Connects all three cards */}
+              <img 
+                src={servicePageImage2} 
+                alt="Connecting spiral path" 
+                className="absolute inset-0 left-[43%] top-[23%]  pointer-events-none z-[1] object-contain opacity-70" 
+              />
 
-              {/* Card 1 - Top Left, Rotated -4deg */}
+              {/* Card 1 - Top Left, Rotated -6deg with upward tilt */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="absolute top-0 left-[10%] z-[20] w-full max-w-md transform -rotate-[4deg]"
+                className="absolute top-0 left-[10%] z-[10] w-full max-w-md"
+                style={{ 
+                  transform: 'perspective(1000px) rotateZ(-6deg) rotateX(-10deg)',
+                  transformStyle: 'preserve-3d'
+                }}
               >
                 <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
@@ -448,12 +276,13 @@ export default function ServicesPage() {
                 </div>
               </motion.div>
 
-              {/* Card 2 - Top Right, Rotated 4deg */}
+              {/* Card 2 - Middle Right, Rotated 6deg */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
-                className="absolute top-[380px] right-[10%] z-[20] w-full max-w-md transform rotate-[4deg]"
+                className="absolute top-[400px] right-[10%] z-[30] w-full max-w-md"
+                style={{ transform: 'rotate(6deg)' }}
               >
                 <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
@@ -468,12 +297,15 @@ export default function ServicesPage() {
                 </div>
               </motion.div>
 
-              {/* Card 3 - Bottom Left, Rotated -4deg */}
+              
+
+              {/* Card 3 - Bottom Left, Rotated -6deg */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.1 }}
-                className="absolute top-[760px] left-[10%] z-[20] w-full max-w-md transform -rotate-[4deg]"
+                className="absolute top-[750px] left-[10%] z-[40] w-full max-w-md"
+                style={{ transform: 'rotate(-6deg)' }}
               >
                 <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm">
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
@@ -487,6 +319,13 @@ export default function ServicesPage() {
                   </p>
                 </div>
               </motion.div>
+
+                {/* Connecting Spiral Image - Connects all three cards */}
+                <img 
+                src={servicePageImage2} 
+                alt="Connecting spiral path" 
+                className="absolute inset-0 left-[36%] top-[59%] transform rotate-90  pointer-events-none z-[1] object-contain opacity-70" 
+              />
             </div>
 
             {/* Mobile Layout - Stacked Cards */}

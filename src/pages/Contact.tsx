@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <>
       <Hero />
-      <div className="relative min-h-screen bg-black purple-glow-bg py-12 md:py-24">
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"

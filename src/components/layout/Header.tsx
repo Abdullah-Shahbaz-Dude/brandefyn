@@ -77,7 +77,7 @@ export default function Header() {
             {/* Free Audit Button */}
             <Link 
               to="/contact"
-              className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors"
+              className="px-6 py-2 border rounded-md border-white bg-primary/30 backdrop-blur-md text-[11px] font-bold tracking-[0.2em] uppercase "
             >
               Free Audit
             </Link>

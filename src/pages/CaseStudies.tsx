@@ -3,14 +3,25 @@ import { motion } from 'framer-motion';
 import Modal from '../components/ui/Modal';
 import { CASE_STUDIES_GRID, BENEFITS } from '../utils/constants';
 import heroImage from '../assets/images/hero/hero.png';
+import { CaseStudiesImages } from '../utils/constants';
 
+const caseStudyImages: Record<number, string> = {
+  1: CaseStudiesImages.one, 
+  2: CaseStudiesImages.two,
+  3: CaseStudiesImages.three,
+  4: CaseStudiesImages.four,
+  5: CaseStudiesImages.five,
+  6: CaseStudiesImages.six,
+  7: CaseStudiesImages.seven,
+  8: CaseStudiesImages.eight,
+};
 export default function CaseStudiesPage() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<typeof CASE_STUDIES_GRID[0] | null>(null);
 
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen bg-black purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"
@@ -25,25 +36,30 @@ export default function CaseStudiesPage() {
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
 
-        <div className="container mx-auto px-4 max-w-[1400px] w-full relative z-10">
+        <div className="container mx-auto px-8 max-w-[1400px] w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12 md:mb-16"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight mb-6">
-              Results That Turn Amazon Ads Into Revenue
+            <h1 className="text-9xl md:text-9xl lg:text-9xl w-[900px] mx-auto xl:text-8xl font-bold text-white text-shadow-lg leading-tight mb-6">
+            Real Results. Proven Amazon Growth.
             </h1>
-            <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
-              See how we've helped brands achieve remarkable growth, reduce costs, and dominate their categories on Amazon.
+            <p className="text-2xl md:text-2xl lg:text-2xl text-white max-w-5xl mx-auto leading-relaxed">
+            We don’t just manage Amazon ads — we scale brands profitably. Explore how we helped CPG brands increase sales, lower ACoS, and dominate their categories.
             </p>
           </motion.div>
         </div>
       </div>
 
-      <section className="py-24 bg-black purple-glow-bg">
+      <section className="py-24 purple-glow-bg">
+
+        <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl w-full max-w-[800px] mx-auto text-white text-shadow-lg leading-tight mb-6 text-center">
+        Results That Turn Amazon Ads Into Revenue
+        </h2>
         <div className="container mx-auto px-4">
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 max-w-6xl mx-auto mb-16">
             {CASE_STUDIES_GRID.map((study, index) => (
               <motion.div
@@ -57,7 +73,7 @@ export default function CaseStudiesPage() {
                   {/* Image */}
                   <div className="w-full h-[250px] md:h-[384px] rounded-[24px] overflow-hidden">
                     <img
-                      src={study.image}
+                      src={caseStudyImages[index + 1 as keyof typeof caseStudyImages] }
                       alt={study.title}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -83,7 +99,7 @@ export default function CaseStudiesPage() {
                     {/* Learn More Button */}
                     <button
                       onClick={() => setSelectedCaseStudy(study)}
-                      className="w-full md:w-[174px] h-[46px] bg-[#1F1446] border border-white rounded-[5px] text-white font-bold text-sm hover:bg-[#2a1d5c] transition-all duration-300 flex items-center justify-center"
+                      className="w-full mb-4 md:mb-4 md:w-[174px] h-[46px] md:h-[46px] bg-[#1F1446] border border-white rounded-[5px] text-white font-bold text-sm hover:bg-[#2a1d5c] transition-all duration-300 flex items-center justify-center"
                     >
                       Learn More
                     </button>
@@ -105,8 +121,8 @@ export default function CaseStudiesPage() {
                 {/* Image - 1258px × 384px in Figma */}
                 <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[384px] rounded-[24px] overflow-hidden">
                   <img
-                    src={CASE_STUDIES_GRID[0].image}
-                    alt={CASE_STUDIES_GRID[0].title}
+                    src={caseStudyImages[5 as keyof typeof caseStudyImages]}
+                    alt={`${CASE_STUDIES_GRID[0].title} - Case Study`}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       (e.target as HTMLImageElement).style.display = 'none';
@@ -171,8 +187,8 @@ export default function CaseStudiesPage() {
                     {/* Image - 379px × 354px (responsive) */}
                     <div className="w-full max-w-[379px] h-[250px] sm:h-[300px] md:h-[354px] rounded-[20px] overflow-hidden mb-4">
                       <img
-                        src={benefit.image}
-                        alt={benefit.title}
+                        src={caseStudyImages[index + 6]}
+                        alt={`${benefit.title} - Benefit`}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = 'none';

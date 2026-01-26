@@ -271,3 +271,14 @@ export const CLIENT_TESTIMONIALS = [
     company: 'Premium Products LLC',
   },
 ];
+
+export const CaseStudiesImages = {
+  one: '/src/assets/images/caseStudy/caseStudy-1.png',
+  two: '/src/assets/images/caseStudy/caseStudy-2.png',
+  three: '/src/assets/images/caseStudy/caseStudy-3.png',
+  four: '/src/assets/images/caseStudy/caseStudy-4.png',
+  five: '/src/assets/images/caseStudy/caseStudy-5.png',
+  six: '/src/assets/images/caseStudy/caseStudy-6.png',
+  seven: '/src/assets/images/caseStudy/caseStudy-7.png',
+  eight: '/src/assets/images/caseStudy/caseStudy-8.png',
+}

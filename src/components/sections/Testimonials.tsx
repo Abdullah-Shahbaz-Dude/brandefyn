@@ -89,12 +89,12 @@ export default function Testimonials() {
                   className="flex-shrink-0 w-full md:w-[973px] md:max-w-[calc(100vw-2rem)]"
                 >
                 {/* Outer Container with Border */}
-                <div className="rounded-[35px] border border-[#828282] p-6 min-h-[441px] card-glow-hover w-full">
+                <div className="rounded-[35px] border border-[#828282] p-6 min-h-[441px]  w-full">
                   {/* Horizontal Layout: Image Left, Text Right */}
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Left Section - Video Thumbnail */}
                     <div className="flex-shrink-0">
-                      <div className="glass-card glass-card-glow rounded-[36px] p-6 relative overflow-hidden">
+                      <div className="glass-card border-2  rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative w-full md:w-[440px] h-[340px]">
                           <img
                             src={testimonial.thumbnail || testimonial.image}
