@@ -1,22 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Modal from '../components/ui/Modal';
 import { CASE_STUDIES_GRID, BENEFITS } from '../utils/constants';
 import heroImage from '../assets/images/hero/hero.png';
-import { CaseStudiesImages } from '../utils/constants';
+import LazyImage from '../components/ui/LazyImage';
+import amazonLine from '../assets/images/hero/hero-amzon.png';
 
-const caseStudyImages: Record<number, string> = {
-  1: CaseStudiesImages.one, 
-  2: CaseStudiesImages.two,
-  3: CaseStudiesImages.three,
-  4: CaseStudiesImages.four,
-  5: CaseStudiesImages.five,
-  6: CaseStudiesImages.six,
-  7: CaseStudiesImages.seven,
-  8: CaseStudiesImages.eight,
-};
 export default function CaseStudiesPage() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<typeof CASE_STUDIES_GRID[0] | null>(null);
+  const [caseStudyImages, setCaseStudyImages] = useState<Record<number, string>>({});
+
+  // Dynamic imports for code splitting
+  useEffect(() => {
+    const loadImages = async () => {
+      const [
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        img6,
+        img7,
+        img8,
+      ] = await Promise.all([
+        import('../assets/images/caseStudy/caseStudy-1.png'),
+        import('../assets/images/caseStudy/caseStudy-2.png'),
+        import('../assets/images/caseStudy/caseStudy-3.png'),
+        import('../assets/images/caseStudy/caseStudy-4.png'),
+        import('../assets/images/caseStudy/caseStudy-5.png'),
+        import('../assets/images/caseStudy/caseStudy-6.png'),
+        import('../assets/images/caseStudy/caseStudy-7.png'),
+        import('../assets/images/caseStudy/caseStudy-8.png'),
+      ]);
+
+      setCaseStudyImages({
+        1: img1.default,
+        2: img2.default,
+        3: img3.default,
+        4: img4.default,
+        5: img5.default,
+        6: img6.default,
+        7: img7.default,
+        8: img8.default,
+      });
+    };
+
+    loadImages();
+  }, []);
 
   return (
     <>
@@ -46,6 +76,7 @@ export default function CaseStudiesPage() {
             <h1 className="text-9xl md:text-9xl lg:text-9xl w-[900px] mx-auto xl:text-8xl font-bold text-white text-shadow-lg leading-tight mb-6">
             Real Results. Proven Amazon Growth.
             </h1>
+            <img src={amazonLine} alt="Amazon Line" className="absolute top-[189px] left-[26%]   " />
             <p className="text-2xl md:text-2xl lg:text-2xl text-white max-w-5xl mx-auto leading-relaxed">
             We don’t just manage Amazon ads — we scale brands profitably. Explore how we helped CPG brands increase sales, lower ACoS, and dominate their categories.
             </p>
@@ -72,14 +103,13 @@ export default function CaseStudiesPage() {
                 <div className="flex flex-col space-y-[34px]">
                   {/* Image */}
                   <div className="w-full h-[250px] md:h-[384px] rounded-[24px] overflow-hidden">
-                    <img
-                      src={caseStudyImages[index + 1 as keyof typeof caseStudyImages] }
-                      alt={study.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
-                    />
+                    {caseStudyImages[index + 1] && (
+                      <LazyImage
+                        src={caseStudyImages[index + 1]}
+                        alt={study.title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                   </div>
 
                   {/* Content */}
@@ -120,14 +150,13 @@ export default function CaseStudiesPage() {
               <div className="flex flex-col space-y-[34px]">
                 {/* Image - 1258px × 384px in Figma */}
                 <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[384px] rounded-[24px] overflow-hidden">
-                  <img
-                    src={caseStudyImages[5 as keyof typeof caseStudyImages]}
-                    alt={`${CASE_STUDIES_GRID[0].title} - Case Study`}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
+                  {caseStudyImages[5] && (
+                    <LazyImage
+                      src={caseStudyImages[5]}
+                      alt={`${CASE_STUDIES_GRID[0].title} - Case Study`}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
 
                 {/* Content - 1186px width with 36px left padding in Figma */}
@@ -186,14 +215,13 @@ export default function CaseStudiesPage() {
                   <div className="rounded-[35px] border border-[#D9D9D9] bg-black w-full min-h-[444px] md:h-[444px] flex flex-col items-center justify-start p-4 md:p-[15px]">
                     {/* Image - 379px × 354px (responsive) */}
                     <div className="w-full max-w-[379px] h-[250px] sm:h-[300px] md:h-[354px] rounded-[20px] overflow-hidden mb-4">
-                      <img
-                        src={caseStudyImages[index + 6]}
-                        alt={`${benefit.title} - Benefit`}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
+                      {caseStudyImages[index + 6] && (
+                        <LazyImage
+                          src={caseStudyImages[index + 6]}
+                          alt={`${benefit.title} - Benefit`}
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     
                     {/* Title */}

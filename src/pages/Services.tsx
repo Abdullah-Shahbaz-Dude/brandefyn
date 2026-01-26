@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { MdArrowForward, MdBarChart, MdHandshake, MdHub } from "react-icons/md";
 import heroImage from "../assets/images/hero/hero.png";
-import servicePageImage from '../assets/images/Service-page/servicePage-1.png';
-import servicePageImage2 from '../assets/images/Service-page/serviceCard-2.png';
-import servicePageImage3 from '../assets/images/Service-page/serviceCard-3.png';
+import LazyImage from "../components/ui/LazyImage";
+import amazonLine from '../assets/images/hero/hero-amzon.png';
 
 const serviceItems = [
   "SEO & Listing Optimization",
@@ -12,6 +12,30 @@ const serviceItems = [
 ];
 
 export default function ServicesPage() {
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  // Dynamic imports for code splitting
+  useEffect(() => {
+    const loadImages = async () => {
+      const [
+        img1,
+        img2,
+        img3,
+      ] = await Promise.all([
+        import('../assets/images/Service-page/servicePage-1.png'),
+        import('../assets/images/Service-page/serviceCard-2.png'),
+        import('../assets/images/Service-page/serviceCard-3.png'),
+      ]);
+
+      setImages({
+        service1: img1.default,
+        service2: img2.default,
+        service3: img3.default,
+      });
+    };
+
+    loadImages();
+  }, []);
   return (
     <>
       {/* Hero Section */}
@@ -41,6 +65,8 @@ export default function ServicesPage() {
               Full-Service Amazon Ads <br />
               & Growth Management
             </h1>
+            <img src={amazonLine} alt="Amazon Line" className="absolute top-[145px] left-[25%]   " />
+
             <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
               We manage, optimize, and scale Amazon brands using data-driven advertising strategies built for consistent, profitable growth.
             </p>
@@ -105,14 +131,13 @@ export default function ServicesPage() {
 
             {/* Image */}
             <div className="w-full h-[200px] sm:h-[250px] md:h-[313px] rounded-[20px] md:rounded-[30px] overflow-hidden">
-              <img
-                src={servicePageImage}
-                alt="Amazon Advertising Management"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
-              />
+              {images.service1 && (
+                <LazyImage
+                  src={images.service1}
+                  alt="Amazon Advertising Management"
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
           </motion.div>
 
@@ -179,7 +204,13 @@ export default function ServicesPage() {
                       </p>
                     </div>
                   </div>
-                    <img src={servicePageImage3} alt="Transparent Results for All Brands" className=" w-full h-full  object-cover mb-4" />
+                    {images.service3 && (
+                      <LazyImage 
+                        src={images.service3} 
+                        alt="Transparent Results for All Brands" 
+                        className="w-full h-full object-cover mb-4" 
+                      />
+                    )}
                 </div>
 
                 {/* Bottom Card: Growth Isn't Optional */}
@@ -246,11 +277,13 @@ export default function ServicesPage() {
             {/* Cards Container with Absolute Positioning */}
             <div className="relative z-10 w-full max-w-6xl mx-auto h-[1000px] hidden lg:block">
               {/* Connecting Spiral Image - Connects all three cards */}
-              <img 
-                src={servicePageImage2} 
-                alt="Connecting spiral path" 
-                className="absolute inset-0 left-[43%] top-[23%]  pointer-events-none z-[1] object-contain opacity-70" 
-              />
+              {images.service2 && (
+                <LazyImage 
+                  src={images.service2} 
+                  alt="Connecting spiral path" 
+                  className="absolute inset-0 left-[43%] top-[23%] pointer-events-none z-[1] object-contain opacity-70" 
+                />
+              )}
 
               {/* Card 1 - Top Left, Rotated -6deg with upward tilt */}
               <motion.div
@@ -321,11 +354,13 @@ export default function ServicesPage() {
               </motion.div>
 
                 {/* Connecting Spiral Image - Connects all three cards */}
-                <img 
-                src={servicePageImage2} 
-                alt="Connecting spiral path" 
-                className="absolute inset-0 left-[36%] top-[59%] transform rotate-90  pointer-events-none z-[1] object-contain opacity-70" 
-              />
+                {images.service2 && (
+                  <LazyImage 
+                    src={images.service2} 
+                    alt="Connecting spiral path" 
+                    className="absolute inset-0 left-[36%] top-[59%] transform rotate-90 pointer-events-none z-[1] object-contain opacity-70" 
+                  />
+                )}
             </div>
 
             {/* Mobile Layout - Stacked Cards */}

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import Hero from "../components/sections/Hero";
 import heroImage from "../assets/images/hero/hero.png";
+// import amazonLine from '../assets/images/hero/hero-amzon.png';
 
 interface ContactFormData {
   name: string;
@@ -30,8 +30,8 @@ export default function Contact() {
 
   return (
     <>
-      <Hero />
-      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24">
+      {/* Hero Section */}
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"
@@ -46,21 +46,26 @@ export default function Contact() {
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
 
+        <div className="container mx-auto px-4 max-w-[1400px] w-full relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 md:mb-16 relative"
+          >
+            <h1 className="text-4xl md:text-5xl -[800px] mx-auto lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight mb-6">
+              Get in Touch With Us
+            </h1>
+            Expert Guides to Master Amazon Ads  {/* <img src={amazonLine} alt="Amazon Line" className="absolute top-[145px] left-[25%]" /> */}
+            <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
+              We're here to help you grow your Amazon brand. Whether you have questions, want a free audit, or are ready to start scaling, our team is just a message away.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24">
         <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-          {/* Heading Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight mb-6">
-            Amazon Brand?
-          </h1>
-          <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
-            We're here to help you grow your Amazon brand. Whether you have questions, want a free audit, or are ready to start scaling, our team is just a message away.
-          </p>
-        </motion.div>
 
         {/* Main Container */}
         <motion.div

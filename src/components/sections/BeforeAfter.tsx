@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "../../utils/constants";
 
 import pmBefore from "../../assets/home/before-after/pm-1.png";
@@ -97,7 +98,7 @@ export default function BeforeAfter() {
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg
-                            className="absolute top-4 right-4 w-[138px] h-[70px]"
+                            className="absolute top-6 right-12 w-[138px] h-[70px]"
                             viewBox="0 0 138 70"
                             fill="none"
                             style={{
@@ -169,7 +170,7 @@ export default function BeforeAfter() {
                         
                         <div className="relative">
                           <img
-                            src={images.before}
+                            src={ppcBefore}
                             alt={`${study.title} - Before`}
                             className="w-full h-[238px] object-cover rounded-[18px]"
                           />
@@ -190,26 +191,26 @@ export default function BeforeAfter() {
                         
                         <div className="relative">
                           <img
-                            src={images.after}
+                            src={ppcAfter}
                             alt={`${study.title} - After`}
-                            className="w-full h-[238px] object-cover rounded-[18px]"
+                            className="w-full h-[228px] object-cover rounded-[18px]"
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg
-                            className="absolute top-4 right-4 w-[77px] h-[39px]"
-                            viewBox="0 0 77 39"
+                            className="absolute top-[-10px] right-8 w-[138px] h-[70px]"
+                            viewBox="0 0 138 70"
                             fill="none"
                             style={{
                               transform: "rotate(7.2deg)",
                             }}
                           >
                             <ellipse
-                              cx="38.5"
-                              cy="19.5"
-                              rx="37.5"
-                              ry="18.5"
+                              cx="69"
+                              cy="35"
+                              rx="68"
+                              ry="34"
                               stroke="rgba(185, 169, 254, 1)"
-                              strokeWidth="6"
+                              strokeWidth="3"
                             />
                           </svg>
                         </div>
@@ -267,7 +268,7 @@ export default function BeforeAfter() {
                       <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative">
                           <img
-                            src={images.before}
+                            src={salesBefore}
                             alt={`${study.title} - Before`}
                             className="w-full h-[310px] object-cover rounded-[18px]"
                           />
@@ -288,26 +289,26 @@ export default function BeforeAfter() {
                         
                         <div className="relative">
                           <img
-                            src={images.after}
+                            src={salesAfter}
                             alt={`${study.title} - After`}
                             className="w-full h-[310px] object-cover rounded-[18px]"
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg
-                            className="absolute top-4 right-4 w-[77px] h-[39px]"
-                            viewBox="0 0 77 39"
+                            className="absolute top-[70px] right-12 w-[138px] h-[70px]"
+                            viewBox="0 0 138 70"
                             fill="none"
                             style={{
                               transform: "rotate(7.2deg)",
                             }}
                           >
                             <ellipse
-                              cx="38.5"
-                              cy="19.5"
-                              rx="37.5"
-                              ry="18.5"
+                              cx="69"
+                              cy="35"
+                              rx="68"
+                              ry="34"
                               stroke="rgba(185, 169, 254, 1)"
-                              strokeWidth="6"
+                              strokeWidth="3"
                             />
                           </svg>
                         </div>
@@ -328,12 +329,13 @@ export default function BeforeAfter() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <button
-            className="px-6 py-3 bg-[#1F1446] border border-white rounded-md text-white font-semibold text-sm hover:bg-primary/20 btn-glow transition-all"
+          <Link
+            to="/case-studies"
+            className="px-6 py-3 bg-[#1F1446] border border-white rounded-md text-white font-semibold text-sm hover:bg-primary/20 btn-glow transition-all inline-block"
             style={{ backgroundColor: "rgb(31, 20, 70)" }}
           >
             View All Case Studies
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

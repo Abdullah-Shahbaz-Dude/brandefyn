@@ -1,31 +1,62 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import heroImage from "../assets/images/hero/hero.png";
-import servicePageImage from '../assets/images/caseStudy/caseStudy-1.png';
-import servicePageImage2 from '../assets/images/caseStudy/caseStudy-2.png';
-import servicePageImage3 from '../assets/images/caseStudy/caseStudy-3.png';
-import servicePageImage4 from '../assets/images/caseStudy/caseStudy-4.png';
-import servicePageImage5 from '../assets/images/caseStudy/caseStudy-5.png';
-import servicePageImage6 from '../assets/images/caseStudy/caseStudy-6.png';
-import servicePageImage7 from '../assets/images/caseStudy/caseStudy-7.png';
-
-
+import LazyImage from "../components/ui/LazyImage";
+import amazonLine from '../assets/images/hero/hero-amzon.png';
 
 export default function ResourcesPage() {
+  const [images, setImages] = useState<Record<string, string>>({});
+
+  // Dynamic imports for code splitting
+  useEffect(() => {
+    const loadImages = async () => {
+      const [
+        img1,
+        img2,
+        img3,
+        img4,
+        img5,
+        img6,
+        img7,
+      ] = await Promise.all([
+        import('../assets/images/caseStudy/caseStudy-1.png'),
+        import('../assets/images/caseStudy/caseStudy-2.png'),
+        import('../assets/images/caseStudy/caseStudy-3.png'),
+        import('../assets/images/caseStudy/caseStudy-4.png'),
+        import('../assets/images/caseStudy/caseStudy-5.png'),
+        import('../assets/images/caseStudy/caseStudy-6.png'),
+        import('../assets/images/caseStudy/caseStudy-7.png'),
+      ]);
+
+      setImages({
+        guide1: img1.default,
+        guide2: img2.default,
+        guide3: img3.default,
+        card1: img6.default,
+        card2: img7.default,
+        card3: img4.default,
+        card4: img5.default,
+      });
+    };
+
+    loadImages();
+  }, []);
+
   const guides = [
     {
-      image: servicePageImage,
+      image: images.guide1,
       title: "Amazon PPC Mastery Guide",
       description:
         "Learn the fundamentals of Amazon PPC advertising and how to optimize your campaigns for maximum ROI.",
     },
     {
-      image: servicePageImage2,
+      image: images.guide2,
       title: "CPG Brand Launch Strategy",
       description:
         "A comprehensive guide for launching your CPG brand on Amazon successfully and scaling your business.",
     },
     {
-      image: servicePageImage3,
+      image: images.guide3,
       title: "Advanced Amazon SEO",
       description:
         "Discover proven strategies to improve your Amazon listing rankings and visibility to drive more sales.",
@@ -34,22 +65,22 @@ export default function ResourcesPage() {
 
   const gridCards = [
     {
-      image: servicePageImage6,
+      image: images.card1,
       heading1: "Card Title 1",
       heading2: "Card Subtitle 1",
     },
     {
-      image: servicePageImage7,
+      image: images.card2,
       heading1: "Card Title 2",
       heading2: "Card Subtitle 2",
     },
     {
-      image: servicePageImage4,
+      image: images.card3,
       heading1: "Card Title 3",
       heading2: "Card Subtitle 3",
     },
     {
-      image: servicePageImage5,
+      image: images.card4,
       heading1: "Card Title 4",
       heading2: "Card Subtitle 4",
     },
@@ -73,7 +104,7 @@ export default function ResourcesPage() {
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
 
-        <div className="container mx-auto px-4 max-w-[1400px] w-full relative z-10">
+        <div className="container mx-auto px-4 max-w-[800px] w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,6 +117,7 @@ export default function ResourcesPage() {
             <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
               Actionable insights, proven strategies, and expert guidance to help you win on Amazon.
             </p>
+            <img src={amazonLine} alt="Amazon Line" className="absolute top-[145px] left-[8%]   " />
           </motion.div>
         </div>
       </div>
@@ -99,7 +131,7 @@ export default function ResourcesPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight">
+            <h1 className="text-4xl md:text-5xl w-[800px]  lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight">
               Expert Guides to Master Amazon Ads
             </h1>
           </motion.div>
@@ -130,15 +162,17 @@ export default function ResourcesPage() {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <img
-                    src={guide.image}
-                    alt={guide.title}
-                    className="rounded-[20px] object-cover w-full"
-                    style={{
-                      maxWidth: "379px",
-                      height: "258px",
-                    }}
-                  />
+                  {guide.image && (
+                    <LazyImage
+                      src={guide.image}
+                      alt={guide.title}
+                      className="rounded-[20px] object-cover w-full"
+                      style={{
+                        maxWidth: "379px",
+                        height: "258px",
+                      }}
+                    />
+                  )}
                 </motion.div>
 
                 {/* Content */}
@@ -338,11 +372,13 @@ export default function ResourcesPage() {
                 <div className="flex flex-col space-y-[34px]">
                   {/* Image */}
                   <div className="w-full h-[250px] md:h-[384px] rounded-[35px] overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.heading1}
-                      className="w-full h-full object-cover"
-                    />
+                    {card.image && (
+                      <LazyImage
+                        src={card.image}
+                        alt={card.heading1}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                   </div>
 
                   {/* Text Content */}

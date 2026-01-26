@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   MdChevronLeft,
   MdCheckCircle,
@@ -47,9 +48,9 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <button className="px-5 py-2 border border-primary/30 bg-primary/10 backdrop-blur-md rounded-full text-[11px] font-bold tracking-[0.2em] uppercase ">
+          <Link to="/contact" className="px-5 py-2 border border-primary/30 bg-primary/10 backdrop-blur-md rounded-full text-[11px] font-bold tracking-[0.2em] uppercase inline-block">
             Free Audit
-          </button>
+          </Link>
         </motion.div>
 
         {/* Main Headline */}
@@ -74,9 +75,9 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4"
         >
-          <button className="px-10 py-3.5 bg-[#140e2a] border  text-white  font-bold text-sm tracking-wide btn-glow transition-all flex items-center gap-2 mx-auto">
+          <Link to="/contact" className="px-10 py-3.5 bg-[#140e2a] border text-white font-bold text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto">
             Book a Call
-          </button>
+          </Link>
         </motion.div>
       </div>
 
@@ -181,7 +182,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 50, rotate: 3 }}
           animate={{ opacity: 1, x: 0, rotate: -3 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="absolute right-[1%] top-[100px] bg-transparent border-2 glass-card  card-glow-hover p-8 rounded-[36px] w-[380px] max-w-[90vw] -rotate-[3deg] transform z-30"
+          className="absolute right-[3%] top-[100px] bg-transparent border-2 glass-card  card-glow-hover p-8 rounded-[36px] w-[380px] max-w-[90vw] -rotate-[3deg] transform z-30"
         >
           <div className="flex items-center gap-4 mb-6 ">
             <img
@@ -200,12 +201,12 @@ export default function Hero() {
             "Our biggest challenge (with Amazon) was teasing out where we were
             getting incremental sales...Extension eCom helped us find clarity."
           </p>
-          <a
+          <Link
+            to="/case-studies"
             className="text-[14px] font-bold text-white hover:underline transition-all inline-block"
-            href="#"
           >
             View Details
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

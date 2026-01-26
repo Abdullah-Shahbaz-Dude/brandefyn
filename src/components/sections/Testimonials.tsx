@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import Modal from "../ui/Modal";
 import VideoPlayer from "../ui/VideoPlayer";
 import { TESTIMONIALS, CLIENT_TESTIMONIALS } from "../../utils/constants";
-import testimonialImg1 from "../../assets/images/testimonials/testimonial-1.jpg";
-import testimonialImg2 from "../../assets/images/testimonials/testimonial-2.jpg";
-import testimonialImg3 from "../../assets/images/testimonials/testimonial-3.jpg";
+import testimonialImg1 from "../../assets/home/mqdefault(1).jpg";
+import testimonialImg2 from "../../assets/home/default.jpg";
+import testimonialImg3 from "../../assets/home/mqdefault(1).jpg";
 
 const testimonialImages = [testimonialImg1, testimonialImg2, testimonialImg3];
 
@@ -23,11 +23,26 @@ export default function Testimonials() {
   const testimonials = CLIENT_TESTIMONIALS.slice(0, 3).map((testimonial, index) => ({
     ...testimonial,
     image: testimonialImages[index] || testimonialImages[0],
-    thumbnail: TESTIMONIALS[index]?.thumbnail || "",
+    // YouTube thumbnail logic commented out - using local images directly
+    // thumbnail: TESTIMONIALS[index]?.thumbnail || "",
+    thumbnail: "", // Using local images instead
     videoSource: TESTIMONIALS[index]?.videoSource || "",
     video: TESTIMONIALS[index]?.video || "",
     isYouTube: TESTIMONIALS[index]?.isYouTube || false,
   }));
+
+  // State to track image sources for each testimonial
+  // Using local images directly instead of YouTube thumbnails
+  const [imageSources, setImageSources] = useState<Record<number, string>>(() => {
+    const initial: Record<number, string> = {};
+    CLIENT_TESTIMONIALS.slice(0, 3).forEach((testimonial, index) => {
+      // Use local images directly instead of YouTube thumbnails
+      // const thumbnail = TESTIMONIALS[index]?.thumbnail || "";
+      const localImage = testimonialImages[index] || testimonialImages[0];
+      initial[testimonial.id] = localImage;
+    });
+    return initial;
+  });
 
   // Auto-play functionality
   useEffect(() => {
@@ -97,9 +112,16 @@ export default function Testimonials() {
                       <div className="glass-card border-2  rounded-[36px] p-6 relative overflow-hidden">
                         <div className="relative w-full md:w-[440px] h-[340px]">
                           <img
-                            src={testimonial.thumbnail || testimonial.image}
+                            src={imageSources[testimonial.id] || testimonial.image}
                             alt={testimonial.name}
                             className="w-full h-full object-cover rounded-[23px]"
+                            onError={() => {
+                              // Fallback to local image if current image fails to load
+                              setImageSources((prev) => ({
+                                ...prev,
+                                [testimonial.id]: testimonial.image,
+                              }));
+                            }}
                           />
                           {/* Play Button Overlay - Purple Ellipse with White Triangle */}
                           {testimonial.video && (
