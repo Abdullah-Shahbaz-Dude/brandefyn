@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import heroImage from "../../assets/images/hero/hero.png";
 import lineImage from "../../assets/images/hero/linhero.png"
+import amazonLine from "../../assets/images/hero/hero-amzon.png";
 
 export default function Hero() {
   return (
@@ -46,7 +47,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <button className="px-5 py-1.5 border border-primary/30 bg-primary/10 backdrop-blur-md rounded-full text-[11px] font-bold tracking-[0.2em] uppercase text-primary/80">
+          <button className="px-5 py-2 border border-primary/30 bg-primary/10 backdrop-blur-md rounded-full text-[11px] font-bold tracking-[0.2em] uppercase ">
             Free Audit
           </button>
         </motion.div>
@@ -59,23 +60,11 @@ export default function Hero() {
           className="text-4xl sm:text-5xl text-white md:text-6xl lg:text-[84px] font-extrabold tracking-tight mb-8 leading-[1.1] px-4"
         >
           See What's Holding Your <br />
-          <span className="relative inline-block">
-            Amazon
-            <svg
-              className="absolute -bottom-2 left-0 w-full h-3 text-primary/40"
-              fill="none"
-              viewBox="0 0 200 12"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 10C50 3 150 3 198 10"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeWidth="4"
-              />
-            </svg>
-          </span>{" "}
-          Sales Back.
+          <span className="relative inline-block mr-4">
+            Amazon   
+            <img src={amazonLine} alt="Amazon Line" />
+          </span>
+           Sales Back.
         </motion.h1>
 
         {/* Book a Call Button */}
@@ -85,7 +74,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-4"
         >
-          <button className="px-10 py-3.5 bg-[#140e2a] border border-primary/50 text-white rounded-full font-bold text-sm tracking-wide btn-glow transition-all flex items-center gap-2 mx-auto">
+          <button className="px-10 py-3.5 bg-[#140e2a] border  text-white  font-bold text-sm tracking-wide btn-glow transition-all flex items-center gap-2 mx-auto">
             Book a Call
           </button>
         </motion.div>

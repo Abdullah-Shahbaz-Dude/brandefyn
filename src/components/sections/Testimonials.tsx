@@ -48,12 +48,12 @@ export default function Testimonials() {
   const translateX = currentIndex * (cardWidthDesktop + gap);
 
   return (
-    <section className="relative py-24 purple-glow-bg-medium "> 
+    <section className="relative py-24  "> 
       {/* Purple Glow Orbs - Right Side, extending into Reviews section - Reduced intensity */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/12 rounded-full blur-[120px] -z-10" />
-      <div className="absolute right-0 -bottom-20 w-[500px] h-[500px] bg-purple-900/15 rounded-full blur-[120px] -z-10" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px]  rounded-full blur-[120px] -z-10" />
+      <div className="absolute right-0 -bottom-20 w-[500px] h-[500px]  rounded-full blur-[120px] -z-10" />
       {/* Additional glow for connection with TrustedBy */}
-      <div className="absolute -top-20 left-0 w-[550px] h-[550px] bg-primary/10 rounded-full blur-[120px] -z-10" />
+      <div className="absolute -top-20 left-0 w-[550px] h-[550px] rounded-full blur-[120px] -z-10" />
       
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         {/* Title */}
@@ -81,7 +81,7 @@ export default function Testimonials() {
               className="flex gap-6"
               animate={{ x: -translateX }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-              style={{ willChange: 'transform' }}
+        
             >
               {testimonials.map((testimonial) => (
                 <div
@@ -113,7 +113,7 @@ export default function Testimonials() {
                         }
                       >
                               {/* Purple Ellipse */}
-                              <div className="w-20 h-20 bg-[#271E51] rounded-full flex items-center justify-center relative">
+                              <div className="w-20 h-20   rounded-full flex items-center justify-center relative">
                                 {/* White Triangle Play Icon */}
                                 <svg
                                   width="18"

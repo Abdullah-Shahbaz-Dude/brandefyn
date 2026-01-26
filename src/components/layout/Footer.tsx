@@ -11,9 +11,7 @@ export default function Footer() {
   return (
     <footer className="relative purple-glow-footer text-white overflow-hidden">
       {/* Purple Glow Orbs - Left Side */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-900/25 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 w-[450px] h-[450px] bg-purple-500/15 rounded-full blur-[130px] -z-10" />
+      
       
       <div className="container mx-auto px-4 py-12 max-w-[1400px] relative z-10">
         {/* Three Column Layout */}
@@ -137,7 +135,7 @@ export default function Footer() {
                 className="text-white transition-opacity hover:opacity-70"
                 aria-label="Upwork"
               >
-               <img src={upworkLogo} alt="Upwork Logo" className="w-16 h-16" />
+               <img src={upworkLogo} alt="Upwork Logo"  />
               </a>
               <a
                 href="#"

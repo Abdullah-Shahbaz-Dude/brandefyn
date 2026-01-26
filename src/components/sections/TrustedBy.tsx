@@ -23,8 +23,8 @@ export default function TrustedBy() {
       {/* Additional glow for smooth transition from Metrics - Reduced intensity */}
       <div className="absolute -top-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
       {/* Glow extending into Testimonials section */}
-      <div className="absolute -bottom-20 left-0 w-[550px] h-[550px] bg-purple-900/12 rounded-full blur-[120px] -z-10" />
-      <div className="container mx-auto px-4 max-w-[1400px]">
+      <div className="absolute -bottom-20 left-0 h-[550px] bg-purple-900/12 rounded-full blur-[120px] -z-10" />
+      <div className="container  mx-auto max-w-[1400px] ">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,7 +33,7 @@ export default function TrustedBy() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-base text-white">Clients we work with</p>
+          <p className=" text-white font-bold text-4xl">Clients we work with</p>
         </motion.div>
 
         {/* Logo Row */}
@@ -57,7 +57,7 @@ export default function TrustedBy() {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-12 md:h-16 object-contain opacity-70 hover:opacity-100 transition-opacity"
               />
             </motion.div>
           ))}
