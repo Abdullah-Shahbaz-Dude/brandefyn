@@ -14,7 +14,7 @@ import borderImage from "../../assets/images/hero/border.svg";
 
 export default function Hero() {
   return (
-    <section className="relative w-screen h-[900px] flex flex-col items-center  ">
+    <section className="relative w-full h-[900px] flex flex-col items-center  ">
       {/* Background Image */}
       <img
         src={heroImage}
@@ -109,8 +109,8 @@ export default function Hero() {
         />
         {/* Statistics Card (Left) */}
         <motion.div
-          initial={{ opacity: 0, x: -50, rotate: -10 }}
-          animate={{ opacity: 1, x: 0, rotate: 10 }}
+          initial={{ opacity: 0, y: 30, rotate: -10 }}
+          animate={{ opacity: 1, y: 0, rotate: 10 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="absolute left-[7%] h-[142.15px] w-[209.5px] bottom-[140px] bg-transparent border-2 glass-card  card-glow-hover p-8 rounded-[36px]  rotate-[10deg] transform z-30"
         >
@@ -197,8 +197,8 @@ export default function Hero() {
 
         {/* Testimonial Card (Right) */}
         <motion.div
-          initial={{ opacity: 0, x: 50, rotate: 3 }}
-          animate={{ opacity: 1, x: 0, rotate: -3 }}
+          initial={{ opacity: 0, y: 30, rotate: 3 }}
+          animate={{ opacity: 1, y: 0, rotate: -3 }}
           transition={{ duration: 0.8, delay: 1 }}
           className="absolute right-[8%] bottom-[100px] h-[233.4px] w-[306.68px] max-w-[90vw] bg-transparent border-2 glass-card  card-glow-hover p-4 rounded-[36px] -rotate-[7deg] transform z-30 overflow-hidden"
         >

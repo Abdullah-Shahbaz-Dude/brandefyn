@@ -92,13 +92,13 @@ export default function ResourcesPage() {
       {/* Hero Section */}
       <div className="relative h-[900px] min-h-screen  py-12 md:py-24 flex items-center">
         {/* Background Image */}
-        <div
-          className="absolute inset-0 z-0"
+        <img
+          src={heroImage}
+          alt="Hero Background"
+          className="absolute inset-0 z-0 w-full h-full object-cover object-center left-0"
           style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            width: "100%",
+            height: "100%",
           }}
         />
         
