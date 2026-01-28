@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import heroImage from "../assets/images/hero/hero.png";
+import heroImage from "../assets/images/hero/hero-2.png";
 // import amazonLine from '../assets/images/hero/hero-amzon.png';
 
 interface ContactFormData {
@@ -42,6 +42,9 @@ export default function Contact() {
             backgroundRepeat: "no-repeat",
           }}
         />
+        
+        {/* Additional Purple Glow Blur Effect - matching home page */}
+        <div className="absolute -bottom-[50px] left-0 w-[500px] h-[500px] rounded-full blur-[120px] -z-20" />
         
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />

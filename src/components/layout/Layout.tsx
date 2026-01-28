@@ -6,6 +6,7 @@ import lineImage from '../../assets/lines.png';
 import leftLineImage from '../../assets/leftline.svg';
 import blurleft from '../../assets/blur-2.svg'
 import blurright from '../../assets/blur-3.svg'
+import blurHome from '../../assets/blur-home.svg'
 
 interface LayoutProps {
   children: ReactNode;

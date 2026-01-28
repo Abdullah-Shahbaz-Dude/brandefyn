@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Modal from '../components/ui/Modal';
 import { CASE_STUDIES_GRID, BENEFITS } from '../utils/constants';
-import heroImage from '../assets/images/hero/hero.png';
+import heroImage from '../assets/images/hero/hero-2.png';
 import LazyImage from '../components/ui/LazyImage';
 import amazonLine from '../assets/images/hero/hero-amzon.png';
 

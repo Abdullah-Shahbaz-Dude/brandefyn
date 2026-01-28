@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { MdArrowForward, MdBarChart, MdHandshake, MdHub } from "react-icons/md";
-import heroImage from "../assets/images/hero/hero.png";
+import heroImage from "../assets/images/hero/hero-2.png";
 import LazyImage from "../components/ui/LazyImage";
 import amazonLine from '../assets/images/hero/hero-amzon.png';
 
@@ -50,6 +50,9 @@ export default function ServicesPage() {
             backgroundRepeat: "no-repeat",
           }}
         />
+        
+        {/* Additional Purple Glow Blur Effect - matching home page */}
+        <div className="absolute -bottom-[50px] left-0 w-[500px] h-[500px] rounded-full blur-[120px] -z-20" />
         
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />

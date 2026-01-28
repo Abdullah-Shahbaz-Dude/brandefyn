@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import heroImage from "../assets/images/hero/hero.png";
+import heroImage from "../assets/images/hero/hero-2.png";
 import LazyImage from "../components/ui/LazyImage";
 import amazonLine from '../assets/images/hero/hero-amzon.png';
 
@@ -89,7 +89,7 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative min-h-screen  py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"
@@ -100,6 +100,9 @@ export default function ResourcesPage() {
             backgroundRepeat: "no-repeat",
           }}
         />
+        
+        {/* Additional Purple Glow Blur Effect - matching home page */}
+        <div className="absolute -bottom-[50px] left-0 w-[500px] h-[500px] rounded-full blur-[120px] -z-20" />
         
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
@@ -122,8 +125,8 @@ export default function ResourcesPage() {
         </div>
       </div>
 
-      <div className="py-24 purple-glow-bg">
-        <div className="container mx-auto px-4 max-w-[1400px]">
+      <div className="py-24 ">
+        <div className="container mx-auto px-4 max-w-[1400px] ">
           {/* Heading Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -201,7 +204,7 @@ export default function ResourcesPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="relative w-full bg-black overflow-hidden py-12">
+      <div className="relative w-full overflow-hidden py-12">
         <div className="container mx-auto px-4 max-w-[1400px] flex justify-center">
           <div
             className="relative"
