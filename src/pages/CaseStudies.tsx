@@ -5,6 +5,7 @@ import { CASE_STUDIES_GRID, BENEFITS } from '../utils/constants';
 import heroImage from '../assets/images/hero/hero-2.png';
 import LazyImage from '../components/ui/LazyImage';
 import amazonLine from '../assets/images/hero/hero-amzon.png';
+import borderImage from '../assets/images/hero/border.svg';
 
 export default function CaseStudiesPage() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<typeof CASE_STUDIES_GRID[0] | null>(null);
@@ -51,7 +52,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative h-[900px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0"
@@ -63,8 +64,16 @@ export default function CaseStudiesPage() {
           }}
         />
         
+        {/* Additional Purple Glow Blur Effect - matching home page */}
+        <div className="absolute bottom-[0px] left-0 w-[500px] h-[100px] rounded-full blur-[180px] -z-20" />
+        
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
+        
+        {/* Border/Shadow transition effect */}
+        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] z-10 pointer-events-none overflow-hidden">
+          <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
+        </div>
 
         <div className="container mx-auto px-8 max-w-[1400px] w-full relative z-10">
           <motion.div

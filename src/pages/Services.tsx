@@ -4,6 +4,7 @@ import { MdArrowForward, MdBarChart, MdHandshake, MdHub } from "react-icons/md";
 import heroImage from "../assets/images/hero/hero-2.png";
 import LazyImage from "../components/ui/LazyImage";
 import amazonLine from '../assets/images/hero/hero-amzon.png';
+import borderImage from '../assets/images/hero/border.svg';
 
 const serviceItems = [
   "SEO & Listing Optimization",
@@ -39,7 +40,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative h-[900px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0 "
@@ -56,6 +57,11 @@ export default function ServicesPage() {
         
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
+        
+        {/* Border/Shadow transition effect */}
+        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] z-10 pointer-events-none overflow-hidden">
+          <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
+        </div>
 
         <div className="container mx-auto px-4 max-w-[1400px] w-full relative z-10">
           <motion.div
