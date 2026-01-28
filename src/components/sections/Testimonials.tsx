@@ -60,6 +60,8 @@ export default function Testimonials() {
   // On mobile: show single card
   const cardWidthDesktop = 973; // md:w-[973px]
   const gap = 24; // gap-6 = 24px
+  // Center the first card, then slide based on currentIndex
+  // On mobile, cards are w-full so they naturally fill; on desktop, center using 50vw - half card width
   const translateX = currentIndex * (cardWidthDesktop + gap);
 
   return (
@@ -67,8 +69,8 @@ export default function Testimonials() {
       {/* Additional glow for connection with TrustedBy */}
       <div className="absolute -top-20 left-0 w-[550px] h-[550px] rounded-full blur-[120px] -z-10" />
       
+      {/* Title - stays in container */}
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,21 +82,23 @@ export default function Testimonials() {
             Testimonials
           </h2>
         </motion.div>
+      </div>
 
-        {/* Auto-Playing Carousel */}
-        <div 
-          className="relative overflow-hidden w-full"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Container that shows full card on mobile, full card + peek on desktop */}
-          <div className="relative w-full max-w-[1400px] mx-auto overflow-hidden">
-            <motion.div
-              className="flex gap-6"
-              animate={{ x: -translateX }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-        
-            >
+      {/* Auto-Playing Carousel - breaks out to full width */}
+      <div 
+        className="relative overflow-hidden w-full"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Container that shows full card on mobile, full card + peek on desktop */}
+        <div className="relative w-full overflow-hidden px-4 md:px-8">
+          <motion.div
+            className="flex gap-6"
+            animate={{ 
+              x: -translateX
+            }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
               {testimonials.map((testimonial) => (
                 <div
                       key={testimonial.id}
@@ -194,55 +198,54 @@ export default function Testimonials() {
                 </div>
               </div>
               ))}
-                    </motion.div>
-          </div>
-
-          {/* Dot Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-primary w-8 h-2"
-                    : "bg-white/30 w-2 h-2 hover:bg-white/50"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Video Modal */}
-        <Modal
-          isOpen={!!selectedVideo}
-          onClose={() => setSelectedVideo(null)}
-          className="max-w-4xl"
-        >
-          {selectedVideo && (
-            <div className="w-full">
-              {selectedVideo.isYouTube ? (
-                <div className="relative aspect-video w-full">
-                  <iframe
-                    src={selectedVideo.url}
-                    title="Testimonial video"
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                </div>
-              ) : (
-                <VideoPlayer
-                  src={selectedVideo.url}
-                  className="w-full"
-                  autoplay
-                />
-              )}
-            </div>
-          )}
-        </Modal>
+        {/* Dot Indicators */}
+        <div className="container mx-auto px-4 max-w-[1400px] flex justify-center gap-2 mt-8">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-primary w-8 h-2"
+                  : "bg-white/30 w-2 h-2 hover:bg-white/50"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
+
+      {/* Video Modal */}
+      <Modal
+        isOpen={!!selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+        className="max-w-4xl"
+      >
+        {selectedVideo && (
+          <div className="w-full">
+            {selectedVideo.isYouTube ? (
+              <div className="relative aspect-video w-full">
+                <iframe
+                  src={selectedVideo.url}
+                  title="Testimonial video"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <VideoPlayer
+                src={selectedVideo.url}
+                className="w-full"
+                autoplay
+              />
+            )}
+          </div>
+        )}
+      </Modal>
     </section>
   );
 }

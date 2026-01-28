@@ -9,11 +9,11 @@ import amazonLogo from '../../assets//images/fotter/ri_amazon-line.png';
 
 export default function Footer() {
   return (
-    <footer className="relative purple-glow-footer text-white overflow-hidden">
+    <footer className="purple-glow-footer text-white mt-10 relative" style={{ marginBottom: 0 }}>
       {/* Purple Glow Orbs - Left Side */}
       
       
-      <div className="container mx-auto px-4 py-12 max-w-[1400px] relative z-10">
+      <div className="container mx-auto px-4 pt-12 pb-12 max-w-[1400px] relative z-10">
         {/* Three Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Left Column: Brandefyn & Contact Info */}

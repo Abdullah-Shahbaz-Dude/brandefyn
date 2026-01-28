@@ -13,7 +13,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col w-full purple-glow-bg">
+    <div className="min-h-screen flex flex-col w-full purple-glow-bg overflow-hidden">
       <Header />
       <main className="flex-grow w-full relative">
         {/* Common Line Images - Appear on all pages */}
@@ -22,7 +22,8 @@ export default function Layout({ children }: LayoutProps) {
         <img src={leftLineImage} alt="Left Line Image" className="absolute left-[0%] top-[19%] pointer-events-none z-0" />
         <img src={blurleft} alt="left blur" className='absolute left-[0%] top-[45%] pointer-events-none z-0' />
         <img src={blurright} alt="right blur" className='absolute right-[0%] top-[80%] pointer-events-none z-0' />
-        <img src={blurleft} alt="left blur" className='absolute left-[0%] top-[100%] pointer-events-none z-0' />
+        {/* Footer area blur - positioned to match Figma design */}
+        <img src={blurleft} alt="left blur" className='absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80' />
         {children}
       </main>
       <Reviews />
