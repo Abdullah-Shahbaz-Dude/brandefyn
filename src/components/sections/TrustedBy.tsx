@@ -21,9 +21,7 @@ export default function TrustedBy() {
   return (
     <section className="relative py-24 purple-glow-bg-subtle ">
       {/* Additional glow for smooth transition from Metrics - Reduced intensity */}
-      <div className="absolute -top-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
       {/* Glow extending into Testimonials section */}
-      <div className="absolute -bottom-20 left-0 h-[550px] bg-purple-900/12 rounded-full blur-[120px] -z-10" />
       <div className="container  mx-auto max-w-[1400px] ">
         {/* Title */}
         <motion.div

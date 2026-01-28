@@ -8,6 +8,8 @@ import ppcBefore from "../../assets/home/before-after/ppc-1.png";
 import ppcAfter from "../../assets/home/before-after/ppc-2.png";
 import salesBefore from "../../assets/home/before-after/sales-1.png";
 import salesAfter from "../../assets/home/before-after/sales-2.png";
+import blurHome from "../../assets/blur-home.svg";
+import blur2 from "../../assets/blur-2.svg";
 
 const caseStudyImages = {
   1: { before: pmBefore, after: pmAfter },
@@ -17,12 +19,15 @@ const caseStudyImages = {
 
 export default function BeforeAfter() {
   return (
-    <section className="relative py-24 purple-glow-bg overflow-hidden">
-      {/* Purple Glow Orbs - Bottom extending into VideoSalesLetter below for seamless transition - Reduced intensity */}
-      <div className="absolute left-0 -bottom-20 w-[500px] h-[500px] bg-primary/12 rounded-full blur-[120px] -z-10" />
-      <div className="absolute right-0 -bottom-30 w-[600px] h-[600px] bg-purple-900/15 rounded-full blur-[120px] -z-10" />
-      
-      <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
+    <section className="relative py-24 purple-glow-bg overflow-hidden mt-[20px]">
+      {/* Background Blur Image */}
+      <img 
+        src={blurHome} 
+        alt="" 
+        className="absolute left-[60%] top-[15%] z-0 object-center" 
+      />
+  
+      <div className="container mx-auto px-4 max-w-[1400px] relative">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -31,7 +36,18 @@ export default function BeforeAfter() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 
+            className="text-white mb-6"
+            style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontSize: '72px',
+              lineHeight: '74px',
+              letterSpacing: '-2%',
+              fontWeight: 400,
+              color: '#FFFFFF',
+              // textShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.2)',
+            }}
+          >
             Client Before & After Results
           </h2>
           <p className="text-base text-white">
@@ -54,11 +70,31 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before Card */}
-                        <p className="text-white text-xl  font-semibold text-center">
+                        <p 
+                          className="text-white text-center"
+                          style={{
+                            fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                            fontSize: '26px',
+                            lineHeight: '35px',
+                            letterSpacing: '0%',
+                            fontWeight: 400,
+                            color: '#FFFFFF',
+                          }}
+                        >
                           Before
                         </p>
                         {/* After Card */}
-                        <p className="text-white text-xl font-semibold text-center">
+                        <p 
+                          className="text-white text-center"
+                          style={{
+                            fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                            fontSize: '26px',
+                            lineHeight: '35px',
+                            letterSpacing: '0%',
+                            fontWeight: 400,
+                            color: '#FFFFFF',
+                          }}
+                        >
                           After
                         </p>
               
@@ -71,11 +107,19 @@ export default function BeforeAfter() {
                       className="relative min-w-0 "
                     >
                       <div className="table-card rounded-[36px] p-6 relative">
-                        <div className="relative">
+                        <div 
+                          className="relative"
+                          style={{
+                            backgroundImage: `url(${blur2})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                          }}
+                        >
                           <img
                             src={images.before}
                             alt={`${study.title} - Before`}
-                            className="w-full h-[290px] object-cover rounded-[23px]"
+                            className=" h-[290px] object-fill rounded-[23px]"
                           />
                         </div>
                       </div>
@@ -94,7 +138,7 @@ export default function BeforeAfter() {
                           <img
                             src={images.after}
                             alt={`${study.title} - After`}
-                            className="w-full h-[290px] object-cover rounded-[23px]"
+                            className=" h-[290px] object-fill rounded-[23px]"
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg
@@ -141,7 +185,17 @@ export default function BeforeAfter() {
                   <>
                     {/* Before Card with Price */}
                     <div className="flex flex-col gap-2"> 
-                    <p className="text-white text-xl font-semibold text-center">
+                    <p 
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                        fontSize: '26px',
+                        lineHeight: '35px',
+                        letterSpacing: '0%',
+                        fontWeight: 400,
+                        color: '#FFFFFF',
+                      }}
+                    >
                           Before
                     </p>
                       <p className="text-white text-xl font-semibold text-center">
@@ -150,7 +204,17 @@ export default function BeforeAfter() {
                     </div>
 
                     <div className="flex flex-col gap-2"> 
-                    <p className="text-white text-xl font-semibold text-center">
+                    <p 
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                        fontSize: '26px',
+                        lineHeight: '35px',
+                        letterSpacing: '0%',
+                        fontWeight: 400,
+                        color: '#FFFFFF',
+                      }}
+                    >
                           After
                     </p>
                       <p className="text-white text-xl font-semibold text-center">
@@ -241,7 +305,17 @@ export default function BeforeAfter() {
 
 
                     <div className="flex flex-col gap-2"> 
-                    <p className="text-white text-xl font-semibold text-center">
+                    <p 
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                        fontSize: '26px',
+                        lineHeight: '35px',
+                        letterSpacing: '0%',
+                        fontWeight: 400,
+                        color: '#FFFFFF',
+                      }}
+                    >
                           Before
                     </p>
                       <p className="text-white text-xl font-semibold text-center">
@@ -250,7 +324,17 @@ export default function BeforeAfter() {
                     </div>
 
                     <div className="flex flex-col gap-2"> 
-                    <p className="text-white text-xl font-semibold text-center">
+                    <p 
+                      className="text-white text-center"
+                      style={{
+                        fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
+                        fontSize: '26px',
+                        lineHeight: '35px',
+                        letterSpacing: '0%',
+                        fontWeight: 400,
+                        color: '#FFFFFF',
+                      }}
+                    >
                           After
                     </p>
                       <p className="text-white text-xl font-semibold text-center">
@@ -270,7 +354,7 @@ export default function BeforeAfter() {
                           <img
                             src={salesBefore}
                             alt={`${study.title} - Before`}
-                            className="w-full h-[310px] object-cover rounded-[18px]"
+                            className=" h-[310px] object-fill rounded-[18px]"
                           />
                         </div>
                       </div>
@@ -291,7 +375,7 @@ export default function BeforeAfter() {
                           <img
                             src={salesAfter}
                             alt={`${study.title} - After`}
-                            className="w-full h-[310px] object-cover rounded-[18px]"
+                            className=" h-[310px] object-fill rounded-[18px]"
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg

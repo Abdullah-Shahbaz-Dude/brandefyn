@@ -64,9 +64,6 @@ export default function Testimonials() {
 
   return (
     <section className="relative py-24  "> 
-      {/* Purple Glow Orbs - Right Side, extending into Reviews section - Reduced intensity */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px]  rounded-full blur-[120px] -z-10" />
-      <div className="absolute right-0 -bottom-20 w-[500px] h-[500px]  rounded-full blur-[120px] -z-10" />
       {/* Additional glow for connection with TrustedBy */}
       <div className="absolute -top-20 left-0 w-[550px] h-[550px] rounded-full blur-[120px] -z-10" />
       

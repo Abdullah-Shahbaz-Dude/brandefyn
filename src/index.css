@@ -130,46 +130,16 @@
   }
 
   /* Purple gradient background */
-  .purple-gradient-bg {
-    background: radial-gradient(
-      circle at 50% 50%,
-      rgba(139, 92, 246, 0.7) 90%,
-      rgba(139, 92, 246, 0.6) 10%,
-      rgba(139, 92, 246, 0.5) 20%,
-      rgba(139, 92, 246, 0.4) 30%,
-      rgba(139, 92, 246, 0.35) 40%,
-      rgba(139, 92, 246, 0.3) 50%,
-      rgba(139, 92, 246, 0.25) 60%,
-      rgba(139, 92, 246, 0.2) 70%,
-      rgba(139, 92, 246, 0.15) 95%,
-      rgba(139, 92, 246, 0.1) 80%,
-      rgba(5, 5, 5, 0.95) 90%,
-      #000000 100%
-    ) !important; /* Force override Tailwind */
-    background-attachment: fixed !important;
-  }
+  
 
-  /* Grid floor effect */
-  .grid-floor {
-    background-image: linear-gradient(
-        rgba(139, 92, 246, 0.1) 1px,
-        transparent 1px
-      ),
-      linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-    transform: perspective(500px) rotateX(60deg);
-    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
-  }
-
+  
   /* Hide scrollbar */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+
 
   /* Keyframe animations for glow movement */
   @keyframes glowMove1 {
@@ -191,7 +161,7 @@
     }
   }
 
-  @keyframes glowMove2 {
+  /* @keyframes glowMove2 {
     0%, 100% {
       transform: translate(0, 0) scale(1);
       opacity: 0.25;
@@ -204,10 +174,10 @@
       transform: translate(-5%, -20%) scale(0.9);
       opacity: 0.3;
     }
-  }
+  } */
 
   /* Animated purple glow background - Base variant */
-  .purple-glow-bg {
+  /* .purple-glow-bg {
     position: relative;
     background: transparent;
     overflow: visible;
@@ -248,10 +218,10 @@
     );
     animation: glowMove2 15s ease-in-out infinite;
     animation-delay: 2s;
-  }
+  } */
 
   /* Subtle variant - lighter glow */
-  .purple-glow-bg-subtle {
+  /* .purple-glow-bg-subtle {
     position: relative;
     background: transparent;
     overflow: visible;
@@ -279,9 +249,9 @@
       transparent 70%
     );
     animation: glowMove1 14s ease-in-out infinite;
-  }
+  } */
 
-  .purple-glow-bg-subtle::after {
+  /* .purple-glow-bg-subtle::after {
     bottom: 15%;
     left: -3%;
     background: radial-gradient(
@@ -292,15 +262,15 @@
     );
     animation: glowMove2 16s ease-in-out infinite;
     animation-delay: 1.5s;
-  }
+  } */
 
   /* Medium variant - moderate glow */
-  .purple-glow-bg-medium {
+  /* .purple-glow-bg-medium {
     position: relative;
     background: transparent;
     overflow: visible;
-  }
-
+  } */
+/* 
   .purple-glow-bg-medium::before,
   .purple-glow-bg-medium::after {
     content: "";
@@ -311,43 +281,13 @@
     z-index: 0;
     filter: blur(110px);
     border-radius: 50%;
-  }
+  } */
 
-  .purple-glow-bg-medium::before {
-    top: 15%;
-    right: -8%;
-    background: radial-gradient(
-      circle,
-      rgba(139, 92, 246, 0.12) 0%,
-      rgba(139, 92, 246, 0.08) 40%,
-      transparent 70%
-    );
-    animation: glowMove1 13s ease-in-out infinite;
-  }
 
-  .purple-glow-bg-medium::after {
-    bottom: 12%;
-    left: -4%;
-    background: radial-gradient(
-      circle,
-      rgba(185, 169, 254, 0.15) 0%,
-      rgba(185, 169, 254, 0.1) 40%,
-      transparent 70%
-    );
-    animation: glowMove2 17s ease-in-out infinite;
-    animation-delay: 2.5s;
-  }
 
-  /* Ensure content stays above the glow */
-  .purple-glow-bg > *,
-  .purple-glow-bg-subtle > *,
-  .purple-glow-bg-medium > * {
-    position: relative;
-    z-index: 10;
-  }
+
+
 
   /* Glow path for SVG connections */
-  .glow-path {
-    filter: drop-shadow(0 0 10px rgba(157, 102, 255, 0.6));
-  }
+  
 }

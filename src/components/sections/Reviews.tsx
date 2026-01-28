@@ -23,8 +23,6 @@ export default function Reviews() {
   return (
     <section className="relative py-24 purple-glow-bg-medium ">
       {/* Additional glows for seamless connection with Testimonials - Reduced intensity */}
-      <div className="absolute -top-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-      <div className="absolute -top-30 left-0 w-[550px] h-[550px] bg-purple-900/12 rounded-full blur-[120px] -z-10" />
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         {/* Title */}
         <motion.div

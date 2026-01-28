@@ -5,10 +5,7 @@ export default function Metrics() {
   return (
     <section className="relative py-24 purple-glow-bg-subtle ">
       {/* Additional Purple Glow Orbs for seamless flow - Reduced intensity */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/8 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-900/10 rounded-full blur-[100px] -z-10" />
       {/* Glow extending into TrustedBy section */}
-      <div className="absolute -bottom-20 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         {/* Title */}
         <motion.div
