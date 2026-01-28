@@ -93,7 +93,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-28"
         >
-          <Link to="/contact" className="px-10 py-3.5 bg-[#140e2a] border text-white font-bold text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto">
+          <Link to="/contact" className="px-10 py-3.5 rounded-[6px] bg-[#140e2a] border text-white font-bold text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto">
             Book a Call
           </Link>
         </motion.div>

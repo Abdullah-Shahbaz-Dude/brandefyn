@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import VideoPlayer from "../ui/VideoPlayer";
+import thumbnail from "../../assets/home/amir.png";
 import heroVideo from "../../assets/home/main potfolio video (1).mp4";
 
 export default function VideoSalesLetter() {
   return (
     <section className="relative py-24 purple-glow-bg-subtle overflow-hidden">
       {/* Additional glow orbs for seamless connection with BeforeAfter and Metrics - Reduced intensity */}
-      <div className="absolute left-0 -top-20 w-[500px] h-[500px] bg-primary/12 rounded-full blur-[120px] -z-10" />
-      <div className="absolute right-0 -bottom-20 w-[550px] h-[550px] bg-purple-900/12 rounded-full blur-[120px] -z-10" />
+     
       
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         <motion.div
@@ -37,8 +37,8 @@ export default function VideoSalesLetter() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="relative"
           >
-            <div className="rounded-[30px] overflow-hidden">
-              <VideoPlayer src={heroVideo} className="w-full" aspectRatio="1212/572" />
+            <div className="rounded-[30px] overflow-hidden opacity-100">
+              <VideoPlayer src={heroVideo} thumbnail={thumbnail} className="w-full" aspectRatio="1212/572" />
             </div>
           </motion.div>
         </motion.div>
