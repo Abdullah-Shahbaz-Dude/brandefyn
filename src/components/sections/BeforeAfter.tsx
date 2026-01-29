@@ -106,9 +106,9 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6 }}
                       className="relative min-w-0 "
                     >
-                      <div className="table-card rounded-[36px] p-6 relative">
+                      <div className="table-card rounded-[36px] p-6 relative flex items-center justify-center">
                         <div 
-                          className="relative"
+                          className="relative flex items-center justify-center"
                           style={{
                             backgroundImage: `url(${blur2})`,
                             backgroundSize: 'cover',
@@ -133,12 +133,12 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative min-w-0"
                     >
-                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="relative">
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden flex items-center justify-center">
+                        <div className="relative flex items-center justify-center">
                           <img
                             src={images.after}
                             alt={`${study.title} - After`}
-                            className=" h-[290px] object-fill rounded-[23px]"
+                            className=" h-[290px] object-cover rounded-[23px]"
                           />
                           {/* Purple Ellipse Decoration */}
                           <svg
@@ -230,9 +230,9 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6 }}
                       className="relative"
                     >
-                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden flex items-center justify-center">
                         
-                        <div className="relative">
+                        <div className="relative flex items-center justify-center">
                           <img
                             src={ppcBefore}
                             alt={`${study.title} - Before`}
@@ -251,9 +251,9 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative"
                     >
-                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden flex items-center justify-center">
                         
-                        <div className="relative">
+                        <div className="relative flex items-center justify-center">
                           <img
                             src={ppcAfter}
                             alt={`${study.title} - After`}
@@ -349,8 +349,8 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6 }}
                       className="relative"
                     >
-                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="relative">
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden flex items-center justify-center">
+                        <div className="relative flex items-center justify-center">
                           <img
                             src={salesBefore}
                             alt={`${study.title} - Before`}
@@ -369,9 +369,9 @@ export default function BeforeAfter() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                       className="relative"
                     >
-                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden">
+                      <div className="table-card rounded-[36px] p-6 relative overflow-hidden flex items-center justify-center">
                         
-                        <div className="relative">
+                        <div className="relative flex items-center justify-center">
                           <img
                             src={salesAfter}
                             alt={`${study.title} - After`}
