@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import logo1 from "../../assets/home/logo/logo-1.svg";
 import logo2 from "../../../src/assets/home/logo/logo-2.svg";
@@ -17,7 +18,11 @@ const CLIENT_LOGOS = [
   { name: "Client 7", src: logo7 },
 ];
 
+const MARQUEE_LOGOS = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+
 export default function TrustedBy() {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <section className="relative py-24 purple-glow-bg-subtle ">
       {/* Additional glow for smooth transition from Metrics - Reduced intensity */}
@@ -34,32 +39,38 @@ export default function TrustedBy() {
           <p className=" text-white font-bold text-4xl">Clients we work with</p>
         </motion.div>
 
-        {/* Logo Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
+        {/* Logo Marquee - infinite horizontal scroll */}
+        <div
+          className="w-full overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          {CLIENT_LOGOS.map((logo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              whileHover={{ scale: 1.1 }}
-              className="flex items-center justify-center"
-            >
-              <img
-                src={logo.src}
-                alt={logo.name}
-                className="h-12 md:h-16 object-contain opacity-70 hover:opacity-100 transition-opacity"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+          <motion.div
+            className="flex items-center gap-8 md:gap-12 flex-shrink-0 w-max"
+            animate={{ x: [0, "-50%"] }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: isPaused ? 1e6 : 30,
+                ease: "linear",
+              },
+            }}
+          >
+            {MARQUEE_LOGOS.map((logo, index) => (
+              <div
+                key={`${logo.name}-${index}`}
+                className="flex items-center justify-center flex-shrink-0"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
