@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import heroImage from "../assets/images/hero/hero-2.png";
@@ -11,19 +12,46 @@ interface ContactFormData {
   projectDescription: string;
 }
 
+type SubmitStatus = "idle" | "success" | "error";
+
+const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined;
+
 export default function Contact() {
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>();
 
   const onSubmit = async (data: ContactFormData) => {
-    // Console log form data as specified
-    console.log("Contact form submitted:", data);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (!contactFormEndpoint) {
+      setSubmitStatus("error");
+      return;
+    }
+    setSubmitStatus("idle");
+    try {
+      const res = await fetch(contactFormEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          _replyto: data.email,
+          budget: data.budget,
+          projectDescription: data.projectDescription,
+        }),
+      });
+      if (res.ok) {
+        setSubmitStatus("success");
+        reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    }
   };
 
   // Google Maps embed URL - using a placeholder embed that will work without API key
@@ -125,7 +153,28 @@ export default function Contact() {
                 </p>
               </div>
 
-              {/* Contact Form */}
+              {!contactFormEndpoint && (
+                <p className="text-amber-400 text-sm">
+                  Contact form is not configured. Add VITE_CONTACT_FORM_ENDPOINT to .env (see .env.example).
+                </p>
+              )}
+
+              {submitStatus === "success" ? (
+                <div className="flex flex-col space-y-4">
+                  <p className="text-white text-lg font-medium">
+                    Thanks, we&apos;ll get back to you soon.
+                  </p>
+                  <motion.button
+                    type="button"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSubmitStatus("idle")}
+                    className="w-[180px] h-[46px] bg-[#1F1446] border border-white text-white font-bold rounded-[5px] hover:bg-[#2a1d5a] transition-all duration-200 flex items-center justify-center"
+                  >
+                    Send another message
+                  </motion.button>
+                </div>
+              ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-[22px]">
                 {/* Name Field */}
                 <div className="flex flex-col space-y-2">
@@ -211,10 +260,16 @@ export default function Contact() {
                   )}
                 </div>
 
+                {submitStatus === "error" && (
+                  <p className="text-red-400 text-sm">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
+
                 {/* Submit Button */}
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !contactFormEndpoint}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-[150px] h-[46px] bg-[#1F1446] border border-white text-white font-bold rounded-[5px] hover:bg-[#2a1d5a] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
@@ -222,6 +277,7 @@ export default function Contact() {
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </motion.button>
               </form>
+              )}
             </div>
 
             {/* Right Column - Google Map */}

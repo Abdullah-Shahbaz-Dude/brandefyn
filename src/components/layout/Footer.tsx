@@ -1,7 +1,7 @@
-import { FaWhatsapp, FaEnvelope, FaLinkedin, FaYoutube, FaInstagram, FaFacebook, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaYoutube, FaInstagram, FaFacebook, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 import { SOCIAL_LINKS, CONTACT_INFO } from '../../utils/constants';
 
-import upworkLogo from '../../assets//images/fotter/Vector.png';
+// import upworkLogo from '../../assets//images/fotter/Vector.png';
 import amazonLogo from '../../assets//images/fotter/ri_amazon-line.png';
 // Upwork Icon SVG
 
@@ -110,7 +110,7 @@ export default function Footer() {
                   <FaYoutube className="w-6 h-6" />
                 </div>
               </a>
-              <a
+              {/* <a
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -120,7 +120,7 @@ export default function Footer() {
                 <div className="w-11 h-11 rounded-full border border-white flex items-center justify-center">
                   <FaLinkedin className="w-6 h-6" />
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -128,7 +128,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white text-sm font-semibold mb-6">Our Partners</h3>
             <div className="flex flex-wrap items-center gap-4">
-              <a
+              {/* <a
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,9 +136,9 @@ export default function Footer() {
                 aria-label="Upwork"
               >
                <img src={upworkLogo} alt="Upwork Logo"  />
-              </a>
+              </a> */}
               <a
-                href="#"
+                href="https://advertising.amazon.com/partners/directory/details/amzn1.ads1.ma1.5rmsf36zv9ixs6bphucp7akr3/Brandefyn-LLC?ref_=prtdrl_shr_cy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white transition-opacity hover:opacity-70"

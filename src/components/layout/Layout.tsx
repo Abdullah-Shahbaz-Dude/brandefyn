@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Reviews from '../sections/Reviews';
+import ScheduleCall from '../sections/ScheduleCall';
 import lineImage from '../../assets/lines.png';
 import leftLineImage from '../../assets/leftline.svg';
 import blurleft from '../../assets/blur-2.svg'
@@ -35,6 +36,7 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
       <Reviews />
+      <ScheduleCall />
       <Footer />
     </div>
   );

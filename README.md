@@ -105,6 +105,18 @@ Update the Calendly URL in `src/components/sections/EmailForm.tsx`:
 <EmailCapture calendlyUrl="https://calendly.com/your-username/strategy-call" />
 ```
 
+### Contact Form
+The contact page (`/contact`) sends submissions via [Formspree](https://formspree.io). To enable it:
+
+1. Sign up at [formspree.io](https://formspree.io) (free).
+2. Create a new form and set the notification email to your address.
+3. Copy your form endpoint (e.g. `https://formspree.io/f/xxxxxxxx`).
+4. In the project root, create a `.env` file (see `.env.example`) and add:
+   ```
+   VITE_CONTACT_FORM_ENDPOINT=https://formspree.io/f/xxxxxxxx
+   ```
+5. Restart the dev server (`npm run dev`). Submissions will be emailed to you.
+
 ### Social Media Links
 Update links in `src/utils/constants.ts`:
 ```tsx

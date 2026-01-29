@@ -7,18 +7,36 @@ export const NAV_ITEMS = [
 ];
 
 export const SOCIAL_LINKS = {
-  whatsapp: 'https://wa.me/18004563796',
+  whatsapp: 'https://wa.me/17869275031',
   email: 'mailto:info@brandefyn.com',
   linkedin: 'https://www.linkedin.com/company/brandefyn',
-  youtube: 'https://www.youtube.com/@brandefyn',
-  instagram: 'https://www.instagram.com/brandefyn',
-  facebook: 'https://www.facebook.com/brandefyn',
+  youtube: 'https://www.youtube.com/@Brandefyn-agency',
+  instagram: 'https://www.instagram.com/brandefyn_/ ',
+  facebook: 'https://www.facebook.com/people/Brandefyn/61558704822905/',
 };
 
 export const CONTACT_INFO = {
-  phone: '+1 (800) 456 37 96',
-  email: 'info@brandefyn.com',
+  phone: '+1 (786) 927-5031',
+  email: 'amir@brandefyn.com',
   address: '7901 4TH ST N #21957, ST. PETERSBURG, FL 33702 US',
+};
+
+export const CALENDLY_STRATEGY_CALL_URL =
+  'https://calendly.com/amazonwithamir/30min';
+
+/** Calendly embed URL: dark main card only (bg + text). Other page elements unchanged. */
+export const CALENDLY_EMBED_URL = `${CALENDLY_STRATEGY_CALL_URL}?primary_color=8b5cf6&background_color=0a0a0a&text_color=e4e4e7`;
+
+export const SCHEDULE_CALL_EVENT = {
+  hostName: 'Amir',
+  eventTitle: 'Amazon Strategy Call',
+  duration: '30 min',
+  conferencingText: 'Web conferencing details provided upon confirmation',
+  description: [
+    'Claim your 100% Free, no-obligation 30-minute Scaling Call for your Ecom Business.',
+    'Discuss your Goals, Hurdles you\'re currently facing, and Growth Plan of Action.',
+  ],
+  signOff: 'See you at the meeting. Amir!',
 };
 
 export const METRICS = [
