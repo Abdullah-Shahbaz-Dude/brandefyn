@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Modal from '../components/ui/Modal';
 import { CASE_STUDIES_GRID, BENEFITS } from '../utils/constants';
@@ -52,12 +53,12 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[900px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative h-[700px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <img
           src={heroImage}
           alt="Hero Background"
-          className="absolute inset-0 z-0 w-full h-full object-cover object-center left-0"
+          className="absolute inset-0 z-0 w-full h-full object-cover object-top left-0"
           style={{
             width: "100%",
             height: "100%",
@@ -75,20 +76,50 @@ export default function CaseStudiesPage() {
           <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
         </div>
 
-        <div className="container mx-auto px-8 max-w-[1400px] w-full relative z-10">
+        <div className="max-w-5xl mx-auto text-center mt-[10px] px-6 relative z-10 flex-1 flex flex-col justify-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-2 mt-6 px-4"
+            style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+              fontSize: '87.34px',
+              lineHeight: '27.69px',
+              letterSpacing: '-2%',
+              color: '#FFFFFF',
+              opacity: 1
+            }}
+          >
+            Real Results. Proven <br />
+            <span className="relative inline-block mr-4 mb-[40px] mt-[80px]">
+              Amazon   
+              <img src={amazonLine} alt="Amazon Line" className="absolute top-[60px] left-0" />
+            </span>
+            Growth.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed mt-6 "
+          >
+            We don’t just manage Amazon ads — we scale brands profitably. Explore how we helped CPG brands increase sales, lower ACoS, and dominate their categories.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-8 flex justify-center"
           >
-            <h1 className="text-9xl md:text-9xl lg:text-9xl w-[900px] mx-auto xl:text-8xl font-bold text-white text-shadow-lg leading-tight mb-6">
-            Real Results. Proven Amazon Growth.
-            </h1>
-            <img src={amazonLine} alt="Amazon Line" className="absolute top-[189px] left-[26%]   " />
-            <p className="text-2xl md:text-2xl lg:text-2xl text-white max-w-5xl mx-auto leading-relaxed">
-            We don’t just manage Amazon ads — we scale brands profitably. Explore how we helped CPG brands increase sales, lower ACoS, and dominate their categories.
-            </p>
+            <Link
+              to="/contact"
+              className="w-[202px] h-[46px] rounded-[5px] border border-white bg-[#1F1446] text-white font-bold text-sm flex items-center justify-center hover:bg-[#2a1d5c] transition-all duration-300"
+            >
+              Request a Growth Audit
+            </Link>
           </motion.div>
         </div>
       </div>

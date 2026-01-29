@@ -90,12 +90,12 @@ export default function ResourcesPage() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[900px] min-h-screen  py-12 md:py-24 flex items-center">
+      <div className="relative h-[700px] min-h-screen  py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <img
           src={heroImage}
           alt="Hero Background"
-          className="absolute inset-0 z-0 w-full h-full object-cover object-center left-0"
+          className="absolute inset-0 z-0 w-full h-full object-cover object-top left-0"
           style={{
             width: "100%",
             height: "100%",
@@ -113,21 +113,38 @@ export default function ResourcesPage() {
           <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-[800px] w-full relative z-10">
-          <motion.div
+        <div className="max-w-5xl mx-auto text-center mt-[10px] px-6 relative z-10 flex-1 flex flex-col justify-center">
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-2 mt-6 px-4"
+            style={{
+              fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+              fontSize: '87.34px',
+              lineHeight: '27.69px',
+              letterSpacing: '-2%',
+              color: '#FFFFFF',
+              opacity: 1
+            }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight mb-6">
-              Amazon Growth Resources & Insights
-            </h1>
-            <p className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed">
-              Actionable insights, proven strategies, and expert guidance to help you win on Amazon.
-            </p>
-            <img src={amazonLine} alt="Amazon Line" className="absolute top-[145px] left-[8%]   " />
-          </motion.div>
+            Amazon Growth <br />
+            <span className="relative inline-block mr-4 mt-[80px] mb-[60px]">
+              Resources   
+              <img src={amazonLine} alt="Amazon Line" className="absolute top-[60px] left-0" />
+            </span>
+            & Insights.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed mt-6"
+          >
+            Actionable insights, proven strategies, and expert guidance to help you win on Amazon.
+          </motion.p>
         </div>
       </div>
 
