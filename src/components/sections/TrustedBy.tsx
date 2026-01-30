@@ -24,10 +24,10 @@ export default function TrustedBy() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative py-24 purple-glow-bg-subtle ">
+    <section className="relative py-24 purple-glow-bg-subtle px-0">
       {/* Additional glow for smooth transition from Metrics - Reduced intensity */}
-      {/* Glow extending into Testimonials section */}
-      <div className="container  mx-auto max-w-[1400px] ">
+      {/* Glow extending into Testimonials section - full width from edges */}
+      <div className="w-full px-0">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

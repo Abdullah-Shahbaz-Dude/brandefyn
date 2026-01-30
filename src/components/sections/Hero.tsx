@@ -35,15 +35,15 @@ export default function Hero() {
       {/* Grid Floor Effect */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[200px] sm:h-[250px] md:h-[300px] grid-floor -z-10 opacity-40" />
 
-      {/* Content */}
-      <div className="max-w-5xl mx-auto text-center mt-[-200px] sm:mt-[-220px] md:mt-[-270px] px-4 sm:px-6 relative z-10 flex-1 flex flex-col justify-center">
+      {/* Content - z-40 so Book a Call sits above glass cards (z-30) and stays clickable */}
+      <div className="max-w-5xl mx-auto text-center mt-[-200px] sm:mt-[-220px] md:mt-[-270px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center">
         {/* Free Audit Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Link 
+          {/* <Link 
             to="/contact" 
             className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 mb-6 sm:mb-8 md:mb-10 border border-primary backdrop-blur-md rounded-full inline-block text-white"
             style={{
@@ -55,7 +55,7 @@ export default function Hero() {
             }}
           >
             Free Audit
-          </Link>
+          </Link> */}
         </motion.div>
 
         {/* Main Headline */}
@@ -89,11 +89,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 sm:mt-20 md:mt-28"
+          className="mt-12 sm:mt-20 md:mt-28 relative z-[40]"
         >
           <Link 
             to="/contact" 
-            className="px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 rounded-[6px] bg-[#140e2a] border text-white font-bold text-xs sm:text-sm md:text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto"
+            className="px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 rounded-[6px] bg-[#140e2a] border text-white font-bold text-xs sm:text-sm md:text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto cursor-pointer"
+            aria-label="Go to contact page"
           >
             Book a Call
           </Link>

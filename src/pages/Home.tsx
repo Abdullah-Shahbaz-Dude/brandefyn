@@ -3,7 +3,6 @@ import VideoSalesLetter from "../components/sections/VideoSalesLetter";
 import BeforeAfter from "../components/sections/BeforeAfter";
 import Metrics from "../components/sections/Metrics";
 import TrustedBy from "../components/sections/TrustedBy";
-import Testimonials from "../components/sections/Testimonials";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       </div>
       <Metrics />
       <TrustedBy />
-      <Testimonials />
     </>
   );
 }

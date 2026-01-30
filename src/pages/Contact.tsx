@@ -1,66 +1,13 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import heroImage from "../assets/images/hero/hero-2.png";
-import borderImage from '../assets/images/hero/border.svg';
-// import amazonLine from '../assets/images/hero/hero-amzon.png';
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  budget: string;
-  projectDescription: string;
-}
-
-type SubmitStatus = "idle" | "success" | "error";
-
-const contactFormEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined;
+// import borderImage from '../assets/images/hero/border.svg';
+import TrustedBy from "../components/sections/TrustedBy";
 
 export default function Contact() {
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<ContactFormData>();
-
-  const onSubmit = async (data: ContactFormData) => {
-    if (!contactFormEndpoint) {
-      setSubmitStatus("error");
-      return;
-    }
-    setSubmitStatus("idle");
-    try {
-      const res = await fetch(contactFormEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          _replyto: data.email,
-          budget: data.budget,
-          projectDescription: data.projectDescription,
-        }),
-      });
-      if (res.ok) {
-        setSubmitStatus("success");
-        reset();
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch {
-      setSubmitStatus("error");
-    }
-  };
-
-  // Google Maps embed URL - using a placeholder embed that will work without API key
-  const placeholderMapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.184132576675!2d-82.6394!3d27.7678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQ2JzA0LjEiTiA4MsKwMzgnMjEuOCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus`;
-
   return (
     <>
       {/* Hero Section */}
-      <div className="relative h-[700px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      <div className="relative h-[700px] min-h-screen bg-transparent py-12 md:py-24 flex items-center">
         {/* Background Image */}
         <img
           src={heroImage}
@@ -75,13 +22,10 @@ export default function Contact() {
         {/* Additional Purple Glow Blur Effect - matching home page */}
         <div className="absolute -bottom-[0px] left-0 w-[500px] h-[500px] rounded-full -z-100" />
         
-        {/* Stars Background */}
-        {/* <div className="absolute inset-0 stars-bg z-0" /> */}
-        
         {/* Border/Shadow transition effect */}
-        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] z-10 pointer-events-none overflow-hidden">
+        {/* <div className="absolute -bottom-[90px] left-0 w-full h-[100px] z-10 pointer-events-none overflow-hidden">
           <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
-        </div>
+        </div> */}
 
         <div className="max-w-5xl mx-auto text-center mt-[-230px] px-6 relative z-10 flex-1 flex flex-col justify-center">
           <motion.h1
@@ -115,194 +59,9 @@ export default function Contact() {
             We're here to help you grow your Amazon brand. Whether you have questions, want a free audit, or are ready to start scaling, our team is just a message away.
           </motion.p>
         </div>
+
       </div>
-
-      <div className="relative min-h-screen purple-glow-bg py-12 md:py-24">
-        <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-
-        {/* Main Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative w-full max-w-[1280px] mx-auto"
-          style={{
-            minHeight: "944px",
-            borderRadius: "35px",
-            padding: "1px",
-            background: "linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2))",
-          }}
-        >
-          <div
-            className="w-full h-full rounded-[35px]"
-            style={{
-              background: "black",
-              padding: "58px 57px",
-            }}
-          >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column - Contact Form */}
-            <div className="flex flex-col space-y-8">
-              {/* Form Heading Section */}
-              <div className="flex flex-col space-y-[19px]">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-                  Contact Us
-                </h2>
-                <p className="text-base md:text-lg text-white leading-relaxed">
-                  Feel free to reach out for collaborations, projects, or just to say hello — I'm always open to new ideas!
-                </p>
-              </div>
-
-              {!contactFormEndpoint && (
-                <p className="text-amber-400 text-sm">
-                  Contact form is not configured. Add VITE_CONTACT_FORM_ENDPOINT to .env (see .env.example).
-                </p>
-              )}
-
-              {submitStatus === "success" ? (
-                <div className="flex flex-col space-y-4">
-                  <p className="text-white text-lg font-medium">
-                    Thanks, we&apos;ll get back to you soon.
-                  </p>
-                  <motion.button
-                    type="button"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSubmitStatus("idle")}
-                    className="w-[180px] h-[46px] bg-[#1F1446] border border-white text-white font-bold rounded-[5px] hover:bg-[#2a1d5a] transition-all duration-200 flex items-center justify-center"
-                  >
-                    Send another message
-                  </motion.button>
-                </div>
-              ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-[22px]">
-                {/* Name Field */}
-                <div className="flex flex-col space-y-2">
-                  <label className="text-white text-sm font-medium">Name</label>
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    {...register("name", {
-                      required: "Name is required",
-                    })}
-                    className="w-full h-[65px] px-6 text-white placeholder-white/50 bg-[rgba(247,247,247,0.05)] border border-[rgba(178,178,178,0.2)] rounded-[10px] focus:outline-none focus:border-white/40 transition-all backdrop-blur-[74px]"
-                    style={{
-                      backdropFilter: "blur(74px)",
-                      WebkitBackdropFilter: "blur(74px)",
-                    }}
-                  />
-                  {errors.name && (
-                    <p className="text-sm text-red-400">{errors.name.message}</p>
-                  )}
-                </div>
-
-                {/* Email Field */}
-                <div className="flex flex-col space-y-2">
-                  <label className="text-white text-sm font-medium">Email</label>
-                  <input
-                    type="email"
-                    placeholder="Type here"
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address",
-                      },
-                    })}
-                    className="w-full h-[65px] px-6 text-white placeholder-white/50 bg-[rgba(247,247,247,0.05)] border border-[rgba(178,178,178,0.2)] rounded-[10px] focus:outline-none focus:border-white/40 transition-all backdrop-blur-[74px]"
-                    style={{
-                      backdropFilter: "blur(74px)",
-                      WebkitBackdropFilter: "blur(74px)",
-                    }}
-                  />
-                  {errors.email && (
-                    <p className="text-sm text-red-400">{errors.email.message}</p>
-                  )}
-                </div>
-
-                {/* Budget Field */}
-                <div className="flex flex-col space-y-2">
-                  <label className="text-white text-sm font-medium">Your Budget</label>
-                  <input
-                    type="text"
-                    placeholder="Ex:100 - 1000"
-                    {...register("budget", {
-                      required: "Budget is required",
-                    })}
-                    className="w-full h-[65px] px-6 text-white placeholder-white/50 bg-[rgba(247,247,247,0.05)] border border-[rgba(178,178,178,0.2)] rounded-[10px] focus:outline-none focus:border-white/40 transition-all backdrop-blur-[74px]"
-                    style={{
-                      backdropFilter: "blur(74px)",
-                      WebkitBackdropFilter: "blur(74px)",
-                    }}
-                  />
-                  {errors.budget && (
-                    <p className="text-sm text-red-400">{errors.budget.message}</p>
-                  )}
-                </div>
-
-                {/* Project Description Field */}
-                <div className="flex flex-col space-y-2">
-                  <label className="text-white text-sm font-medium">Project Description</label>
-                  <textarea
-                    placeholder="Type here"
-                    {...register("projectDescription", {
-                      required: "Project description is required",
-                    })}
-                    rows={8}
-                    className="w-full min-h-[252px] px-6 py-4 text-white placeholder-white/50 bg-[rgba(247,247,247,0.05)] border border-[rgba(178,178,178,0.2)] rounded-[10px] focus:outline-none focus:border-white/40 transition-all resize-none backdrop-blur-[74px]"
-                    style={{
-                      backdropFilter: "blur(74px)",
-                      WebkitBackdropFilter: "blur(74px)",
-                    }}
-                  />
-                  {errors.projectDescription && (
-                    <p className="text-sm text-red-400">{errors.projectDescription.message}</p>
-                  )}
-                </div>
-
-                {submitStatus === "error" && (
-                  <p className="text-red-400 text-sm">
-                    Something went wrong. Please try again or email us directly.
-                  </p>
-                )}
-
-                {/* Submit Button */}
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting || !contactFormEndpoint}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-[150px] h-[46px] bg-[#1F1446] border border-white text-white font-bold rounded-[5px] hover:bg-[#2a1d5a] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit"}
-                </motion.button>
-              </form>
-              )}
-            </div>
-
-            {/* Right Column - Google Map */}
-            <div className="w-full h-full min-h-[400px] lg:min-h-[897px]">
-              <iframe
-                src={placeholderMapUrl}
-                width="100%"
-                height="100%"
-                style={{
-                  border: "1px solid rgba(178, 178, 178, 1)",
-                  borderRadius: "20px",
-                  minHeight: "897px",
-                }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Contact Location Map"
-              />
-            </div>
-          </div>
-        </div>
-        </motion.div>
-      </div>
-      </div>
+        <TrustedBy />
     </>
   );
 }
-

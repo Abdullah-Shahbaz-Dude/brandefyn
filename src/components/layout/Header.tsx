@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaWhatsapp, FaInstagram, FaFacebook, FaBars, FaTimes } from 'react-icons/fa';
-import { NAV_ITEMS, SOCIAL_LINKS } from '../../utils/constants';
+import { FaEnvelope, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
+import { NAV_ITEMS, CONTACT_INFO, SOCIAL_LINKS } from '../../utils/constants';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -82,8 +82,15 @@ export default function Header() {
               Free Audit
             </Link>
             
-            {/* Social Media Icons */}
+            {/* Email & WhatsApp */}
             <div className="flex items-center space-x-3">
+              <a
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="text-white hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <FaEnvelope className="w-5 h-5" />
+              </a>
               <a
                 href={SOCIAL_LINKS.whatsapp}
                 target="_blank"
@@ -92,24 +99,6 @@ export default function Header() {
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp className="w-5 h-5" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-pink-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="w-5 h-5" />
-              </a>
-              <a
-                href={SOCIAL_LINKS.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-blue-400 transition-colors"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -150,14 +139,21 @@ export default function Header() {
               );
             })}
             <div className="flex items-center space-x-4 px-4 py-2">
-              <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                <FaWhatsapp className="w-5 h-5 text-white" />
+              <a
+                href={`mailto:${CONTACT_INFO.email}`}
+                className="text-white hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <FaEnvelope className="w-5 h-5" />
               </a>
-              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <FaInstagram className="w-5 h-5 text-white" />
-              </a>
-              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <FaFacebook className="w-5 h-5 text-white" />
+              <a
+                href={SOCIAL_LINKS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-green-400 transition-colors"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp className="w-5 h-5" />
               </a>
             </div>
             <Link 

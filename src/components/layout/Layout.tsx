@@ -2,8 +2,9 @@ import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import Reviews from '../sections/Reviews';
+// import Reviews from '../sections/Reviews';
 import ScheduleCall from '../sections/ScheduleCall';
+import Testimonials from '../sections/Testimonials';
 import lineImage from '../../assets/lines.png';
 import leftLineImage from '../../assets/leftline.svg';
 import blurleft from '../../assets/blur-2.svg'
@@ -26,6 +27,10 @@ export default function Layout({ children }: LayoutProps) {
         {location.pathname !== "/" && (
           <img src={blurHome} alt="home blur" className='absolute left-[60%] top-[20%] z-0 object-center pointer-events-none' />
         )}
+        {/* Contact-only: blur covering the top so no blackness */}
+        {location.pathname === "/contact" && (
+          <img src={blurHome} alt="" className="absolute left-0 right-0 top-0 w-full h-[400px] z-[1] object-cover object-top pointer-events-none" />
+        )}
         <img src={lineImage} alt="Line Image" className="absolute left-[80%] top-[44%] pointer-events-none z-0" />
         <img src={lineImage} alt="Line Image" className="absolute right-[80%] top-[73%] transform rotate-180 pointer-events-none z-0" />
         <img src={leftLineImage} alt="Left Line Image" className="absolute left-[0%] top-[19%] pointer-events-none z-0" />
@@ -35,8 +40,9 @@ export default function Layout({ children }: LayoutProps) {
         <img src={blurleft} alt="left blur" className='absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80' />
         {children}
       </main>
-      <Reviews />
+      {/* {location.pathname === "/" && <Reviews />} */}
       <ScheduleCall />
+      {(location.pathname === "/" || location.pathname === "/contact") && <Testimonials />}
       <Footer />
     </div>
   );
