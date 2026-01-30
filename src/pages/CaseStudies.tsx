@@ -7,8 +7,11 @@ import heroImage from '../assets/images/hero/hero-2.png';
 import LazyImage from '../components/ui/LazyImage';
 import amazonLine from '../assets/images/hero/hero-amzon.png';
 import borderImage from '../assets/images/hero/border.svg';
-import caseStudy1Jpg from '../assets/images/caseStudy/case-study1a.jpg';
+import caseStudy1Jpg from '../assets/images/caseStudy/caseStudy-1.jpg';
+import caseStudy1Png from '../assets/images/caseStudy/caseStudy-1.png';
+import caseStudy1a from '../assets/images/caseStudy/case-study1a.jpg';
 import caseStudy1b from '../assets/images/caseStudy/case-study1b.jpg';
+import casestudyNew from '../assets/images/caseStudy/casestudyNew.jpg';
 import caseStudy2a from '../assets/images/caseStudy/CASE-STUDY2a.jpg';
 import caseStudy2b from '../assets/images/caseStudy/CASE-STUDY2b.jpg';
 import caseStudy3a from '../assets/images/caseStudy/case-study3a.jpg';
@@ -155,9 +158,9 @@ export default function CaseStudiesPage() {
                 <div className="flex flex-col space-y-[34px]">
                   {/* Image */}
                   <div className="w-full h-[250px] md:h-[384px] rounded-[24px] overflow-hidden">
-                    {(study.id === 3 ? caseStudy1Jpg : caseStudyImages[index + 1]) && (
+                    {(study.id === 3 ? caseStudy1Png : caseStudyImages[index + 1]) && (
                       <LazyImage
-                        src={study.id === 3 ? caseStudy1Jpg : caseStudyImages[index + 1]}
+                        src={study.id === 3 ? caseStudy1Png : caseStudyImages[index + 1]}
                         alt={study.title}
                         className="w-full h-full object-cover"
                       />
@@ -190,52 +193,6 @@ export default function CaseStudiesPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Wide Case Study Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="w-full max-w-[1278px] mx-auto"
-          >
-            <div className="rounded-[35px] border border-[#828282] bg-black p-[10px] hover:border-purple-500/50 transition-all duration-300 cursor-pointer">
-              <div className="flex flex-col space-y-[34px]">
-                {/* Image - 1258px × 384px in Figma */}
-                <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[384px] rounded-[24px] overflow-hidden">
-                  {caseStudyImages[5] && (
-                    <LazyImage
-                      src={caseStudyImages[5]}
-                      alt={`${CASE_STUDIES_GRID[0].title} - Case Study`}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
-
-                {/* Content - 1186px width with 36px left padding in Figma */}
-                <div className="px-4 sm:px-6 md:px-9 flex flex-col space-y-[25px] md:space-y-[35px]">
-                  <div className="flex flex-col space-y-[25px] md:space-y-[35px]">
-                    {/* Title */}
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                      {CASE_STUDIES_GRID[0].title}
-                    </h2>
-                    
-                    {/* Description */}
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed">
-                      {CASE_STUDIES_GRID[0].description}
-                    </p>
-                  </div>
-
-                  {/* Learn More Button - 174px × 46px */}
-                  <button
-                    onClick={() => setSelectedCaseStudy(CASE_STUDIES_GRID[0])}
-                    className="w-full sm:w-[174px] h-[46px] bg-[#1F1446] border border-white rounded-[5px] text-white font-bold text-sm hover:bg-[#2a1d5c] transition-all duration-300 flex items-center justify-center"
-                  >
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
           {/* Benefits Section - commented out */}
           {/* <motion.div
@@ -458,7 +415,7 @@ export default function CaseStudiesPage() {
                     )}
                     {selectedCaseStudy.id === 6 && (
                       <div className="rounded-lg overflow-hidden">
-                        <img src={caseStudy1Jpg} alt="Sales & Profit overview" className="w-full h-auto object-cover" />
+                        <img src={caseStudy1a} alt="Sales & Profit overview" className="w-full h-auto object-cover" />
                       </div>
                     )}
                     {fd.longTermGrowth && typeof fd.longTermGrowth === 'object' && (() => {
@@ -489,6 +446,71 @@ export default function CaseStudiesPage() {
                         </ul>
                       </div>
                     )}
+                    {selectedCaseStudy.id === 6 && (
+                      <div className="rounded-lg overflow-hidden">
+                        <img src={casestudyNew} alt="Sales snapshot and compare sales" className="w-full h-auto object-cover" />
+                      </div>
+                    )}
+
+                    {/* Case Study 2 (id 6 only) */}
+                    {fd.caseStudy2 && typeof fd.caseStudy2 === 'object' && (() => {
+                      const cs2 = fd.caseStudy2 as {
+                        title: string;
+                        intro: string;
+                        challenges: string[];
+                        howWeFixedIt: string[];
+                        baseLevelPpc: string[];
+                        conclusion: string;
+                      };
+                      return (
+                        <div className="border-t border-gray-800 pt-8 space-y-6">
+                          <h3 className="text-xl font-bold text-white">{cs2.title}</h3>
+                          <p className="text-white leading-relaxed">{cs2.intro}</p>
+                          {cs2.challenges && cs2.challenges.length > 0 && (
+                            <div>
+                              <h4 className="text-lg font-bold text-white mb-2">Challenges</h4>
+                              <ul className="list-disc list-inside text-white space-y-1">
+                                {cs2.challenges.map((c, i) => (
+                                  <li key={i}>{c}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {cs2.howWeFixedIt && cs2.howWeFixedIt.length > 0 && (
+                            <div>
+                              <h4 className="text-lg font-bold text-white mb-2">How we fixed it</h4>
+                              <ul className="text-white space-y-2">
+                                {cs2.howWeFixedIt.map((item, i) => (
+                                  <li key={i} className="flex items-start gap-2">
+                                    <span className="text-green-400 mt-0.5">✓</span>
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {cs2.baseLevelPpc && cs2.baseLevelPpc.length > 0 && (
+                            <div>
+                              <h4 className="text-lg font-bold text-white mb-2">Base-Level PPC Optimizations</h4>
+                              <ul className="text-white space-y-2">
+                                {cs2.baseLevelPpc.map((item, i) => (
+                                  <li key={i} className="flex items-start gap-2">
+                                    <span className="text-green-400 mt-0.5">✓</span>
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          {cs2.conclusion && (
+                            <div>
+                              <h4 className="text-lg font-bold text-white mb-2">Conclusion</h4>
+                              <p className="text-white leading-relaxed">{cs2.conclusion}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
 
@@ -499,13 +521,13 @@ export default function CaseStudiesPage() {
                       <h3 className="text-xl font-bold text-white mb-4">Overview</h3>
                       <p className="text-white leading-relaxed">{selectedCaseStudy.fullDetails.quote}</p>
                     </div>
-                    {selectedCaseStudy.fullDetails.metrics && (
+                    {(selectedCaseStudy.fullDetails as unknown as { metrics?: Record<string, string> }).metrics && (
                       <div>
                         <h3 className="text-xl font-bold text-white mb-4">Key Results</h3>
                         <div className="space-y-2">
-                          {Object.entries(selectedCaseStudy.fullDetails.metrics).map(([key, value]) => (
+                          {Object.entries((selectedCaseStudy.fullDetails as unknown as { metrics: Record<string, string> }).metrics).map(([key, value]) => (
                             <p key={key} className="text-white">
-                              <span className="font-semibold capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span> {value}
+                              <span className="font-semibold capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span> {String(value)}
                             </p>
                           ))}
                         </div>

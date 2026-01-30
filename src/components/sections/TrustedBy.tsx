@@ -1,22 +1,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import logo1 from "../../assets/home/logo/logo-1.svg";
-import logo2 from "../../../src/assets/home/logo/logo-2.svg";
-import logo3 from "../../../src/assets/home/logo/logo-3.svg";
-import logo4 from "../../../src/assets/home/logo/logo-4.svg";
-import logo5 from "../../../src/assets/home/logo/logo-5.svg";
-import logo6 from "../../../src/assets/home/logo/logo-6.svg";
-import logo7 from "../../../src/assets/home/logo/logo-7.svg";
 
-const CLIENT_LOGOS = [
-  { name: "Client 1", src: logo1 },
-  { name: "Client 2", src: logo2 },
-  { name: "Client 3", src: logo3 },
-  { name: "Client 4", src: logo4 },
-  { name: "Client 5", src: logo5 },
-  { name: "Client 6", src: logo6 },
-  { name: "Client 7", src: logo7 },
-];
+const IMAGE_EXT = /\.(jpg|jpeg|png|svg|webp|avif)$/i;
+
+const logo2Modules = import.meta.glob<{ default: string }>("../../assets/home/logo2/*.{jpg,jpeg,png,svg,webp,avif}", {
+  eager: true,
+});
+
+const CLIENT_LOGOS = Object.entries(logo2Modules)
+  .filter(([path]) => IMAGE_EXT.test(path))
+  .map(([path, module]) => {
+    const name = path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "Client";
+    return { name, src: module.default };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 const MARQUEE_LOGOS = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
