@@ -44,7 +44,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           {/* <Link 
-            to="/contact" 
+            to="/contact#schedule-call" 
             className="px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 mb-6 sm:mb-8 md:mb-10 border border-primary backdrop-blur-md rounded-full inline-block text-white"
             style={{
               fontFamily: '"Inter Tight", Inter, system-ui, sans-serif',
@@ -92,7 +92,7 @@ export default function Hero() {
           className="mt-12 sm:mt-20 md:mt-28 relative z-[40]"
         >
           <Link 
-            to="/contact" 
+            to="/contact#schedule-call" 
             className="px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 rounded-[6px] bg-[#140e2a] border text-white font-bold text-xs sm:text-sm md:text-sm tracking-wide btn-glow transition-all inline-flex items-center gap-2 mx-auto cursor-pointer"
             aria-label="Go to contact page"
           >

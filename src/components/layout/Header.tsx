@@ -76,7 +76,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Free Audit Button */}
             <Link 
-              to="/contact"
+              to="/contact#schedule-call"
               className="px-6 py-2 border rounded-md border-white bg-primary/30 backdrop-blur-md text-[11px] font-bold tracking-[0.2em] uppercase "
             >
               Free Audit
@@ -157,7 +157,7 @@ export default function Header() {
               </a>
             </div>
             <Link 
-              to="/contact"
+              to="/contact#schedule-call"
               onClick={() => setIsMobileMenuOpen(false)}
               className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
             >

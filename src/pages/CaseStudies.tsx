@@ -130,7 +130,7 @@ export default function CaseStudiesPage() {
             className="mt-8 flex justify-center"
           >
             <Link
-              to="/contact"
+              to="/contact#schedule-call"
               className="w-[202px] h-[46px] rounded-[5px] border border-white bg-[#1F1446] text-white font-bold text-sm flex items-center justify-center hover:bg-[#2a1d5c] transition-all duration-300"
             >
               Request a Growth Audit

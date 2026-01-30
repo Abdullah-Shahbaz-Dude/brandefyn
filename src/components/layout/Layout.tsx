@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -17,7 +17,16 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
-  
+
+  useEffect(() => {
+    if (location.pathname === '/contact' && location.hash === '#schedule-call') {
+      const timer = setTimeout(() => {
+        document.getElementById('schedule-call')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, location.hash]);
+
   return (
     <div className="min-h-screen flex flex-col w-full purple-glow-bg overflow-hidden">
       <Header />
