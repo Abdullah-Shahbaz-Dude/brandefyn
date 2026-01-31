@@ -46,7 +46,7 @@ export default function LogoCarousel({ logos, speed = 50 }: LogoCarouselProps) {
             <img
               src={logo.logo}
               alt={logo.name}
-              className="h-32 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:scale-110"
+              className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:scale-110"
               onError={(e) => {
                 // Fallback if image doesn't exist
                 (e.target as HTMLImageElement).style.display = 'none';

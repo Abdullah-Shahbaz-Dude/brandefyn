@@ -62,7 +62,7 @@ export default function TrustedBy() {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="h-12 md:h-16 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                  className="h-10 sm:h-12 md:h-16 w-auto max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity"
                 />
               </div>
             ))}

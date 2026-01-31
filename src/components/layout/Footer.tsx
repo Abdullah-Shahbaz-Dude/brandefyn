@@ -144,7 +144,7 @@ export default function Footer() {
                 className="text-white transition-opacity hover:opacity-70"
                 aria-label="Amazon"
               >
-                <img src={amazonLogo} alt="Amazon Logo" className="w-[55px] h-[55px]" />
+                <img src={amazonLogo} alt="Amazon Logo" className="w-10 h-10 sm:w-12 sm:h-12 md:w-[55px] md:h-[55px] object-contain max-w-full" />
               </a>
             </div>
           </div>

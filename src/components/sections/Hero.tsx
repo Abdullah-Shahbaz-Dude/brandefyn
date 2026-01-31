@@ -15,17 +15,18 @@ import borderImage from "../../assets/images/hero/border.svg";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden">
+    <div className="relative w-full">
+    <section className="relative w-full min-h-[900px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden">
       {/* Background Image */}
       <img
         src={heroImage}
         alt="Hero Background"
-        className="absolute inset-0 z-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center"
       />
       <img 
         src={borderImage} 
         alt="Border" 
-        className="absolute inset-0 z-0 w-full h-full object-cover object-center mt-[300px] sm:mt-[400px] md:mt-[500px] scale-150 sm:scale-125 md:scale-100"
+        className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center mt-[300px] sm:mt-[400px] md:mt-[500px] scale-150 sm:scale-125 md:scale-100"
       />
 
       {/* Additional Purple Glow Orbs for Hero-specific positioning - Reduced intensity */}
@@ -36,7 +37,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[200px] sm:h-[250px] md:h-[300px] grid-floor -z-10 opacity-40" />
 
       {/* Content - z-40 so Book a Call sits above glass cards (z-30) and stays clickable */}
-      <div className="max-w-5xl mx-auto text-center mt-[-200px] sm:mt-[-220px] md:mt-[-270px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center">
+      <div className="max-w-5xl mx-auto text-center mt-[-180px] sm:mt-[-200px] md:mt-[-240px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center overflow-hidden">
         {/* Free Audit Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -58,29 +59,31 @@ export default function Hero() {
           </Link> */}
         </motion.div>
 
-        {/* Main Headline */}
+        {/* Main Headline - mobile: no overlap, proper line spacing */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-2 mt-4 sm:mt-6 px-2 sm:px-4 text-[50px] sm:text-[60px] md:text-[87.34px] leading-[18px] sm:leading-[22px] md:leading-[27.69px]"
+          className="mb-2 mt-4 sm:mt-6 px-2 sm:px-4 text-[42px] sm:text-[60px] md:text-[87.34px] leading-[1.4] sm:leading-[1.3] md:leading-[1.25] tracking-tight"
           style={{
             fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
             fontWeight: 400,
-            letterSpacing: '-2%',
+            letterSpacing: '-0.02em',
             color: '#FFFFFF',
-            opacity: 1
+            opacity: 1,
           }}
         >
-          See What's Holding Your <br />
-          <span className="relative inline-block mr-2 sm:mr-4 mt-[40px] sm:mt-[60px] md:mt-[80px]">
-            Amazon   
-            <img 
-              src={amazonLine} 
-              alt="Amazon Line" 
-              className="absolute top-[30px] sm:top-[40px] md:top-[60px] w-full h-auto"
+          <span className="block">See What's Holding Your</span>
+          <span className="relative inline-block mt-1 sm:mt-2 md:mt-3 mr-2 sm:mr-4">
+            Amazon
+            <img
+              src={amazonLine}
+              alt=""
+              aria-hidden
+              className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none"
+              style={{ top: '1.2em' }}
             />
-          </span>
+          </span>{' '}
           Sales Back.
         </motion.h1>
 
@@ -102,22 +105,27 @@ export default function Hero() {
       </div>
 
       {/* Glass Cards Container */}
-      <div className="w-full mx-auto absolute bottom-0 left-0 right-0 h-auto md:h-[400px] z-30 flex flex-col md:block items-center justify-end gap-6 px-4 pb-4 md:gap-0 md:px-0 md:pb-0">
-        {/* Line Image Background - Behind Cards */}
-        <img 
-          src={lineImage} 
-          alt="Line Image" 
-          className="absolute bottom-0 w-full h-auto object-cover hidden md:block" 
+     
+    </section>
+    <div className="relative w-full -mt-80 md:-mt-[520px] pt-8 md:pt-[200px] pb-8 md:pb-12 px-4 sm:px-6 overflow-hidden flex flex-col md:block items-center gap-6">
+        {/* Line Image Background - Behind Cards (card-like entrance) */}
+        <motion.img
+          src={lineImage}
+          alt="Line Image"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="absolute bottom-0 left-0 right-0 w-full max-w-full h-auto object-cover object-bottom hidden md:block pointer-events-none"
         />
 
         {/* Cards for mobile (vertical) and desktop */}
-        <div className="flex flex-col md:hidden gap-6 items-center w-full max-w-md">
+ <div className="flex flex-col md:hidden gap-10 items-center w-full max-w-[min(90vw,28rem)]">
           {/* Statistics Card */}
           <motion.div
             initial={{ opacity: 0, y: 30, rotate: -10 }}
             animate={{ opacity: 1, y: 0, rotate: 10 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="h-[120px] sm:h-[130px] w-[180px] sm:w-[190px] bg-transparent border-2 glass-card card-glow-hover p-4 sm:p-6 rounded-[24px] sm:rounded-[30px] rotate-[10deg] transform z-30"
+            className="h-[120px]  sm:h-[130px] w-[180px] sm:w-[190px] bg-transparent  md:top-0 border-2 glass-card card-glow-hover p-4 sm:p-6 rounded-[24px] sm:rounded-[30px] rotate-[10deg] transform z-30"
           >
             <p className="text-[40px] sm:text-[46px] font-extrabold leading-none mb-1 sm:mb-2 tracking-tighter text-white">
               10 B+
@@ -233,14 +241,14 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Desktop layout */}
-        <div className="hidden md:flex md:relative md:h-full">
-          {/* Statistics Card (Left) */}
+        {/* Desktop layout - flow-based row, no absolute */}
+        <div className="hidden md:flex w-full max-w-7xl mx-auto relative z-10 flex-wrap justify-between items-end gap-6">
+          {/* Statistics Card (Left) - y: -100 keeps it visually higher */}
           <motion.div
             initial={{ opacity: 0, y: 30, rotate: -10 }}
-            animate={{ opacity: 1, y: 0, rotate: 10 }}
+            animate={{ opacity: 1, y: -100, rotate: 10 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute left-[7%] h-[142.15px] w-[209.5px] bottom-[140px] bg-transparent border-2 glass-card card-glow-hover p-8 rounded-[36px] rotate-[10deg] transform z-30"
+            className="flex-shrink-0 h-[142.15px] w-[209.5px] min-w-0 bg-transparent border-2 glass-card card-glow-hover p-8 rounded-[36px] rotate-[10deg] transform"
           >
             <p className="text-[52px] font-extrabold leading-none mb-2 tracking-tighter text-white">
               10 B+
@@ -255,7 +263,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 50, rotate: 8 }}
             animate={{ opacity: 1, y: 0, rotate: -8 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="absolute left-[37%] top-[140px] -translate-x-1/2 w-[379px] h-[232px] max-w-[90vw] bg-transparent border-2 glass-card card-glow-hover rounded-[36px] p-4 -rotate-[8deg] transform z-20 overflow-hidden"
+            className="flex-1 min-w-0 max-w-[379px] w-[379px] h-[232px] bg-transparent border-2 glass-card card-glow-hover rounded-[36px] p-4 -rotate-[8deg] transform overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
@@ -328,7 +336,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30, rotate: 3 }}
             animate={{ opacity: 1, y: 0, rotate: -3 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="absolute right-[8%] bottom-[100px] h-[233.4px] w-[306.68px] max-w-[90vw] bg-transparent border-2 glass-card card-glow-hover p-4 rounded-[36px] -rotate-[7deg] transform z-30 overflow-hidden"
+            className="flex-shrink-0 h-[233.4px] w-[306.68px] min-w-0 max-w-[90%] bg-transparent border-2 glass-card card-glow-hover p-4 rounded-[36px] -rotate-[7deg] transform overflow-hidden"
           >
             <div className="flex items-center gap-3 mb-3 ">
               <img
@@ -356,6 +364,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

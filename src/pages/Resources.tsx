@@ -89,51 +89,46 @@ export default function ResourcesPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="relative h-[700px] min-h-screen  py-12 md:py-24 flex items-center">
+      {/* Hero Section - sized like home page */}
+      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] py-12 md:py-24 flex flex-col items-center overflow-hidden">
         {/* Background Image */}
         <img
           src={heroImage}
           alt="Hero Background"
-          className="absolute inset-0 z-0 w-full h-full object-cover object-top left-0"
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
+          className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center"
         />
-        
-        {/* Additional Purple Glow Blur Effect - matching home page */}
-        <div className="absolute -bottom-[50px] left-0 w-[500px] h-[500px] rounded-full blur-[120px] -z-20" />
-        
+        {/* Border - same as home */}
+        <img
+          src={borderImage}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center mt-[300px] sm:mt-[400px] md:mt-[500px] scale-150 sm:scale-125 md:scale-100 pointer-events-none"
+          style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }}
+        />
+        {/* Purple Glow - matching home */}
+        <div className="absolute -bottom-[50px] left-0 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-20" />
         {/* Stars Background */}
         <div className="absolute inset-0 stars-bg z-0" />
-        
-        {/* Border/Shadow transition effect */}
-        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] z-10 pointer-events-none overflow-hidden">
-          <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
-        </div>
 
-        <div className="max-w-5xl mx-auto text-center mt-[10px] px-6 relative z-10 flex-1 flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto text-center mt-[-180px] sm:mt-[-200px] md:mt-[-240px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-2 mt-6 px-4"
+            className="mb-2 mt-4 sm:mt-6 px-2 sm:px-4 text-[42px] sm:text-[60px] md:text-[87.34px] leading-[1.4] sm:leading-[1.3] md:leading-[1.25] tracking-tight"
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontWeight: 400,
-              fontSize: '87.34px',
-              lineHeight: '27.69px',
-              letterSpacing: '-2%',
+              letterSpacing: '-0.02em',
               color: '#FFFFFF',
               opacity: 1
             }}
           >
-            Amazon Growth <br />
-            <span className="relative inline-block mr-4 mt-[80px] mb-[60px]">
-              Resources   
-              <img src={amazonLine} alt="Amazon Line" className="absolute top-[60px] left-0" />
-            </span>
+            <span className="block">Amazon Growth</span>
+            <span className="relative inline-block mt-1 sm:mt-2 md:mt-3 mr-2 sm:mr-4">
+              Resources
+              <img src={amazonLine} alt="" aria-hidden className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none" style={{ top: '0.1.2em' }} />
+            </span>{' '}
             & Insights.
           </motion.h1>
 
@@ -192,11 +187,7 @@ export default function ResourcesPage() {
                     <LazyImage
                       src={guide.image}
                       alt={guide.title}
-                      className="rounded-[20px] object-cover w-full"
-                      style={{
-                        maxWidth: "379px",
-                        height: "258px",
-                      }}
+                      className="rounded-[20px] object-cover w-full max-w-[379px] h-48 sm:h-52 md:h-56 lg:h-[258px]"
                     />
                   )}
                 </motion.div>
@@ -397,12 +388,12 @@ export default function ResourcesPage() {
               >
                 <div className="flex flex-col space-y-[34px]">
                   {/* Image */}
-                  <div className="w-full h-[250px] md:h-[384px] rounded-[35px] overflow-hidden">
+                  <div className="w-full h-[200px] sm:h-[250px] md:h-[320px] lg:h-[384px] rounded-[35px] overflow-hidden">
                     {card.image && (
                       <LazyImage
                         src={card.image}
                         alt={card.heading1}
-                        className="w-full h-full object-cover"
+                        className="w-full max-w-full h-full object-cover"
                       />
                     )}
                   </div>

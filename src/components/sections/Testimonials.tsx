@@ -111,11 +111,11 @@ export default function Testimonials() {
                     {/* Left Section - Video Thumbnail */}
                     <div className="flex-shrink-0">
                       <div className="glass-card border-2  rounded-[36px] p-6 relative overflow-hidden">
-                        <div className="relative w-full md:w-[440px] h-[340px]">
+                        <div className="relative w-full md:w-[440px] h-[240px] sm:h-[280px] md:h-[340px]">
                           <img
                             src={imageSources[testimonial.id] || testimonial.image}
                             alt={testimonial.name}
-                            className="w-full h-full object-cover rounded-[23px]"
+                            className="w-full max-w-full h-full object-cover rounded-[23px]"
                             onError={() => {
                               // Fallback to local image if current image fails to load
                               setImageSources((prev) => ({

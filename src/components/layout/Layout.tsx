@@ -34,19 +34,19 @@ export default function Layout({ children }: LayoutProps) {
         {/* Common Line Images - Appear on all pages */}
         {/* Blur-home image - only show on non-home pages (home page has it in BeforeAfter section) */}
         {location.pathname !== "/" && (
-          <img src={blurHome} alt="home blur" className='absolute left-[60%] top-[20%] z-0 object-center pointer-events-none' />
+          <img src={blurHome} alt="home blur" className="absolute left-[60%] top-[20%] z-0 object-center pointer-events-none w-full max-w-[min(100%,400px)] h-auto" />
         )}
         {/* Contact-only: blur covering the top so no blackness */}
         {location.pathname === "/contact" && (
-          <img src={blurHome} alt="" className="absolute left-0 right-0 top-0 w-full h-[400px] z-[1] object-cover object-top pointer-events-none" />
+          <img src={blurHome} alt="" className="absolute left-0 right-0 top-0 w-full max-w-full h-[200px] sm:h-[300px] md:h-[400px] z-[1] object-cover object-top pointer-events-none" />
         )}
-        <img src={lineImage} alt="Line Image" className="absolute left-[80%] top-[44%] pointer-events-none z-0" />
-        <img src={lineImage} alt="Line Image" className="absolute right-[80%] top-[73%] transform rotate-180 pointer-events-none z-0" />
-        <img src={leftLineImage} alt="Left Line Image" className="absolute left-[0%] top-[19%] pointer-events-none z-0" />
-        <img src={blurleft} alt="left blur" className={`absolute left-[0%] ${location.pathname === "/" ? 'top-[45%]' : 'top-[55%]'} pointer-events-none z-0`} />
-        <img src={blurright} alt="right blur" className='absolute right-[0%] top-[80%] pointer-events-none z-0' />
+        <img src={lineImage} alt="Line Image" className="absolute left-[80%] top-[44%] pointer-events-none z-0 max-w-full h-auto object-contain" />
+        <img src={lineImage} alt="Line Image" className="absolute right-[80%] top-[73%] transform rotate-180 pointer-events-none z-0 max-w-full h-auto object-contain" />
+        <img src={leftLineImage} alt="Left Line Image" className="absolute left-[0%] top-[19%] pointer-events-none z-0 max-w-full h-auto object-contain" />
+        <img src={blurleft} alt="left blur" className={`absolute left-[0%] ${location.pathname === "/" ? 'top-[45%]' : 'top-[55%]'} pointer-events-none z-0 max-w-full h-auto object-contain`} />
+        <img src={blurright} alt="right blur" className="absolute right-[0%] top-[80%] pointer-events-none z-0 max-w-full h-auto object-contain" />
         {/* Footer area blur - positioned to match Figma design */}
-        <img src={blurleft} alt="left blur" className='absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80' />
+        <img src={blurleft} alt="left blur" className="absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80 max-w-full h-auto object-contain" />
         {children}
       </main>
       {/* {location.pathname === "/" && <Reviews />} */}

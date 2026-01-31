@@ -67,50 +67,43 @@ export default function CaseStudiesPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="relative h-[700px] min-h-screen purple-glow-bg py-12 md:py-24 flex items-center">
+      {/* Hero Section - sized like home page */}
+      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden purple-glow-bg py-12 md:py-24">
         {/* Background Image */}
         <img
           src={heroImage}
           alt="Hero Background"
-          className="absolute inset-0 z-0 w-full h-full object-cover object-top left-0"
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
+          className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center"
         />
-        
-        {/* Additional Purple Glow Blur Effect - matching home page */}
-        <div className="absolute bottom-[0px] left-0 w-[500px] h-[100px] rounded-full blur-[180px] -z-20" />
-        
-        {/* Stars Background */}
+        <img
+          src={borderImage}
+          alt="Border"
+          className="absolute inset-0 z-0 w-full max-w-full h-full object-cover object-center mt-[300px] sm:mt-[400px] md:mt-[500px] scale-150 sm:scale-125 md:scale-100"
+        />
+        <div className="absolute -bottom-[50px] left-0 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-20" />
         <div className="absolute inset-0 stars-bg z-0" />
-        
-        {/* Border/Shadow transition effect */}
-        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] z-10 pointer-events-none overflow-hidden">
-          <img src={borderImage} alt="Border" className="w-full h-full object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
+        <div className="absolute -bottom-[50px] left-0 w-full h-[200px] sm:h-[250px] md:h-[300px] z-10 pointer-events-none overflow-hidden">
+          <img src={borderImage} alt="" aria-hidden className="w-full max-w-full h-full min-h-0 object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
         </div>
 
-        <div className="max-w-5xl mx-auto text-center mt-[10px] px-6 relative z-10 flex-1 flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto text-center mt-[-180px] sm:mt-[-200px] md:mt-[-240px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-2 mt-6 px-4"
+            className="mb-2 mt-4 sm:mt-6 px-2 sm:px-4 text-[42px] sm:text-[60px] md:text-[87.34px] leading-[1.4] sm:leading-[1.3] md:leading-[1.25] tracking-tight"
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontWeight: 400,
-              fontSize: '87.34px',
-              lineHeight: '27.69px',
-              letterSpacing: '-2%',
+              letterSpacing: '-0.02em',
               color: '#FFFFFF',
-              opacity: 1
+              opacity: 1,
             }}
           >
-            Real Results. Proven <br />
-            <span className="relative inline-block mr-4 mb-[40px] mt-[80px]">
-              Amazon   
-              <img src={amazonLine} alt="Amazon Line" className="absolute top-[60px] left-0" />
+            <span className="block">Real Results. Proven</span>
+            <span className="relative inline-block mt-1 sm:mt-2 md:mt-3 mr-2 sm:mr-4">
+              Amazon
+              <img src={amazonLine} alt="" aria-hidden className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none" style={{ top: '1.2em' }} />
             </span>
             Growth.
           </motion.h1>
@@ -162,7 +155,7 @@ export default function CaseStudiesPage() {
                       <LazyImage
                         src={study.id === 3 ? caseStudy1Png : caseStudyImages[index + 1]}
                         alt={study.title}
-                        className="w-full h-full object-cover"
+                        className="w-full max-w-full h-full object-cover"
                       />
                     )}
                   </div>
@@ -225,7 +218,7 @@ export default function CaseStudiesPage() {
                         <LazyImage
                           src={caseStudyImages[index + 6]}
                           alt={`${benefit.title} - Benefit`}
-                          className="w-full h-full object-cover"
+                          className="w-full max-w-full h-full object-cover"
                         />
                       )}
                     </div>
@@ -415,7 +408,7 @@ export default function CaseStudiesPage() {
                     )}
                     {selectedCaseStudy.id === 6 && (
                       <div className="rounded-lg overflow-hidden">
-                        <img src={caseStudy1a} alt="Sales & Profit overview" className="w-full h-auto object-cover" />
+                        <img src={caseStudy1a} alt="Sales & Profit overview" className="w-full max-w-full h-auto object-cover rounded-lg" />
                       </div>
                     )}
                     {fd.longTermGrowth && typeof fd.longTermGrowth === 'object' && (() => {
@@ -430,7 +423,7 @@ export default function CaseStudiesPage() {
                     })()}
                     {selectedCaseStudy.id === 6 && (
                       <div className="rounded-lg overflow-hidden">
-                        <img src={caseStudy1b} alt="Sales and orders by month" className="w-full h-auto object-cover" />
+                        <img src={caseStudy1b} alt="Sales and orders by month" className="w-full max-w-full h-auto object-cover rounded-lg" />
                       </div>
                     )}
                     {fd.summary && Array.isArray(fd.summary) && (
@@ -448,7 +441,7 @@ export default function CaseStudiesPage() {
                     )}
                     {selectedCaseStudy.id === 6 && (
                       <div className="rounded-lg overflow-hidden">
-                        <img src={casestudyNew} alt="Sales snapshot and compare sales" className="w-full h-auto object-cover" />
+                        <img src={casestudyNew} alt="Sales snapshot and compare sales" className="w-full max-w-full h-auto object-cover rounded-lg" />
                       </div>
                     )}
 
@@ -547,7 +540,7 @@ export default function CaseStudiesPage() {
                               <img
                                 src={src}
                                 alt={`${selectedCaseStudy.title} - ${i + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full max-w-full h-full object-cover"
                               />
                             </div>
                           ))
