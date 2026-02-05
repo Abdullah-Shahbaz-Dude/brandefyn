@@ -1,15 +1,15 @@
-import { ReactNode, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import { ReactNode, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 // import Reviews from '../sections/Reviews';
-import ScheduleCall from '../sections/ScheduleCall';
-import Testimonials from '../sections/Testimonials';
-import lineImage from '../../assets/lines.png';
-import leftLineImage from '../../assets/leftline.svg';
-import blurleft from '../../assets/blur-2.svg'
-import blurright from '../../assets/blur-3.svg'
-import blurHome from '../../assets/blur-home.svg'
+import ScheduleCall from "../sections/ScheduleCall";
+import Testimonials from "../sections/Testimonials";
+import lineImage from "../../assets/lines.png";
+import leftLineImage from "../../assets/leftline.svg";
+import blurleft from "../../assets/blur-2.svg";
+import blurright from "../../assets/blur-3.svg";
+import blurHome from "../../assets/blur-home.svg";
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,9 +19,14 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/contact' && location.hash === '#schedule-call') {
+    if (
+      location.pathname === "/contact" &&
+      location.hash === "#schedule-call"
+    ) {
       const timer = setTimeout(() => {
-        document.getElementById('schedule-call')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document
+          .getElementById("schedule-call")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -34,27 +39,69 @@ export default function Layout({ children }: LayoutProps) {
         {/* Common Line Images - Appear on all pages */}
         {/* Blur-home image - only show on non-home pages (home page has it in BeforeAfter section) */}
         {location.pathname !== "/" && (
-          <img src={blurHome} alt="home blur" className="absolute left-[60%] top-[20%] z-0 object-center pointer-events-none w-full max-w-[min(100%,400px)] h-auto" />
+          <img
+            src={blurHome}
+            alt="home blur"
+            className="absolute left-[80%] top-[30%] z-0 object-center pointer-events-none w-full max-w-[min(100%,400px)] h-auto"
+          />
         )}
         {/* Contact-only: blur covering the top so no blackness */}
         {location.pathname === "/contact" && (
-          <img src={blurHome} alt="" className="absolute left-0 right-0 top-0 w-full max-w-full h-[200px] sm:h-[300px] md:h-[400px] z-[1] object-cover object-top pointer-events-none" />
+          <img
+            src={blurHome}
+            alt=""
+            className="absolute left-0 right-0 top-0 w-full max-w-full h-[200px] sm:h-[300px] md:h-[400px] z-[1] object-cover object-top pointer-events-none"
+          />
         )}
-        <img src={lineImage} alt="Line Image" className="absolute left-[80%] top-[44%] pointer-events-none z-0 max-w-full h-auto object-contain" />
-        <img src={lineImage} alt="Line Image" className="absolute right-[80%] top-[73%] transform rotate-180 pointer-events-none z-0 max-w-full h-auto object-contain" />
-        <img src={leftLineImage} alt="Left Line Image" className="absolute left-[0%] top-[19%] pointer-events-none z-0 max-w-full h-auto object-contain" />
-        <img src={blurleft} alt="left blur" className={`absolute left-[0%] ${location.pathname === "/" ? 'top-[45%]' : 'top-[55%]'} pointer-events-none z-0 max-w-full h-auto object-contain`} />
-        <img src={blurright} alt="right blur" className="absolute right-[0%] top-[80%] pointer-events-none z-0 max-w-full h-auto object-contain" />
+        <img
+          src={lineImage}
+          alt="Line Image"
+          className="absolute left-[80%] top-[44%] pointer-events-none z-0 max-w-full h-auto object-contain"
+        />
+        <img
+          src={lineImage}
+          alt="Line Image"
+          className="absolute right-[80%] top-[73%] transform rotate-180 pointer-events-none z-0 max-w-full h-auto object-contain"
+        />
+        <img
+          src={leftLineImage}
+          alt="Left Line Image"
+          className="absolute left-[0%] top-[19%] pointer-events-none z-0 max-w-full h-auto object-contain"
+        />
+        <img
+          src={blurleft}
+          alt="left blur"
+          className={`absolute left-[0%] ${
+            location.pathname === "/" ? "top-[45%]" : "top-[55%]"
+          } pointer-events-none z-0 max-w-full h-auto object-contain`}
+        />
+        <img
+          src={blurright}
+          alt="right blur"
+          className="absolute right-[0%] top-[80%] pointer-events-none z-0 max-w-full h-auto object-contain"
+        />
         {/* Footer area blur - positioned to match Figma design */}
-        <img src={blurleft} alt="left blur" className="absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80 max-w-full h-auto object-contain" />
+        <img
+          src={blurleft}
+          alt="left blur"
+          className="absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80 max-w-full h-auto object-contain"
+        />
+
+        {location.pathname !== "blog" && (
+          <img
+            src={blurHome}
+            alt="home blur"
+            className="absolute left-[80%] top-[200%] z-0 object-center pointer-events-none w-full max-w-[min(100%,400px)] h-auto"
+          />
+        )}
         {children}
       </main>
       {/* {location.pathname === "/" && <Reviews />} */}
       <ScheduleCall />
-      {(location.pathname === "/" || location.pathname === "/contact") && <Testimonials />}
+      {(location.pathname === "/" || location.pathname === "/contact") && (
+        <Testimonials />
+      )}
       <Footer />
     </div>
   );
 }
-
-

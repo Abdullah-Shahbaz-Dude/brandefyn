@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import CaseStudies from "./pages/CaseStudies";
 import Services from "./pages/Services";
 import Resources from "./pages/Resources";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -18,6 +20,8 @@ function App() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/services" element={<Services />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

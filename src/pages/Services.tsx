@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { MdArrowForward, MdBarChart, MdHandshake, MdHub } from "react-icons/md";
 import heroImage from "../assets/images/hero/hero-2.png";
 import LazyImage from "../components/ui/LazyImage";
-import amazonLine from '../assets/images/hero/hero-amzon.png';
-import borderImage from '../assets/images/hero/border.svg';
+import amazonLine from "../assets/images/hero/hero-amzon.png";
+import borderImage from "../assets/images/hero/border.svg";
 
 const serviceItems = [
   "SEO & Listing Optimization",
@@ -19,14 +19,10 @@ export default function ServicesPage() {
   // Dynamic imports for code splitting
   useEffect(() => {
     const loadImages = async () => {
-      const [
-        img1,
-        img2,
-        img3,
-      ] = await Promise.all([
-        import('../assets/images/Service-page/servicePage-1.png'),
-        import('../assets/images/Service-page/serviceCard-2.png'),
-        import('../assets/images/Service-page/serviceCard-3.png'),
+      const [img1, img2, img3] = await Promise.all([
+        import("../assets/images/Service-page/servicePage-1.png"),
+        import("../assets/images/Service-page/serviceCard-2.png"),
+        import("../assets/images/Service-page/serviceCard-3.png"),
       ]);
 
       setImages({
@@ -56,7 +52,18 @@ export default function ServicesPage() {
         <div className="absolute -bottom-[50px] left-0 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-20" />
         <div className="absolute inset-0 stars-bg z-0" />
         <div className="absolute -bottom-[50px] left-0 w-full h-[200px] sm:h-[250px] md:h-[300px] z-10 pointer-events-none overflow-hidden">
-          <img src={borderImage} alt="" aria-hidden className="w-full max-w-full h-full min-h-0 object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
+          <img
+            src={borderImage}
+            alt=""
+            aria-hidden
+            className="w-full max-w-full h-full min-h-0 object-cover object-center"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+            }}
+          />
         </div>
 
         <div className="max-w-5xl mx-auto text-center mt-[-180px] sm:mt-[-200px] md:mt-[-240px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center overflow-hidden">
@@ -68,15 +75,21 @@ export default function ServicesPage() {
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontWeight: 400,
-              letterSpacing: '-0.02em',
-              color: '#FFFFFF',
+              letterSpacing: "-0.02em",
+              color: "#FFFFFF",
               opacity: 1,
             }}
           >
-            <span className="block">Full-Service Amazon Ads &</span>
+            <span className="block">Full-Service Amazon Ads </span>
             <span className="relative inline-block mt-1 sm:mt-2 md:mt-3 mr-2 sm:mr-4">
-              Growth
-              <img src={amazonLine} alt="" aria-hidden className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none" style={{ top: '0.1.2em' }} />
+              & Growth
+              <img
+                src={amazonLine}
+                alt=""
+                aria-hidden
+                className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none"
+                style={{ top: "0.1.2em" }}
+              />
             </span>
             Management.
           </motion.h1>
@@ -87,7 +100,8 @@ export default function ServicesPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed mt-6"
           >
-            We manage, optimize, and scale Amazon brands using data-driven advertising strategies built for consistent, profitable growth.
+            We manage, optimize, and scale Amazon brands using data-driven
+            advertising strategies built for consistent, profitable growth.
           </motion.p>
 
           <motion.div
@@ -108,7 +122,7 @@ export default function ServicesPage() {
 
       <div className="py-24 purple-glow-bg relative min-h-screen">
         {/* Circular Wave Background Overlays */}
-       
+
         <div className="container mx-auto px-4 max-w-[1280px] relative z-10">
           {/* Hero Section */}
           <motion.div
@@ -123,7 +137,9 @@ export default function ServicesPage() {
                 Everything You Need to Scale on Amazon
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-white leading-relaxed">
-                We handle your Amazon advertising, optimization, and growth strategy end to end—so you can increase sales, reduce wasted ad spend, and scale profitably with confidence.
+                We handle your Amazon advertising, optimization, and growth
+                strategy end to end—so you can increase sales, reduce wasted ad
+                spend, and scale profitably with confidence.
               </p>
             </div>
 
@@ -149,14 +165,15 @@ export default function ServicesPage() {
                   Amazon Advertising Management
                 </h2>
                 <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed max-w-full md:max-w-[559px]">
-                  We manage and optimize Sponsored Products, Brands, and Display ads to maximize sales and reduce wasted spend.
+                  We manage and optimize Sponsored Products, Brands, and Display
+                  ads to maximize sales and reduce wasted spend.
                 </p>
               </div>
               {/* Arrow Icon */}
               <div className="flex-shrink-0 mt-2 hidden md:block">
-                <MdArrowForward 
-                  className="text-[#BA9FFF] text-4xl md:text-5xl" 
-                  style={{ transform: 'rotate(45deg)' }}
+                <MdArrowForward
+                  className="text-[#BA9FFF] text-4xl md:text-5xl"
+                  style={{ transform: "rotate(45deg)" }}
                 />
               </div>
             </div>
@@ -178,7 +195,6 @@ export default function ServicesPage() {
 
           {/* Service List Section */}
           <div className="space-y-8 md:space-y-[43px]">
-            
             {serviceItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -191,9 +207,9 @@ export default function ServicesPage() {
                     {item}
                   </h3>
                   {/* Arrow Icon */}
-                  <MdArrowForward 
-                    className="text-white text-3xl md:text-4xl lg:text-5xl flex-shrink-0" 
-                    style={{ transform: 'rotate(45deg)' }}
+                  <MdArrowForward
+                    className="text-white text-3xl md:text-4xl lg:text-5xl flex-shrink-0"
+                    style={{ transform: "rotate(45deg)" }}
                   />
                 </div>
                 {/* Divider - except for last item */}
@@ -213,9 +229,8 @@ export default function ServicesPage() {
           >
             {/* Background with white overlay */}
             <div className="absolute inset-0 bg-white/10  w-full h-full -z-10"></div>
-            
+
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 p-6 md:p-8 lg:p-12">
-              
               {/* Left Side - Cards */}
               <div className="flex-1 w-full lg:max-w-[579px] space-y-6 ">
                 {/* Top Card: Transparent Results */}
@@ -225,25 +240,26 @@ export default function ServicesPage() {
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-[#7854FF] rounded-full flex items-center justify-center flex-shrink-0">
                       <MdBarChart className="text-white text-2xl md:text-3xl" />
                     </div>
-                    
+
                     {/* Text Content */}
                     <div className="flex-1 space-y-3 md:space-y-4 lg:space-y-6">
-                        Transparent Results for All Brands
-                      <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">
-                      </h3>
+                      Transparent Results for All Brands
+                      <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white"></h3>
                       <p className="text-sm md:text-base text-white leading-relaxed">
-                        Success should be accessible to every Amazon seller, regardless of size or category. We remove inefficiencies so every brand can maximize sales and profitability.
+                        Success should be accessible to every Amazon seller,
+                        regardless of size or category. We remove inefficiencies
+                        so every brand can maximize sales and profitability.
                       </p>
                     </div>
                   </div>
-                    {images.service3 && (
-                      <LazyImage 
-                        src={images.service3} 
-                        alt="Transparent Results for All Brands" 
-                        className="w-full max-w-full mt-[50px] absolute bottom-0 left-0 right-0 object-cover rounded-b-[36px]" 
-                        style={{ height: 'calc(100% - 180px)' }}
-                      />
-                    )}
+                  {images.service3 && (
+                    <LazyImage
+                      src={images.service3}
+                      alt="Transparent Results for All Brands"
+                      className="w-full max-w-full mt-[50px] absolute bottom-0 left-0 right-0 object-cover rounded-b-[36px]"
+                      style={{ height: "calc(100% - 180px)" }}
+                    />
+                  )}
                 </div>
 
                 {/* Bottom Card: Growth Isn't Optional */}
@@ -253,20 +269,22 @@ export default function ServicesPage() {
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-[#7854FF] rounded-full flex items-center justify-center flex-shrink-0">
                       <MdHandshake className="text-white text-2xl md:text-3xl" />
                     </div>
-                    
+
                     {/* Text Content */}
                     <div className="flex-1 space-y-3 md:space-y-4 lg:space-y-6">
                       <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white">
                         Growth Isn't Optional; It's Built-In
                       </h3>
                       <p className="text-sm md:text-base text-white leading-relaxed">
-                        Our strategies are designed to optimize ads, listings, and campaigns seamlessly. We create data-driven, intuitive growth plans that make every client feel confident and empowered.
+                        Our strategies are designed to optimize ads, listings,
+                        and campaigns seamlessly. We create data-driven,
+                        intuitive growth plans that make every client feel
+                        confident and empowered.
                       </p>
                     </div>
                   </div>
 
                   {/* Image */}
-                  
                 </div>
               </div>
 
@@ -311,10 +329,10 @@ export default function ServicesPage() {
             <div className="relative z-10 w-full max-w-6xl mx-auto h-[1000px] hidden lg:block">
               {/* Connecting Spiral Image - Connects all three cards */}
               {images.service2 && (
-                <LazyImage 
-                  src={images.service2} 
-                  alt="Connecting spiral path" 
-                  className="absolute inset-0 left-[43%] top-[23%] pointer-events-none z-[1] w-full max-w-full h-full object-contain opacity-70" 
+                <LazyImage
+                  src={images.service2}
+                  alt="Connecting spiral path"
+                  className="absolute inset-0 left-[43%] top-[23%] pointer-events-none z-[1] w-full max-w-full h-full object-contain opacity-70"
                 />
               )}
 
@@ -324,20 +342,28 @@ export default function ServicesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
                 className="absolute top-[-50px] left-[10%] z-[10] w-full max-w-md"
-                style={{ 
-                  transform: 'perspective(1000px) rotateZ(-6deg) rotateX(-10deg)',
-                  transformStyle: 'preserve-3d'
+                style={{
+                  transform:
+                    "perspective(1000px) rotateZ(-6deg) rotateX(-10deg)",
+                  transformStyle: "preserve-3d",
                 }}
               >
-                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ transform: 'rotate(-6deg)', width: '550px' }}>
+                <div
+                  className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm"
+                  style={{ transform: "rotate(-6deg)", width: "550px" }}
+                >
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
                   <h3 className="text-2xl font-bold mb-5 leading-tight text-white">
-                    Automated Amazon Reports That Give You Instant, Actionable Insights
+                    Automated Amazon Reports That Give You Instant, Actionable
+                    Insights
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Getting started takes only a few seconds. Simply connect your Amazon account to our platform, and our system begins evaluating your ad performance automatically—no technical setup required.
+                    Getting started takes only a few seconds. Simply connect
+                    your Amazon account to our platform, and our system begins
+                    evaluating your ad performance automatically—no technical
+                    setup required.
                   </p>
                 </div>
               </motion.div>
@@ -348,9 +374,12 @@ export default function ServicesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
                 className="absolute top-[420px] right-[10%] z-[30] w-full max-w-md"
-                style={{ transform: 'rotate(6deg)' }}
+                style={{ transform: "rotate(6deg)" }}
               >
-                <div className="bg-[#1a1a1a] w-[550px] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ transform: 'rotate(4deg)' }}>
+                <div
+                  className="bg-[#1a1a1a] w-[550px] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm"
+                  style={{ transform: "rotate(4deg)" }}
+                >
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
@@ -358,12 +387,12 @@ export default function ServicesPage() {
                     Real-Time Performance Tracking & Optimization
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Our automated system continuously monitors your campaigns, identifying opportunities and inefficiencies in real-time to maximize your ROI and reduce wasted ad spend.
+                    Our automated system continuously monitors your campaigns,
+                    identifying opportunities and inefficiencies in real-time to
+                    maximize your ROI and reduce wasted ad spend.
                   </p>
                 </div>
               </motion.div>
-
-              
 
               {/* Card 3 - Bottom Left, Rotated -6deg */}
               <motion.div
@@ -371,9 +400,12 @@ export default function ServicesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.1 }}
                 className="absolute top-[815px] left-[12%] z-[40] w-full max-w-md"
-                style={{ transform: 'rotate(-6deg)' }}
+                style={{ transform: "rotate(-6deg)" }}
               >
-                <div className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm" style={{ width: '550px', transform: 'rotate(6deg)' }}>
+                <div
+                  className="bg-[#1a1a1a] border border-white/15 p-10 rounded-[2.5rem] shadow-2xl backdrop-blur-sm"
+                  style={{ width: "550px", transform: "rotate(6deg)" }}
+                >
                   <div className="w-14 h-14 bg-[#9d66ff] rounded-full flex items-center justify-center mb-8">
                     <MdHub className="text-white text-3xl" />
                   </div>
@@ -381,19 +413,21 @@ export default function ServicesPage() {
                     Actionable Insights Delivered Automatically
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Receive comprehensive reports with clear recommendations. Every insight is designed to help you make data-driven decisions that drive growth and profitability.
+                    Receive comprehensive reports with clear recommendations.
+                    Every insight is designed to help you make data-driven
+                    decisions that drive growth and profitability.
                   </p>
                 </div>
               </motion.div>
 
-                {/* Connecting Spiral Image - Connects all three cards */}
-                {images.service2 && (
-                  <LazyImage 
-                    src={images.service2} 
-                    alt="Connecting spiral path" 
-                    className="absolute inset-0 left-[50%] top-[68%] transform rotate-90 pointer-events-none z-[1] w-full max-w-full h-full object-contain opacity-70" 
-                  />
-                )}
+              {/* Connecting Spiral Image - Connects all three cards */}
+              {images.service2 && (
+                <LazyImage
+                  src={images.service2}
+                  alt="Connecting spiral path"
+                  className="absolute inset-0 left-[50%] top-[68%] transform rotate-90 pointer-events-none z-[1] w-full max-w-full h-full object-contain opacity-70"
+                />
+              )}
             </div>
 
             {/* Mobile Layout - Stacked Cards */}
@@ -410,10 +444,14 @@ export default function ServicesPage() {
                     <MdHub className="text-white text-3xl" />
                   </div>
                   <h3 className="text-2xl font-bold mb-5 leading-tight text-white">
-                    Automated Amazon Reports That Give You Instant, Actionable Insights
+                    Automated Amazon Reports That Give You Instant, Actionable
+                    Insights
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Getting started takes only a few seconds. Simply connect your Amazon account to our platform, and our system begins evaluating your ad performance automatically—no technical setup required.
+                    Getting started takes only a few seconds. Simply connect
+                    your Amazon account to our platform, and our system begins
+                    evaluating your ad performance automatically—no technical
+                    setup required.
                   </p>
                 </div>
               </motion.div>
@@ -433,7 +471,9 @@ export default function ServicesPage() {
                     Real-Time Performance Tracking & Optimization
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Our automated system continuously monitors your campaigns, identifying opportunities and inefficiencies in real-time to maximize your ROI and reduce wasted ad spend.
+                    Our automated system continuously monitors your campaigns,
+                    identifying opportunities and inefficiencies in real-time to
+                    maximize your ROI and reduce wasted ad spend.
                   </p>
                 </div>
               </motion.div>
@@ -453,7 +493,9 @@ export default function ServicesPage() {
                     Actionable Insights Delivered Automatically
                   </h3>
                   <p className="text-gray-400 text-base leading-relaxed">
-                    Receive comprehensive reports with clear recommendations. Every insight is designed to help you make data-driven decisions that drive growth and profitability.
+                    Receive comprehensive reports with clear recommendations.
+                    Every insight is designed to help you make data-driven
+                    decisions that drive growth and profitability.
                   </p>
                 </div>
               </motion.div>

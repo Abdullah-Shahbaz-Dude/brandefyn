@@ -3,6 +3,7 @@ export const NAV_ITEMS = [
   { label: 'Case Studies', path: '/case-studies' },
   { label: 'Services', path: '/services' },
   { label: 'Resources', path: '/resources' },
+  { label: 'Blog', path: '/blog' },
   { label: 'Free Audit', path: '#free-audit' },
 ];
 

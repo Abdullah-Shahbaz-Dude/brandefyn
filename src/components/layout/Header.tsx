@@ -31,6 +31,10 @@ export default function Header() {
     if (path.startsWith('#')) {
       return false;
     }
+    // Blog is active on /blog and /blog/:slug
+    if (path === '/blog') {
+      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    }
     return location.pathname === path;
   };
 
