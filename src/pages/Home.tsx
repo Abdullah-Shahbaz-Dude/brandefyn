@@ -1,5 +1,5 @@
 import Hero from "../components/sections/Hero";
-import VideoSalesLetter from "../components/sections/VideoSalesLetter";
+// import VideoSalesLetter from "../components/sections/VideoSalesLetter";
 import BeforeAfter from "../components/sections/BeforeAfter";
 import Metrics from "../components/sections/Metrics";
 import TrustedBy from "../components/sections/TrustedBy";
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <div className="relative">
         <BeforeAfter />
-        <VideoSalesLetter />
+        {/* <VideoSalesLetter /> */}
       </div>
       <Metrics />
       <TrustedBy />

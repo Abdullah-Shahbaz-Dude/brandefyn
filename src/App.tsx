@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import RedditPixel from "./components/RedditPixel";
 import ScrollRestoration from "./components/ScrollRestoration";
 import Home from "./pages/Home";
 import CaseStudies from "./pages/CaseStudies";
@@ -13,6 +14,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Router>
+      <RedditPixel />
       <ScrollRestoration />
       <Layout>
         <Routes>

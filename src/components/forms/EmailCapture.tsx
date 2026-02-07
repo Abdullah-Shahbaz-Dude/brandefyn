@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../ui/Button';
+import { trackRedditEvent } from '../../utils/redditPixel';
 
 interface EmailFormData {
   email: string;
@@ -26,7 +27,8 @@ export default function EmailCapture({ onSuccess, calendlyUrl }: EmailCapturePro
     
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+
+    trackRedditEvent('Lead');
     setIsSubmitted(true);
     onSuccess?.();
   };
