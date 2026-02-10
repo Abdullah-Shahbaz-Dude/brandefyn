@@ -1,19 +1,7 @@
 /**
- * REDDIT PIXEL – BEGINNER OVERVIEW
- * ---------------------------------
- * What: A small script that tells Reddit Ads "someone visited your site" or "someone did X"
- *       so Reddit can measure ad performance and show ads to people who visited.
- *
- * Flow:
- * 1. initRedditPixel() runs once when the app loads → loads Reddit's script and calls rdt('init', pixelId).
- * 2. trackRedditEvent('PageVisit') runs on every route change → Reddit knows which "page" was viewed.
- * 3. trackRedditEvent('Lead', { conversionId }) runs when a user submits the email form → Reddit counts a conversion.
- *
- * Where it's used:
- * - RedditPixel.tsx: calls init once, then PageVisit on each route change.
- * - EmailCapture.tsx / HeroEmailForm.tsx: call trackRedditEvent('Lead', { conversionId }) after successful submit.
- *
- * Config: Pixel ID comes from .env as VITE_REDDIT_PIXEL_ID (so we don't hardcode it in the repo).
+ * Reddit Ads conversion pixel – matches Reddit's official "Install the Pixel" snippet.
+ * Pixel ID from import.meta.env.VITE_REDDIT_PIXEL_ID (Reddit Ads Manager → Conversion tracking).
+ * See: Reddit Help → Install the Pixel (stub + init + PageVisit, optional match keys).
  */
 
 const REDDIT_PIXEL_SCRIPT_URL = "https://www.redditstatic.com/ads/pixel.js";
@@ -76,7 +64,7 @@ export function initRedditPixel(matchKeys?: RedditMatchKeys): void {
   if (!pixelId) return;
 
   const existing = document.querySelector(
-    `script[src="${REDDIT_PIXEL_SCRIPT_URL}"]`
+    `script[src="${REDDIT_PIXEL_SCRIPT_URL}"]`,
   );
   if (existing) {
     if (typeof window.rdt === "function") {
@@ -119,7 +107,7 @@ export interface RedditTrackOptions {
  */
 export function trackRedditEvent(
   eventName: string,
-  options?: RedditTrackOptions
+  options?: RedditTrackOptions,
 ): void {
   if (!getPixelId()) return;
   if (typeof window.rdt !== "function") return;

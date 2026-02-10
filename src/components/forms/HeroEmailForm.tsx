@@ -24,11 +24,7 @@ export default function HeroEmailForm({ onSuccess }: HeroEmailFormProps) {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    trackRedditEvent("Lead", {
-      conversionId:
-        crypto.randomUUID?.() ??
-        `lead-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-    });
+    trackRedditEvent("Lead");
     onSuccess?.();
   };
 
