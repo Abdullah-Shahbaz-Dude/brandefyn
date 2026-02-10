@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block unnecessary system files
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+
+# Block parameters & temp paths (if any)
+Disallow: /?
+Disallow: /search/
+
+# Sitemap
+Sitemap: https://www.brandefyn.com/sitemap.xml

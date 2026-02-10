@@ -31,9 +31,9 @@ export default function Header() {
     if (path.startsWith('#')) {
       return false;
     }
-    // Blog is active on /blog and /blog/:slug
-    if (path === '/blog') {
-      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    // Blog is active on /blogs and /blogs/:slug
+    if (path === '/blogs') {
+      return location.pathname === '/blogs' || location.pathname.startsWith('/blogs/');
     }
     return location.pathname === path;
   };

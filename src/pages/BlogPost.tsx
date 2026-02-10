@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import LazyImage from "../components/ui/LazyImage";
+import "../styles/post-content.css";
 import { getPostBySlug } from "../api/wordpress";
 import type { WpPost } from "../types/wordpress";
+import { sanitizePostContent } from "../utils/sanitizeHtml";
 
 function stripHtml(html: string): string {
   if (typeof document === "undefined") return html.replace(/<[^>]*>/g, "");
@@ -26,31 +28,39 @@ function getFeaturedImageUrl(post: WpPost): string | null {
   return null;
 }
 
+function getPostTermNames(post: WpPost): string[] {
+  const termArrays = post._embedded?.["wp:term"];
+  if (!Array.isArray(termArrays)) return [];
+  const names: string[] = [];
+  for (const arr of termArrays) {
+    if (Array.isArray(arr)) {
+      for (const t of arr) {
+        if (t?.name) names.push(t.name);
+      }
+    }
+  }
+  return names;
+}
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<WpPost | null | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!slug) {
-      setPost(null);
-      return;
-    }
-    let cancelled = false;
-    setError(null);
-    setPost(undefined);
-    getPostBySlug(slug)
-      .then((data) => {
-        if (!cancelled) setPost(data ?? null);
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setError("Failed to load post.");
-          setPost(null);
-        }
+    if (!slug) return;
+    const controller = new AbortController();
+    getPostBySlug(slug, { signal: controller.signal })
+      .then((data) => setPost(data ?? null))
+      .catch((err) => {
+        if (err?.name === "AbortError") return;
+        setError("Failed to load post.");
+        setPost(null);
       });
     return () => {
-      cancelled = true;
+      controller.abort();
+      setPost(undefined);
+      setError(null);
     };
   }, [slug]);
 
@@ -68,7 +78,10 @@ export default function BlogPostPage() {
       <div className="min-h-[60vh] purple-glow-bg flex items-center justify-center px-4">
         <div className="text-center">
           <p className="text-white/90 text-lg mb-4">{error}</p>
-          <Link to="/blog" className="text-purple-400 hover:underline">
+          <Link
+            to="/blogs/"
+            className="text-purple-400 hover:underline focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none rounded"
+          >
             Back to Blog
           </Link>
         </div>
@@ -76,14 +89,17 @@ export default function BlogPostPage() {
     );
   }
 
-  if (post === null) {
+  if (!slug || post === null) {
     return (
       <div className="min-h-[60vh] purple-glow-bg flex items-center justify-center px-4">
         <div className="text-center">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Post not found
           </h1>
-          <Link to="/blog" className="text-purple-400 hover:underline">
+          <Link
+            to="/blogs/"
+            className="text-purple-400 hover:underline focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:outline-none rounded"
+          >
             Back to Blog
           </Link>
         </div>
@@ -109,8 +125,8 @@ export default function BlogPostPage() {
     <article className="purple-glow-bg min-h-screen">
       <div className="container mx-auto px-4 max-w-[900px] py-12 md:py-20">
         <Link
-          to="/blog"
-          className="inline-block text-white/70 hover:text-white mb-8 transition-colors"
+          to="/blogs/"
+          className="inline-flex items-center rounded-full px-3 py-1.5 text-sm text-white/80 hover:text-white hover:bg-white/15 bg-white/10 transition-colors mb-8 focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus:outline-none"
         >
           ← Back to Blog
         </Link>
@@ -121,10 +137,27 @@ export default function BlogPostPage() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <p className="text-white/70 text-sm md:text-base mb-2">
-            {formatDate(post.date)}
-          </p>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight text-shadow-lg">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/70 mb-4">
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            {getPostTermNames(post).length > 0 && (
+              <>
+                <span className="text-white/40" aria-hidden>
+                  ·
+                </span>
+                <span className="flex flex-wrap gap-2">
+                  {getPostTermNames(post).map((name) => (
+                    <span
+                      key={name}
+                      className="px-2 py-1 rounded-lg bg-white/10 text-white/80"
+                    >
+                      {name}
+                    </span>
+                  ))}
+                </span>
+              </>
+            )}
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug text-shadow-lg max-w-[85ch]">
             {title}
           </h1>
         </motion.header>
@@ -134,7 +167,7 @@ export default function BlogPostPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl overflow-hidden mb-10"
+            className="rounded-2xl overflow-hidden mb-10 shadow-xl shadow-black/30"
           >
             <LazyImage
               src={imgUrl}
@@ -144,13 +177,18 @@ export default function BlogPostPage() {
           </motion.div>
         )}
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="post-content text-white/90 text-lg leading-relaxed [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:mb-4 [&_a]:text-purple-400 [&_a]:underline [&_a:hover]:text-purple-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_img]:rounded-lg [&_img]:max-w-full [&_img]:h-auto"
-          dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-        />
+        {/* Post body styles: src/styles/post-content.css */}
+        <div className="border-t border-white/10 pt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="post-content max-w-[65ch] overflow-x-auto"
+            dangerouslySetInnerHTML={{
+              __html: sanitizePostContent(post.content.rendered),
+            }}
+          />
+        </div>
       </div>
     </article>
   );

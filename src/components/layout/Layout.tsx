@@ -87,7 +87,7 @@ export default function Layout({ children }: LayoutProps) {
           className="absolute left-[0%] top-[100%] translate-y-[20%] pointer-events-none z-0 opacity-80 max-w-full h-auto object-contain"
         />
 
-        {location.pathname !== "blog" && (
+        {location.pathname !== "/blogs" && !location.pathname.startsWith("/blogs/") && (
           <img
             src={blurHome}
             alt="home blur"

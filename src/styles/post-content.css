@@ -1,0 +1,253 @@
+/**
+ * Post content styles
+ *
+ * This file styles the WordPress-rendered post body (blog article content).
+ * All selectors are scoped under .post-content. To support new elements
+ * (e.g. tables, blockquotes, Gutenberg blocks), add rules here.
+ */
+
+.post-content {
+  /* Design tokens – update in one place for link/table/border */
+  --post-link: #a78bfa;
+  --post-link-hover: #c4b5fd;
+  --post-table-border: rgba(255, 255, 255, 0.15);
+  --post-table-header-bg: rgba(255, 255, 255, 0.08);
+  --post-table-bg: rgba(255, 255, 255, 0.04);
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.post-content > *:last-child {
+  margin-bottom: 0;
+  padding-bottom: 2rem;
+}
+
+/* Typography */
+.post-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+/* Editorial lead: first paragraph */
+.post-content > p:first-of-type {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.post-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--post-table-border);
+}
+
+.post-content h2:first-of-type {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .post-content h2 {
+    font-size: 1.875rem;
+  }
+}
+
+.post-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-weight: 700;
+  color: #fff;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.post-content strong {
+  font-weight: 700;
+}
+
+/* Links */
+.post-content a {
+  color: var(--post-link);
+  text-decoration: none;
+}
+
+.post-content a:hover,
+.post-content a:focus-visible {
+  color: var(--post-link-hover);
+  text-decoration: underline;
+}
+
+.post-content a:focus-visible {
+  outline: 2px solid var(--post-link);
+  outline-offset: 2px;
+}
+
+/* Lists */
+.post-content ul {
+  list-style-type: disc;
+  padding-left: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-content ol {
+  list-style-type: decimal;
+  padding-left: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  padding-left: 1.5rem;
+}
+
+/* Tables */
+.post-content table {
+  width: 100%;
+  min-width: 400px;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--post-table-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--post-table-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.post-content thead {
+  background: var(--post-table-header-bg);
+}
+
+/* Table headers: ensure WordPress outputs scope="col" for column headers for screen readers */
+.post-content th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95em;
+  color: #fff;
+  border-bottom: 1px solid var(--post-table-border);
+}
+
+.post-content td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--post-table-border);
+}
+
+.post-content td:first-child {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.post-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Images */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  display: block;
+  border: 1px solid var(--post-table-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Figures and captions (WordPress / Gutenberg) */
+.post-content figure {
+  margin: 2rem 0;
+}
+
+.post-content figcaption {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Gutenberg blocks */
+.post-content .wp-block-quote {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem 1rem 1.25rem;
+  border-left: 4px solid var(--post-link);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: var(--post-table-bg);
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+}
+
+.post-content .wp-block-image {
+  margin: 1.75rem 0;
+}
+
+.post-content .wp-block-image img {
+  border-radius: 0.75rem;
+}
+
+.post-content .wp-block-image figcaption {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Blockquote */
+.post-content blockquote {
+  margin: 1.75rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--post-link);
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: var(--post-table-bg);
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+}
+
+/* Horizontal rule */
+.post-content hr {
+  border: none;
+  height: 2px;
+  margin: 2.5rem 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--post-table-border) 15%,
+    var(--post-table-border) 85%,
+    transparent
+  );
+}
