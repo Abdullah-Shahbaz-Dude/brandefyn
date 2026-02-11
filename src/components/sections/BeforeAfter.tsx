@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { CASE_STUDIES } from "../../utils/constants";
 
 import pmBefore from "../../assets/home/before-after/pm-1.jpeg";
-import pmAfter from "../../assets/home/before-after/pm-2.jpeg";
+import pmAfter from "../../assets/home/before-after/pm-2.png";
 import ppcBefore from "../../assets/home/before-after/ppc-1.jpeg";
-import ppcAfter from "../../assets/home/before-after/ppc-2.jpeg";
+import ppcAfter from "../../assets/home/before-after/ppc-2.png";
 import salesBefore from "../../assets/home/before-after/sales-1.png";
 import salesAfter from "../../assets/home/before-after/sales-2.png";
 import blurHome from "../../assets/blur-home.svg";
@@ -22,7 +22,7 @@ const SHOW_SALES_2024_2025_ROW = false;
 
 export default function BeforeAfter() {
   return (
-    <section className="relative py-12 sm:py-16 md:py-24 purple-glow-bg overflow-hidden mt-4 md:mt-[20px]">
+    <section className="relative pt-8 sm:pt-10 md:pt-16 pb-12 sm:pb-16 md:pb-24 purple-glow-bg overflow-hidden mt-[-400px] md:mt-[-100px]">
       {/* Background Blur Image - responsive: smaller/centered on mobile, 70% on desktop */}
       <img
         src={blurHome}
