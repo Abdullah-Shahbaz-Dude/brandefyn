@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -7,18 +8,108 @@ import {
   MdMoreHoriz,
   MdLink,
 } from "react-icons/md";
+import gsap from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import heroImage from "../../assets/images/hero/hero-2.png";
-// import lineImage from "../../assets/images/hero/linhero.png"
 import amazonLine from "../../assets/images/hero/hero-amzon.png";
 import adsPartnerImg from "../../assets/images/ads partner.svg";
-import digitalJourneyImg from "../../assets/images/digital-journey.png";
-import downloadImg from "../../assets/images/download.png";
-import forbesImg from "../../assets/images/forbes.png";
 import helium10Img from "../../assets/images/helium-10.webp";
 import pickFuImg from "../../assets/images/pick-fu.webp";
 import borderImage from "../../assets/images/hero/border.svg";
 
+gsap.registerPlugin(MotionPathPlugin);
+
 export default function Hero() {
+  const desktopCardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = desktopCardsRef.current;
+    if (!container) return;
+    const cards = container.querySelectorAll(".hero-partner-card");
+    const logoCards = container.querySelectorAll(".hero-logo-card");
+    if (!cards.length) return;
+
+    const duration = 740; // slow so logos are visible as they travel
+    const gap = duration / 3; // space cards by 1/3 of path so they don’t overlap
+
+    const tl = gsap.timeline({ repeat: -1 });
+    // Right-to-left: animate from path end (1) to start (0); slow speed
+    tl.fromTo(
+      cards,
+      {
+        motionPath: {
+          path: "#heroCurvePath",
+          align: "#heroCurvePath",
+          alignOrigin: [0.5, 1],
+          start: 1,
+          end: 1,
+        },
+      },
+      {
+        motionPath: {
+          path: "#heroCurvePath",
+          align: "#heroCurvePath",
+          alignOrigin: [0.5, 1],
+          start: 1,
+          end: 0,
+        },
+        duration,
+        ease: "none",
+        stagger: { each: gap },
+      },
+    );
+
+    // Logo carousel: right-to-left along same path
+    let tlLogos: gsap.core.Timeline | null = null;
+    if (logoCards.length) {
+      const durationLogos = 8;
+      const gapLogos = durationLogos / 3;
+      tlLogos = gsap.timeline({ repeat: -1 });
+      tlLogos.fromTo(
+        logoCards,
+        {
+          motionPath: {
+            path: "#heroCurvePath",
+            align: "#heroCurvePath",
+            alignOrigin: [0.5, 1],
+            start: 1,
+            end: 1,
+          },
+        },
+        {
+          motionPath: {
+            path: "#heroCurvePath",
+            align: "#heroCurvePath",
+            alignOrigin: [0.5, 1],
+            start: 1,
+            end: 0,
+          },
+          duration: durationLogos,
+          ease: "none",
+          stagger: { each: gapLogos },
+        },
+      );
+    }
+
+    const onEnter = () => {
+      tl.pause();
+      tlLogos?.pause();
+    };
+    const onLeave = () => {
+      tl.resume();
+      tlLogos?.resume();
+    };
+    container.addEventListener("mouseenter", onEnter);
+    container.addEventListener("mouseleave", onLeave);
+
+    return () => {
+      tl.kill();
+      tlLogos?.kill();
+      container.removeEventListener("mouseenter", onEnter);
+      container.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
   return (
     <div className="relative w-full">
       <section className="relative w-full min-h-[900px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden">
@@ -114,53 +205,32 @@ export default function Hero() {
       <div className="relative w-full -mt-80 md:-mt-[520px] pt-7 md:pt-[200px] pb-8 md:pb-12 flex flex-col md:block items-center gap-6 min-h-[420px] md:min-h-[480px] overflow-x-visible overflow-y-clip">
         {/* Padded wrapper: line image + mobile cards only (desktop curve is full-bleed sibling below) */}
         <div className="w-full px-4 sm:px-6 flex flex-col md:hidden gap-10 items-center max-w-[min(90vw,28rem)] mx-auto">
-          {/* Mobile: partner/media logos row (all 6, same as desktop) */}
+          {/* Mobile: partner logos row (same design as desktop logo carousel) */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-3 sm:gap-4"
           >
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
+            <div className="w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] flex items-center justify-center">
               <img
                 src={adsPartnerImg}
                 alt=""
-                className="h-9 w-auto object-contain"
+                className="h-6 w-auto object-contain"
               />
             </div>
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
-              <img
-                src={digitalJourneyImg}
-                alt=""
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
-              <img
-                src={downloadImg}
-                alt=""
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
-              <img
-                src={forbesImg}
-                alt=""
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
+            <div className="w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] flex items-center justify-center">
               <img
                 src={helium10Img}
                 alt=""
-                className="h-10 w-auto object-contain"
+                className="h-7 w-auto object-contain"
               />
             </div>
-            <div className="w-[140px] h-[78px] border-2 glass-card card-glow-hover p-3 rounded-[20px] flex items-center justify-center">
+            <div className="w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] flex items-center justify-center">
               <img
                 src={pickFuImg}
                 alt=""
-                className="h-10 w-auto object-contain"
+                className="h-7 w-auto object-contain"
               />
             </div>
           </motion.div>
@@ -304,15 +374,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Desktop layout - Curve SVG full width, logo cards centered */}
+        {/* Desktop layout - Curve SVG as background, cards positioned over it via GSAP */}
         <div
-          // ref={desktopCardsRef}
-          className="hidden md:block relative w-[120%] min-h-[400px] -top-[150px] left-[30%] -translate-x-1/4"
+          ref={desktopCardsRef}
+          className="hidden md:block relative -left-[60px] min-h-[400px] -top-[150px]"
+          style={{ width: "120vw" }}
         >
-          {/* Layer 1: Dashed curve SVG (background) - full width */}
+          {/* Layer 1: Dashed curve SVG (background) */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <svg
-              className="w-full min-w-full h-full"
+              className="w-full h-full min-w-full"
               viewBox="0 0 1840 448"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -418,69 +489,93 @@ export default function Hero() {
               </g>
             </svg>
           </div>
-          {/* Layer 2: Logo cards centered over the SVG - all 6 partner/media logos */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none -left-[15%]">
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-5 pointer-events-auto">
-              <div
-                className="hero-logo-card w-[180px]  h-[100px] -translate-y-[150px] -translate-x-[100px] border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
-              >
+          {/* Layer 2: Cards over the SVG - positioned by GSAP along path */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            <div
+              className="hero-partner-card absolute w-[140px] h-[90px] left-0 top-0 border-2 glass-card card-glow-hover p-3 rounded-[20px] pointer-events-auto"
+              aria-hidden
+            >
+              <img src={adsPartnerImg} alt="" className="h-5 w-auto mb-1" />
+              <p className="text-[22px] font-extrabold leading-none tracking-tighter text-white">
+                10 B+
+              </p>
+              <p className="text-[10px] font-semibold text-white/90">
+                Views generated
+              </p>
+            </div>
+            <div
+              className="hero-partner-card absolute w-[160px] h-[100px] left-0 top-0 border-2 glass-card card-glow-hover p-2 rounded-[20px] pointer-events-auto overflow-hidden"
+              aria-hidden
+            >
+              <div className="flex items-center gap-2 mb-1">
                 <img
-                  src={adsPartnerImg}
                   alt=""
-                  className="h-16 w-auto object-contain scale-110"
+                  className="w-7 h-7 rounded-full border border-[#0a0a0a] object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxBtSy3rCaceF55gHrb5OKmOeGbjJtOBImhIROgz7iDx_ZDS6PEauBGsQByG1j551ypaMHxgreEHwTliDVJeilW8zhAjCiXBFEfJrnsORwPCu8F9issmuk_0uVeaYHmqyTNuu-SfNwjZJCAUHLo3V7aDUmz-JReBtVGtXGNeuFgD1pgu0UzANEY1OMDi3Hn7JYBTHtHB6BzIDwvqdgIuORNkK10Nw23mEmuuD_--X_mGcms31ygNa7t0kBGO10EHn2mYbt5GLYAkrW"
                 />
+                <div>
+                  <p className="text-[11px] font-bold text-white leading-tight">
+                    theyounetworkhq
+                  </p>
+                  <p className="text-[9px] text-white/70">421K followers</p>
+                </div>
               </div>
-              <div
-                className="hero-logo-card w-[180px] h-[100px] -translate-y-[15px] -translate-x-[80px] border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
-              >
+              <p className="text-[9px] text-white/90 line-clamp-2">
+                Helping people create financial freedom...
+              </p>
+            </div>
+            <div
+              className="hero-partner-card absolute w-[150px] h-[96px] left-0 top-0 border-2 glass-card card-glow-hover p-2 rounded-[20px] pointer-events-auto overflow-hidden"
+              aria-hidden
+            >
+              <div className="flex items-center gap-2 mb-1">
                 <img
-                  src={digitalJourneyImg}
                   alt=""
-                  className="h-16 w-auto object-contain"
+                  className="w-7 h-7 rounded-full border-2 border-white/10 object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJaUBpx2iCd8MR9PkM_hR2F5rxMde91tRgS_zuycwjhDpX3mVX3opF4rX64DCZlkiVttcvai3PdVK0wjxf_t1BjWteRpi8ReMo3YC0w36umlPtoopfi7U_-kBG9l6YX3EW2Qo_osbdT56HqYVT48EVUqnAF-OuaNZlO7tuyaOrNLoWAc8slnTuCOHyx-knUhp9vgE_20hqUtGDjpMKPn0D_2NqUu6BMr_Y96fKod2dgwLvsmYaxlInyi1JF70ykxpy59PbIVRSPyDI"
                 />
+                <p className="text-[11px] font-bold text-white">Ben</p>
               </div>
-              <div
-                className="hero-logo-card w-[180px] h-[100px] translate-y-[110px] -translate-x-[90px] border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
+              <p className="text-[9px] text-white/90 line-clamp-2 mb-1">
+                "Extension eCom helped us find clarity."
+              </p>
+              <Link
+                to="/case-studies"
+                className="text-[9px] font-bold text-white hover:underline"
               >
-                <img
-                  src={downloadImg}
-                  alt=""
-                  className="h-16 w-auto object-contain"
-                />
-              </div>
-              <div
-                className="hero-logo-card w-[180px] h-[100px] translate-y-[150px] -translate-x-[15px] border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
-              >
-                <img
-                  src={forbesImg}
-                  alt=""
-                  className="h-9 w-auto object-contain "
-                />
-              </div>
-              <div
-                className="hero-logo-card w-[180px] h-[100px] translate-y-[100px] translate-x-8 border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
-              >
-                <img
-                  src={helium10Img}
-                  alt=""
-                  className="h-16 w-auto object-contain scale-125"
-                />
-              </div>
-              <div
-                className="hero-logo-card  w-[180px] h-[100px] translate-y-[50px] translate-x-24 border-2 glass-card card-glow-hover p-1.5 rounded-[20px] flex items-center justify-center"
-                aria-hidden
-              >
-                <img
-                  src={pickFuImg}
-                  alt=""
-                  className="h-16 w-auto object-contain scale-110"
-                />
-              </div>
+                View Details
+              </Link>
+            </div>
+            {/* Logo carousel: ads partner, Helium 10, PickFu - left-to-right */}
+            <div
+              className="hero-logo-card absolute left-0 top-0 w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] pointer-events-auto flex items-center justify-center"
+              aria-hidden
+            >
+              <img
+                src={adsPartnerImg}
+                alt=""
+                className="h-6 w-auto object-contain"
+              />
+            </div>
+            <div
+              className="hero-logo-card absolute left-0 top-0 w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] pointer-events-auto flex items-center justify-center"
+              aria-hidden
+            >
+              <img
+                src={helium10Img}
+                alt=""
+                className="h-7 w-auto object-contain"
+              />
+            </div>
+            <div
+              className="hero-logo-card absolute left-0 top-0 w-[100px] h-[56px] border-2 glass-card card-glow-hover p-2 rounded-[20px] pointer-events-auto flex items-center justify-center"
+              aria-hidden
+            >
+              <img
+                src={pickFuImg}
+                alt=""
+                className="h-7 w-auto object-contain"
+              />
             </div>
           </div>
         </div>
