@@ -120,7 +120,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <div className="pt-12 md:pt-16 pb-24 purple-glow-bg relative min-h-screen mt-[-400px] md:mt-[-100px]">
+      <div className="pt-12 md:pt-16 pb-24 purple-glow-bg relative min-h-screen mt-[-200px] sm:mt-[-280px] md:mt-[-100px]">
         {/* Circular Wave Background Overlays */}
 
         <div className="container mx-auto px-4 max-w-[1280px] relative z-10">

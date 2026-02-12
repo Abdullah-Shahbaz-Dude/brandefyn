@@ -147,7 +147,7 @@ export default function CaseStudiesPage() {
         </div>
       </div>
 
-      <section className="pt-12 md:pt-16 pb-24 purple-glow-bg mt-[-400px] md:mt-[-100px] relative z-10">
+      <section className="pt-12 md:pt-16 pb-24 purple-glow-bg mt-[-200px] sm:mt-[-280px] md:mt-[-100px] relative z-10">
         <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl w-full max-w-[800px] mx-auto text-white text-shadow-lg leading-tight mb-6 text-center">
           Results That Turn Amazon Ads Into Revenue
         </h2>

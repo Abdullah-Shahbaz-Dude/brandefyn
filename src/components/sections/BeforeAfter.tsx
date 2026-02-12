@@ -22,7 +22,7 @@ const SHOW_SALES_2024_2025_ROW = false;
 
 export default function BeforeAfter() {
   return (
-    <section className="relative pt-8 sm:pt-10 md:pt-16 pb-12 sm:pb-16 md:pb-24 purple-glow-bg overflow-hidden mt-[-400px] md:mt-[-100px]">
+    <section className="relative z-20 pt-8 sm:pt-10 md:pt-16 pb-12 sm:pb-16 md:pb-24 purple-glow-bg overflow-hidden mt-8 md:mt-[-100px]">
       {/* Background Blur Image - responsive: smaller/centered on mobile, 70% on desktop */}
       <img
         src={blurHome}

@@ -125,14 +125,14 @@ export default function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden mt-4 space-y-2"
           >
-            {NAV_ITEMS.map((item) => {
+            {NAV_ITEMS.filter(item => item.label !== 'Free Audit').map((item) => {
               const active = isActive(item.path);
               return (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-2 font-bold transition-colors ${
+                  className={`block px-4 py-2 font-bold transition-colors rounded-md ${
                     active
                       ? 'text-purple-400'
                       : 'text-white hover:text-purple-400'
@@ -163,7 +163,7 @@ export default function Header() {
             <Link 
               to="/contact#schedule-call"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
+              className="mt-3 w-full px-6 py-3 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
             >
               Free Audit
             </Link>
