@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
+import { trackRedditEvent } from "../../utils/redditPixel";
 
 interface EmailFormData {
   email: string;
@@ -23,6 +24,7 @@ export default function HeroEmailForm({ onSuccess }: HeroEmailFormProps) {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
+    trackRedditEvent("Lead");
     onSuccess?.();
   };
 

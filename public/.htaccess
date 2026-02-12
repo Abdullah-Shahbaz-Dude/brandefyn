@@ -1,8 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  # Let WordPress handle /blog (admin, wp-json, etc.) - do not send to SPA
-  RewriteRule ^blog - [L]
+  # SPA owns /blog and /blog/* (headless WordPress; API at separate wp-json URL)
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

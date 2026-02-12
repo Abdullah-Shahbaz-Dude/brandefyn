@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/images/hero/hero-2.png";
 import LazyImage from "../components/ui/LazyImage";
 import amazonLine from "../assets/images/hero/hero-amzon.png";
 import borderImage from "../assets/images/hero/border.svg";
-import { getPosts } from "../api/wordpress";
-import type { WpPost } from "../types/wordpress";
+import { getPosts, getCategories } from "../api/wordpress";
+import type { WpPost, WpCategory } from "../types/wordpress";
+
+const POSTS_PER_PAGE = 9;
 
 function stripHtml(html: string): string {
   if (typeof document === "undefined") return html.replace(/<[^>]*>/g, "");
@@ -29,17 +31,66 @@ function getFeaturedImageUrl(post: WpPost): string | null {
   return null;
 }
 
+/** Get category and tag names from post _embedded wp:term (categories first, then tags) */
+function getPostTermNames(post: WpPost): string[] {
+  const termArrays = post._embedded?.["wp:term"];
+  if (!Array.isArray(termArrays)) return [];
+  const names: string[] = [];
+  for (const arr of termArrays) {
+    if (Array.isArray(arr)) {
+      for (const t of arr) {
+        if (t?.name) names.push(t.name);
+      }
+    }
+  }
+  return names;
+}
+
 export default function BlogPage() {
   const [posts, setPosts] = useState<WpPost[]>([]);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [categoryId, setCategoryId] = useState<number | null>(null);
+  const [categories, setCategories] = useState<WpCategory[]>([]);
+
+  const fetchPage = useCallback(
+    async (pageNum: number, append: boolean) => {
+      const opts = {
+        per_page: POSTS_PER_PAGE,
+        page: pageNum,
+        ...(searchQuery.trim() && { search: searchQuery.trim() }),
+        ...(categoryId !== null && { categories: [categoryId] }),
+      };
+      const result = await getPosts(opts);
+      return { ...result, append };
+    },
+    [searchQuery, categoryId]
+  );
+
+  useEffect(() => {
+    getCategories()
+      .then(setCategories)
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
-    getPosts({ per_page: 9 })
-      .then((data) => {
+    setLoading(true);
+    setError(null);
+    setPage(1);
+    fetchPage(1, false)
+      .then(({ posts: nextPosts, total: t, totalPages: tp }) => {
         if (!cancelled) {
-          setPosts(data);
+          setPosts(nextPosts);
+          setTotal(t);
+          setTotalPages(tp);
+          setPage(1);
           setLoading(false);
         }
       })
@@ -52,7 +103,31 @@ export default function BlogPage() {
     return () => {
       cancelled = true;
     };
-  }, []);
+    // Intentionally re-run when filters change; sync state reset is required for loading UX.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, categoryId]);
+
+  const loadMore = () => {
+    const nextPage = page + 1;
+    if (nextPage > totalPages || loadingMore) return;
+    setLoadingMore(true);
+    fetchPage(nextPage, true)
+      .then(({ posts: nextPosts, total: t, totalPages: tp }) => {
+        setPosts((prev) => [...prev, ...nextPosts]);
+        setTotal(t);
+        setTotalPages(tp);
+        setPage(nextPage);
+        setLoadingMore(false);
+      })
+      .catch(() => {
+        setLoadingMore(false);
+      });
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchQuery(searchInput.trim());
+  };
 
   return (
     <>
@@ -122,11 +197,42 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white text-shadow-lg leading-tight tracking-tight mb-8">
               Latest Posts
             </h2>
+            <div className="flex flex-col sm:flex-row gap-4 flex-wrap p-4 rounded-xl bg-white/5 border border-white/10">
+              <form onSubmit={handleSearch} className="flex gap-2 flex-1 min-w-0 max-w-md">
+                <input
+                  type="search"
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  placeholder="Search posts…"
+                  className="flex-1 min-w-0 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/50 focus-visible:ring-2 focus-visible:ring-white/30"
+                  aria-label="Search posts"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-lg border border-white/50 text-white hover:bg-white/10 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
+                >
+                  Search
+                </button>
+              </form>
+              <select
+                value={categoryId ?? ""}
+                onChange={(e) => setCategoryId(e.target.value === "" ? null : Number(e.target.value))}
+                className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white focus:outline-none focus:border-white/50 focus-visible:ring-2 focus-visible:ring-white/30 max-w-xs"
+                aria-label="Filter by category"
+              >
+                <option value="">All categories</option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center lg:justify-items-start">
@@ -134,14 +240,14 @@ export default function BlogPage() {
               [...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-full rounded-[35px] border border-[#D9D9D9] bg-white/5 animate-pulse"
+                  className="w-full rounded-2xl border border-white/20 bg-white/[0.06] shadow-lg shadow-black/20 animate-pulse"
                   style={{
                     maxWidth: "409px",
                     minHeight: "441px",
                     padding: "15px",
                   }}
                 >
-                  <div className="w-full h-48 sm:h-52 md:h-56 lg:h-[258px] rounded-[20px] bg-white/10 mb-6" />
+                  <div className="w-full h-48 sm:h-52 md:h-56 lg:h-[258px] rounded-2xl bg-white/10 mb-6" />
                   <div className="h-6 w-3/4 bg-white/10 rounded mb-4" />
                   <div className="h-4 w-full bg-white/10 rounded" />
                   <div className="h-4 w-5/6 bg-white/10 rounded mt-2" />
@@ -154,7 +260,7 @@ export default function BlogPage() {
                 <button
                   type="button"
                   onClick={() => window.location.reload()}
-                  className="px-6 py-2 rounded-full border border-white/50 text-white hover:bg-white/10 transition-colors"
+                  className="px-6 py-2 rounded-full border border-white/50 text-white hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
                 >
                   Try again
                 </button>
@@ -163,7 +269,9 @@ export default function BlogPage() {
 
             {!loading && !error && posts.length === 0 && (
               <div className="col-span-full text-center py-12 text-white/80 text-lg">
-                No posts yet. Check back soon.
+                {searchQuery || categoryId !== null
+                  ? "No posts match your filters. Try a different search or category."
+                  : "No posts yet. Check back soon."}
               </div>
             )}
 
@@ -182,7 +290,7 @@ export default function BlogPage() {
                       ease: "easeOut",
                     }}
                     whileHover={{ y: -5, transition: { duration: 0.3 } }}
-                    className="relative flex flex-col w-full transition-all duration-300 border border-[#D9D9D9] rounded-[35px] hover:border-white/50"
+                    className="relative flex flex-col w-full transition-all duration-300 border border-white/20 rounded-2xl bg-white/[0.06] shadow-lg shadow-black/20 hover:border-white/40 hover:shadow-xl hover:shadow-black/30"
                     style={{
                       maxWidth: "409px",
                       minHeight: "441px",
@@ -190,11 +298,11 @@ export default function BlogPage() {
                     }}
                   >
                     <Link
-                      to={`/blog/${post.slug}`}
-                      className="flex flex-col flex-1"
+                      to={`/blogs/${post.slug}`}
+                      className="flex flex-col flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded-2xl"
                     >
                       <motion.div
-                        className="relative w-full mb-6 flex justify-center overflow-hidden rounded-[20px] bg-white/10"
+                        className="relative w-full mb-4 flex justify-center overflow-hidden rounded-2xl bg-white/10"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -202,23 +310,35 @@ export default function BlogPage() {
                           <LazyImage
                             src={imgUrl}
                             alt={stripHtml(post.title.rendered)}
-                            className="rounded-[20px] object-cover w-full max-w-[379px] h-48 sm:h-52 md:h-56 lg:h-[258px]"
+                            className="rounded-2xl object-cover w-full max-w-[379px] h-48 sm:h-52 md:h-56 lg:h-[258px]"
                           />
                         ) : (
-                          <div className="w-full max-w-[379px] h-48 sm:h-52 md:h-56 lg:h-[258px] rounded-[20px] bg-white/10 flex items-center justify-center text-white/50 text-sm">
+                          <div className="w-full max-w-[379px] h-48 sm:h-52 md:h-56 lg:h-[258px] rounded-2xl bg-white/10 flex items-center justify-center text-white/50 text-sm">
                             No image
                           </div>
                         )}
                       </motion.div>
                       <div className="flex-1 flex flex-col px-2">
-                        <p className="text-white/70 text-sm mb-2">
-                          {formatDate(post.date)}
-                        </p>
-                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 text-shadow-lg line-clamp-2">
+                        {getPostTermNames(post).length > 0 && (
+                          <p className="text-white/60 text-xs mb-2 flex flex-wrap gap-1">
+                            {getPostTermNames(post).map((name) => (
+                              <span
+                                key={name}
+                                className="px-2 py-0.5 rounded-lg bg-white/10"
+                              >
+                                {name}
+                              </span>
+                            ))}
+                          </p>
+                        )}
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 text-shadow-lg line-clamp-2">
                           {stripHtml(post.title.rendered)}
                         </h3>
-                        <p className="text-base md:text-lg text-white leading-relaxed font-semibold line-clamp-3">
+                        <p className="text-base md:text-lg text-white/85 leading-relaxed line-clamp-3 mb-3">
                           {stripHtml(post.excerpt.rendered)}
+                        </p>
+                        <p className="text-white/60 text-sm mt-auto">
+                          {formatDate(post.date)}
                         </p>
                       </div>
                     </Link>
@@ -226,6 +346,22 @@ export default function BlogPage() {
                 );
               })}
           </div>
+
+          {!loading && !error && posts.length > 0 && page < totalPages && (
+            <div className="mt-12 text-center">
+              <p className="text-white/70 text-sm mb-4">
+                Showing {posts.length} of {total} posts
+              </p>
+              <button
+                type="button"
+                onClick={loadMore}
+                disabled={loadingMore}
+                className="px-8 py-3 rounded-full border border-white/50 text-white hover:bg-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:outline-none"
+              >
+                {loadingMore ? "Loading…" : "Load more"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

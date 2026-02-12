@@ -4,7 +4,6 @@
 
 @layer base {
   html {
-
     width: 100%;
   }
 
@@ -90,11 +89,15 @@
     transition: all 0.3s ease;
   }
 
+  /* Hero path cards: no transition so GSAP duration controls speed */
+  .hero-partner-card.card-glow-hover,
+  .hero-logo-card.card-glow-hover {
+    transition: none;
+  }
+
   .card-glow-hover:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(139, 92, 246, 0.3),
-      0 0 60px rgba(139, 92, 246, 0.4),
-      0 0 100px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.3),
+      0 0 60px rgba(139, 92, 246, 0.4), 0 0 100px rgba(139, 92, 246, 0.2);
     border-color: rgba(139, 92, 246, 0.8);
   }
 
@@ -111,8 +114,7 @@
 
   .btn-glow:hover {
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.5),
-      0 0 40px rgba(139, 92, 246, 0.3),
-      0 0 60px rgba(139, 92, 246, 0.2);
+      0 0 40px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.2);
   }
 
   /* Stars background pattern */
@@ -131,20 +133,17 @@
   }
 
   /* Purple gradient background */
-  
 
-  
   /* Hide scrollbar */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-
-
   /* Keyframe animations for glow movement */
   @keyframes glowMove1 {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(0, 0) scale(1);
       opacity: 0.3;
     }
@@ -271,7 +270,7 @@
     background: transparent;
     overflow: visible;
   } */
-/* 
+  /* 
   .purple-glow-bg-medium::before,
   .purple-glow-bg-medium::after {
     content: "";
@@ -284,11 +283,5 @@
     border-radius: 50%;
   } */
 
-
-
-
-
-
   /* Glow path for SVG connections */
-  
 }
