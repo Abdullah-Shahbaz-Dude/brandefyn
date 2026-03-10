@@ -22,7 +22,7 @@ const SHOW_SALES_2024_2025_ROW = false;
 
 export default function BeforeAfter() {
   return (
-    <section className="relative z-20 pt-8 sm:pt-10 md:pt-16 pb-12 sm:pb-16 md:pb-24 purple-glow-bg overflow-hidden mt-8 md:mt-[-100px]">
+    <section className="relative z-20 pt-0 sm:pt-10 md:pt-16 pb-8 sm:pb-16 md:pb-24 purple-glow-bg overflow-hidden mt-0 sm:mt-8 md:mt-[-100px]">
       {/* Background Blur Image - responsive: smaller/centered on mobile, 70% on desktop */}
       <img
         src={blurHome}
@@ -37,10 +37,10 @@ export default function BeforeAfter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-4 sm:mb-12 md:mb-16"
         >
           <h2
-            className="text-white mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight"
+            className="text-white mb-2 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight"
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               letterSpacing: "-0.02em",
@@ -56,12 +56,12 @@ export default function BeforeAfter() {
         </motion.div>
 
         {/* First Row: Large Before/After Image Cards */}
-        <div className="mb-8 sm:mb-10 md:mb-12">
+        <div className="mb-4 sm:mb-10 md:mb-12">
           <div
-            className="rounded-2xl sm:rounded-3xl md:rounded-[35px] border border-[#828282] p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden"
+            className="rounded-2xl sm:rounded-3xl md:rounded-[35px] border border-[#828282] p-3 sm:p-6 md:p-8 lg:p-12 overflow-hidden"
             style={{ borderColor: "rgb(130, 130, 130)" }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-8 min-w-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 md:gap-8 min-w-0">
               {CASE_STUDIES.slice(0, 1).map((study) => {
                 const images =
                   caseStudyImages[study.id as keyof typeof caseStudyImages];
@@ -70,7 +70,7 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before label + subtitle */}
-                    <div className="flex flex-col gap-2 order-1 sm:order-none">
+                    <div className="flex flex-col gap-1 sm:gap-2 order-1 sm:order-none">
                       <p
                         className="text-white text-center text-lg sm:text-xl md:text-2xl leading-tight min-w-0"
                         style={{
@@ -88,7 +88,7 @@ export default function BeforeAfter() {
                     </div>
 
                     {/* After label + subtitle */}
-                    <div className="flex flex-col gap-2 order-3 sm:order-none">
+                    <div className="flex flex-col gap-1 sm:gap-2 order-3 sm:order-none">
                       <p
                         className="text-white text-center text-lg sm:text-xl md:text-2xl leading-tight min-w-0"
                         style={{
@@ -177,12 +177,12 @@ export default function BeforeAfter() {
         </div>
 
         {/* Second Row: Glass Cards with Price Tags */}
-        <div className="mb-8 sm:mb-10 md:mb-12">
+        <div className="mb-4 sm:mb-10 md:mb-12">
           <div
-            className="rounded-2xl sm:rounded-3xl md:rounded-[35px] border border-[#828282] p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden"
+            className="rounded-2xl sm:rounded-3xl md:rounded-[35px] border border-[#828282] p-3 sm:p-6 md:p-8 lg:p-12 overflow-hidden"
             style={{ borderColor: "rgb(130, 130, 130)" }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 md:gap-8">
               {CASE_STUDIES.slice(0, 1).map((study) => {
                 const images =
                   caseStudyImages[study.id as keyof typeof caseStudyImages];
@@ -191,7 +191,7 @@ export default function BeforeAfter() {
                 return (
                   <>
                     {/* Before Card with Price */}
-                    <div className="flex flex-col gap-2 order-1 sm:order-none">
+                    <div className="flex flex-col gap-1 sm:gap-2 order-1 sm:order-none">
                       <p
                         className="text-white text-center text-lg sm:text-xl md:text-2xl leading-tight"
                         style={{
@@ -208,7 +208,7 @@ export default function BeforeAfter() {
                       </p>
                     </div>
 
-                    <div className="flex flex-col gap-2 order-3 sm:order-none">
+                    <div className="flex flex-col gap-1 sm:gap-2 order-3 sm:order-none">
                       <p
                         className="text-white text-center text-lg sm:text-xl md:text-2xl leading-tight"
                         style={{
@@ -391,7 +391,7 @@ export default function BeforeAfter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-12"
+          className="text-center mt-6 sm:mt-12"
         >
           <Link
             to="/case-studies"

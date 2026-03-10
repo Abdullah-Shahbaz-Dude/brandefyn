@@ -1,12 +1,5 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  MdChevronLeft,
-  MdCheckCircle,
-  MdNotifications,
-  MdMoreHoriz,
-  MdLink,
-} from "react-icons/md";
 import heroImage from "../../assets/images/hero/hero-2.png";
 // import lineImage from "../../assets/images/hero/linhero.png"
 import amazonLine from "../../assets/images/hero/hero-amzon.png";
@@ -111,9 +104,9 @@ export default function Hero() {
 
         {/* Glass Cards Container */}
       </section>
-      <div className="relative w-full -mt-80 md:-mt-[520px] pt-7 md:pt-[200px] pb-8 md:pb-12 flex flex-col md:block items-center gap-6 min-h-[420px] md:min-h-[480px] overflow-x-visible overflow-y-clip">
+      <div className="relative w-full -mt-80 md:-mt-[520px] pt-7 md:pt-[200px] pb-2 sm:pb-8 md:pb-12 flex flex-col md:block items-center gap-2 sm:gap-6 min-h-[380px] md:min-h-[480px] overflow-x-visible overflow-y-clip">
         {/* Padded wrapper: line image + mobile cards only (desktop curve is full-bleed sibling below) */}
-        <div className="w-full px-4 sm:px-6 flex flex-col md:hidden gap-10 items-center max-w-[min(90vw,28rem)] mx-auto">
+        <div className="w-full px-4 sm:px-6 flex flex-col md:hidden gap-3 sm:gap-10 items-center max-w-[min(90vw,28rem)] mx-auto">
           {/* Mobile: partner/media logos row (all 6, same as desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -164,150 +157,12 @@ export default function Hero() {
               />
             </div>
           </motion.div>
-          {/* Cards for mobile (vertical) */}
-          <div className="flex flex-col md:hidden gap-10 items-center w-full max-w-[min(90vw,28rem)]">
-            {/* Statistics Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: -10 }}
-              animate={{ opacity: 1, y: 0, rotate: 10 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="h-[120px]  sm:h-[130px] w-[180px] sm:w-[190px] bg-transparent  md:top-0 border-2 glass-card card-glow-hover p-4 sm:p-6 rounded-[24px] sm:rounded-[30px] rotate-[10deg] transform z-30"
-            >
-              <p className="text-[40px] sm:text-[46px] font-extrabold leading-none mb-1 sm:mb-2 tracking-tighter text-white">
-                10 B+
-              </p>
-              <p className="text-xs sm:text-sm font-semibold tracking-tight text-white">
-                Views generated
-              </p>
-            </motion.div>
-
-            {/* Social Media Profile Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 50, rotate: 8 }}
-              animate={{ opacity: 1, y: 0, rotate: -8 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="w-[300px] sm:w-[340px] h-[200px] sm:h-[210px] max-w-[90vw] bg-transparent border-2 glass-card card-glow-hover rounded-[24px] sm:rounded-[30px] p-3 sm:p-4 -rotate-[8deg] transform z-20 overflow-hidden"
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between mb-2 sm:mb-4">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <MdChevronLeft className="text-white/60 text-lg sm:text-xl" />
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 rounded-full -m-[2px]" />
-                    <img
-                      alt="Profile"
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-[#0a0a0a] relative z-10"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxBtSy3rCaceF55gHrb5OKmOeGbjJtOBImhIROgz7iDx_ZDS6PEauBGsQByG1j551ypaMHxgreEHwTliDVJeilW8zhAjCiXBFEfJrnsORwPCu8F9issmuk_0uVeaYHmqyTNuu-SfNwjZJCAUHLo3V7aDUmz-JReBtVGtXGNeuFgD1pgu0UzANEY1OMDi3Hn7JYBTHtHB6BzIDwvqdgIuORNkK10Nw23mEmuuD_--X_mGcms31ygNa7t0kBGO10EHn2mYbt5GLYAkrW"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 sm:gap-1.5">
-                      <p className="text-sm sm:text-base font-bold text-white">
-                        theyounetworkhq
-                      </p>
-                      <MdCheckCircle className="text-blue-400 text-sm sm:text-base" />
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] opacity-70 text-white/90">
-                      The You Network
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-1 sm:gap-2 opacity-70">
-                  <MdNotifications className="text-lg sm:text-[20px]" />
-                  <MdMoreHoriz className="text-lg sm:text-[20px]" />
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="flex justify-between mb-2 sm:mb-4 text-center px-2 sm:px-3">
-                <div>
-                  <p className="text-sm sm:text-base font-extrabold text-white">
-                    376
-                  </p>
-                  <p className="text-[10px] sm:text-[11px] opacity-60 text-white/80">
-                    posts
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-extrabold text-white">
-                    421K
-                  </p>
-                  <p className="text-[10px] sm:text-[11px] opacity-60 text-white/80">
-                    followers
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm sm:text-base font-extrabold text-white">
-                    123
-                  </p>
-                  <p className="text-[10px] sm:text-[11px] opacity-60 text-white/80">
-                    following
-                  </p>
-                </div>
-              </div>
-
-              {/* Bio */}
-              <div className="text-[11px] sm:text-[12px] leading-tight mb-2 sm:mb-3 space-y-1">
-                <p>
-                  <span className="font-bold text-white">
-                    Karl Morningstar | CEO of The You Network | Franchise
-                    Consultant
-                  </span>
-                </p>
-                <p className="opacity-90 text-white/90">
-                  🏠 Helping people create financial freedom by owning a
-                  franchise... <span className="opacity-50">more</span>
-                </p>
-              </div>
-
-              {/* Link */}
-              <p className="text-[10px] sm:text-[11px] text-primary font-bold flex items-center gap-1 sm:gap-2">
-                <MdLink className="text-[12px] sm:text-[14px]" />
-                theyounetwork.com and 1 more
-              </p>
-            </motion.div>
-
-            {/* Testimonial Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, rotate: 3 }}
-              animate={{ opacity: 1, y: 0, rotate: -3 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="h-[200px] sm:h-[210px] w-[260px] sm:w-[280px] max-w-[90vw] bg-transparent border-2 glass-card card-glow-hover p-3 sm:p-4 rounded-[24px] sm:rounded-[30px] -rotate-[7deg] transform z-30 overflow-hidden"
-            >
-              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                <img
-                  alt="Ben"
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border-2 border-white/10"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJaUBpx2iCd8MR9PkM_hR2F5rxMde91tRgS_zuycwjhDpX3mVX3opF4rX64DCZlkiVttcvai3PdVK0wjxf_t1BjWteRpi8ReMo3YC0w36umlPtoopfi7U_-kBG9l6YX3EW2Qo_osbdT56HqYVT48EVUqnAF-OuaNZlO7tuyaOrNLoWAc8slnTuCOHyx-knUhp9vgE_20hqUtGDjpMKPn0D_2NqUu6BMr_Y96fKod2dgwLvsmYaxlInyi1JF70ykxpy59PbIVRSPyDI"
-                />
-                <div>
-                  <p className="text-sm sm:text-base font-bold text-white">
-                    Ben
-                  </p>
-                  <p className="text-[9px] sm:text-[10px] opacity-70 font-semibold uppercase tracking-widest text-white/90">
-                    Digital Manager, Athletic Annex
-                  </p>
-                </div>
-              </div>
-              <p className="text-[12px] sm:text-[13px] leading-snug opacity-90 mb-2 sm:mb-3 font-medium text-white/95">
-                "Our biggest challenge (with Amazon) was teasing out where we
-                were getting incremental sales...Extension eCom helped us find
-                clarity."
-              </p>
-              <Link
-                to="/case-studies"
-                className="text-[11px] sm:text-[12px] font-bold text-white hover:underline transition-all inline-block"
-              >
-                View Details
-              </Link>
-            </motion.div>
-          </div>
         </div>
 
         {/* Desktop layout - Curve SVG full width, logo cards centered */}
         <div
           // ref={desktopCardsRef}
-          className="hidden md:block relative w-[120%] min-h-[400px] -top-[150px] left-[30%] -translate-x-1/4"
+          className="hidden md:block relative w-[120%] min-h-[400px] -top-[130px] left-[30%] -translate-x-1/4"
         >
           {/* Layer 1: Dashed curve SVG (background) - full width */}
           <div className="absolute inset-0 z-0 pointer-events-none">
