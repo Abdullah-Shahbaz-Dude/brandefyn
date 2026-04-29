@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaWhatsapp, FaEnvelope, FaYoutube, FaInstagram, FaFacebook, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 import { SOCIAL_LINKS, CONTACT_INFO } from '../../utils/constants';
 
@@ -152,6 +153,22 @@ export default function Footer() {
 
         {/* Horizontal Divider */}
         <div className="border-t border-white my-8"></div>
+
+        {/* Legal / Support links */}
+        <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mb-4">
+          <Link
+            to="/privacy"
+            className="text-white text-xs font-semibold hover:text-primary transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            to="/support"
+            className="text-white text-xs font-semibold hover:text-primary transition-colors"
+          >
+            Support
+          </Link>
+        </div>
 
         {/* Copyright */}
         <div className="text-center">

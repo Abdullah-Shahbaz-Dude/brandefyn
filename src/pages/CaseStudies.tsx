@@ -1,21 +1,21 @@
-import { useState, useEffect, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Modal from '../components/ui/Modal';
-import { CASE_STUDIES_GRID } from '../utils/constants';
-import heroImage from '../assets/images/hero/hero-2.png';
-import LazyImage from '../components/ui/LazyImage';
-import amazonLine from '../assets/images/hero/hero-amzon.png';
-import borderImage from '../assets/images/hero/border.svg';
-import caseStudy1Jpg from '../assets/images/caseStudy/caseStudy-1.jpg';
-import caseStudy1Png from '../assets/images/caseStudy/caseStudy-1.png';
-import caseStudy1a from '../assets/images/caseStudy/case-study1a.jpg';
-import caseStudy1b from '../assets/images/caseStudy/case-study1b.jpg';
-import casestudyNew from '../assets/images/caseStudy/casestudyNew.jpg';
-import caseStudy2a from '../assets/images/caseStudy/CASE-STUDY2a.jpg';
-import caseStudy2b from '../assets/images/caseStudy/CASE-STUDY2b.jpg';
-import caseStudy3a from '../assets/images/caseStudy/case-study3a.jpg';
-import caseStudy3b from '../assets/images/caseStudy/case-study3b.jpg';
+import { useState, useEffect, type ReactNode } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Modal from "../components/ui/Modal";
+import { CASE_STUDIES_GRID } from "../utils/constants";
+import heroImage from "../assets/images/hero/hero-2.png";
+import LazyImage from "../components/ui/LazyImage";
+import amazonLine from "../assets/images/hero/hero-amzon.png";
+import borderImage from "../assets/images/hero/border.svg";
+import caseStudy1Jpg from "../assets/images/caseStudy/caseStudy-1.jpg";
+import caseStudy1Png from "../assets/images/caseStudy/caseStudy-1.png";
+import caseStudy1a from "../assets/images/caseStudy/case-study1a.jpg";
+import caseStudy1b from "../assets/images/caseStudy/case-study1b.jpg";
+import casestudyNew from "../assets/images/caseStudy/casestudyNew.jpg";
+import caseStudy2a from "../assets/images/caseStudy/CASE-STUDY2a.jpg";
+import caseStudy2b from "../assets/images/caseStudy/CASE-STUDY2b.jpg";
+import caseStudy3a from "../assets/images/caseStudy/case-study3a.jpg";
+import caseStudy3b from "../assets/images/caseStudy/case-study3b.jpg";
 
 const MODAL_GALLERY_IMAGES: Record<number, string[]> = {
   3: [caseStudy1Jpg],
@@ -24,31 +24,27 @@ const MODAL_GALLERY_IMAGES: Record<number, string[]> = {
 };
 
 export default function CaseStudiesPage() {
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState<typeof CASE_STUDIES_GRID[0] | null>(null);
-  const [caseStudyImages, setCaseStudyImages] = useState<Record<number, string>>({});
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<
+    (typeof CASE_STUDIES_GRID)[0] | null
+  >(null);
+  const [caseStudyImages, setCaseStudyImages] = useState<
+    Record<number, string>
+  >({});
 
   // Dynamic imports for code splitting
   useEffect(() => {
     const loadImages = async () => {
-      const [
-        img1,
-        img2,
-        img3,
-        img4,
-        img5,
-        img6,
-        img7,
-        img8,
-      ] = await Promise.all([
-        import('../assets/images/caseStudy/caseStudy-1.png'),
-        import('../assets/images/caseStudy/caseStudy-2.png'),
-        import('../assets/images/caseStudy/caseStudy-3.png'),
-        import('../assets/images/caseStudy/caseStudy-4.png'),
-        import('../assets/images/caseStudy/caseStudy-5.png'),
-        import('../assets/images/caseStudy/caseStudy-6.png'),
-        import('../assets/images/caseStudy/caseStudy-7.png'),
-        import('../assets/images/caseStudy/caseStudy-8.png'),
-      ]);
+      const [img1, img2, img3, img4, img5, img6, img7, img8] =
+        await Promise.all([
+          import("../assets/images/caseStudy/caseStudy-1.png"),
+          import("../assets/images/caseStudy/caseStudy-2.png"),
+          import("../assets/images/caseStudy/caseStudy-3.png"),
+          import("../assets/images/caseStudy/caseStudy-4.png"),
+          import("../assets/images/caseStudy/caseStudy-5.png"),
+          import("../assets/images/caseStudy/caseStudy-6.png"),
+          import("../assets/images/caseStudy/caseStudy-7.png"),
+          import("../assets/images/caseStudy/caseStudy-8.png"),
+        ]);
 
       setCaseStudyImages({
         1: img1.default,
@@ -68,7 +64,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero Section - sized like home page */}
-      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden purple-glow-bg py-12 md:py-24">
+      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden purple-glow-bg pt-12 md:pt-24 pb-8 md:pb-12">
         {/* Background Image */}
         <img
           src={heroImage}
@@ -83,7 +79,18 @@ export default function CaseStudiesPage() {
         <div className="absolute -bottom-[50px] left-0 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] -z-20" />
         <div className="absolute inset-0 stars-bg z-0" />
         <div className="absolute -bottom-[50px] left-0 w-full h-[200px] sm:h-[250px] md:h-[300px] z-10 pointer-events-none overflow-hidden">
-          <img src={borderImage} alt="" aria-hidden className="w-full max-w-full h-full min-h-0 object-cover object-center" style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }} />
+          <img
+            src={borderImage}
+            alt=""
+            aria-hidden
+            className="w-full max-w-full h-full min-h-0 object-cover object-center"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+            }}
+          />
         </div>
 
         <div className="max-w-5xl mx-auto text-center mt-[-180px] sm:mt-[-200px] md:mt-[-240px] px-4 sm:px-6 relative z-40 flex-1 flex flex-col justify-center overflow-hidden">
@@ -95,15 +102,21 @@ export default function CaseStudiesPage() {
             style={{
               fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
               fontWeight: 400,
-              letterSpacing: '-0.02em',
-              color: '#FFFFFF',
+              letterSpacing: "-0.02em",
+              color: "#FFFFFF",
               opacity: 1,
             }}
           >
             <span className="block">Real Results. Proven</span>
             <span className="relative inline-block mt-1 sm:mt-2 md:mt-3 mr-2 sm:mr-4">
               Amazon
-              <img src={amazonLine} alt="" aria-hidden className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none" style={{ top: '1.2em' }} />
+              <img
+                src={amazonLine}
+                alt=""
+                aria-hidden
+                className="absolute left-0 w-full max-w-full h-auto object-contain pointer-events-none"
+                style={{ top: "1.2em" }}
+              />
             </span>
             Growth.
           </motion.h1>
@@ -113,7 +126,9 @@ export default function CaseStudiesPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg lg:text-xl text-white max-w-3xl mx-auto leading-relaxed mt-6 "
           >
-            We don’t just manage Amazon ads — we scale brands profitably. Explore how we helped CPG brands increase sales, lower ACoS, and dominate their categories.
+            We don’t just manage Amazon ads — we scale brands profitably.
+            Explore how we helped CPG brands increase sales, lower ACoS, and
+            dominate their categories.
           </motion.p>
 
           <motion.div
@@ -132,13 +147,11 @@ export default function CaseStudiesPage() {
         </div>
       </div>
 
-      <section className="py-24 purple-glow-bg">
-
+      <section className="pt-12 md:pt-16 pb-24 purple-glow-bg mt-[-200px] sm:mt-[-280px] md:mt-[-100px] relative z-10">
         <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl w-full max-w-[800px] mx-auto text-white text-shadow-lg leading-tight mb-6 text-center">
-        Results That Turn Amazon Ads Into Revenue
+          Results That Turn Amazon Ads Into Revenue
         </h2>
         <div className="container mx-auto px-4">
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 max-w-6xl mx-auto mb-16">
             {CASE_STUDIES_GRID.map((study, index) => (
               <motion.div
@@ -151,9 +164,15 @@ export default function CaseStudiesPage() {
                 <div className="flex flex-col space-y-[34px]">
                   {/* Image */}
                   <div className="w-full h-[250px] md:h-[384px] rounded-[24px] overflow-hidden">
-                    {(study.id === 3 ? caseStudy1Png : caseStudyImages[index + 1]) && (
+                    {(study.id === 3
+                      ? caseStudy1Png
+                      : caseStudyImages[index + 1]) && (
                       <LazyImage
-                        src={study.id === 3 ? caseStudy1Png : caseStudyImages[index + 1]}
+                        src={
+                          study.id === 3
+                            ? caseStudy1Png
+                            : caseStudyImages[index + 1]
+                        }
                         alt={study.title}
                         className="w-full max-w-full h-full object-cover"
                       />
@@ -167,7 +186,7 @@ export default function CaseStudiesPage() {
                       <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight">
                         {study.title}
                       </h2>
-                      
+
                       {/* Description */}
                       <p className="text-sm md:text-base lg:text-lg text-white leading-relaxed">
                         {study.description}
@@ -245,329 +264,528 @@ export default function CaseStudiesPage() {
         onClose={() => setSelectedCaseStudy(null)}
         className="max-w-4xl"
       >
-        {selectedCaseStudy && (() => {
-          const fd = selectedCaseStudy.fullDetails as Record<string, unknown> & typeof selectedCaseStudy.fullDetails;
-          const hasExtended = fd.performanceSummary ?? fd.overview ?? fd.caseSummary;
-          return (
-            <div className="p-8 md:p-12">
-              <div className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  {selectedCaseStudy.title}
-                </h2>
-                {fd.brandName && (
-                  <p className="text-sm text-white/70 mb-2">Brand: {String(fd.brandName)}</p>
-                )}
-                <p className="text-lg text-white/80 mb-6">
-                  {selectedCaseStudy.description}
-                </p>
-              </div>
+        {selectedCaseStudy &&
+          (() => {
+            const fd = selectedCaseStudy.fullDetails as Record<
+              string,
+              unknown
+            > &
+              typeof selectedCaseStudy.fullDetails;
+            const hasExtended =
+              fd.performanceSummary ?? fd.overview ?? fd.caseSummary;
+            return (
+              <div className="p-8 md:p-12">
+                <div className="mb-8">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    {selectedCaseStudy.title}
+                  </h2>
+                  {fd.brandName && (
+                    <p className="text-sm text-white/70 mb-2">
+                      Brand: {String(fd.brandName)}
+                    </p>
+                  )}
+                  <p className="text-lg text-white/80 mb-6">
+                    {selectedCaseStudy.description}
+                  </p>
+                </div>
 
-              <div className="space-y-8">
-                {/* Performance summary (Supplement) */}
-                {fd.performanceSummary ? ((): ReactNode => {
-                  const ps = fd.performanceSummary as { intro?: string; totalSales: string; netProfit: string; advertisingCost: string; profitMargin: string; paragraph: string; paragraph2?: string };
-                  return (
+                <div className="space-y-8">
+                  {/* Performance summary (Supplement) */}
+                  {fd.performanceSummary
+                    ? ((): ReactNode => {
+                        const ps = fd.performanceSummary as {
+                          intro?: string;
+                          totalSales: string;
+                          netProfit: string;
+                          advertisingCost: string;
+                          profitMargin: string;
+                          paragraph: string;
+                          paragraph2?: string;
+                        };
+                        return (
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-4">
+                              Brand Performance Summary
+                            </h3>
+                            {ps.intro && (
+                              <p className="text-white leading-relaxed mb-4">
+                                {ps.intro}
+                              </p>
+                            )}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                              <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
+                                <p className="text-white/70 text-sm">
+                                  Total Sales
+                                </p>
+                                <p className="text-white font-semibold">
+                                  {ps.totalSales}
+                                </p>
+                              </div>
+                              <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
+                                <p className="text-white/70 text-sm">
+                                  Net Profit
+                                </p>
+                                <p className="text-white font-semibold">
+                                  {ps.netProfit}
+                                </p>
+                              </div>
+                              <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
+                                <p className="text-white/70 text-sm">
+                                  Advertising Cost
+                                </p>
+                                <p className="text-white font-semibold">
+                                  {ps.advertisingCost}
+                                </p>
+                              </div>
+                              <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
+                                <p className="text-white/70 text-sm">
+                                  Profit Margin
+                                </p>
+                                <p className="text-white font-semibold">
+                                  {ps.profitMargin}
+                                </p>
+                              </div>
+                            </div>
+                            <p className="text-white leading-relaxed mb-4">
+                              {ps.paragraph}
+                            </p>
+                            {ps.paragraph2 && (
+                              <p className="text-white leading-relaxed">
+                                {ps.paragraph2}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })()
+                    : null}
+
+                  {/* PPC stats block (Supplement) */}
+                  {fd.ppcStats
+                    ? ((): ReactNode => {
+                        const ppc = fd.ppcStats as {
+                          headline: string;
+                          intro: string;
+                          stats: Array<{ label: string; value: string }>;
+                        };
+                        return (
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-3">
+                              {ppc.headline}
+                            </h3>
+                            <p className="text-white/90 mb-4 leading-relaxed">
+                              {ppc.intro}
+                            </p>
+                            <ul className="space-y-2">
+                              {ppc.stats.map((s, i) => (
+                                <li
+                                  key={i}
+                                  className="text-white flex flex-wrap gap-2"
+                                >
+                                  <span className="font-semibold">
+                                    {s.label}:
+                                  </span>
+                                  <span>{s.value}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        );
+                      })()
+                    : null}
+
+                  {/* Steps (Supplement) */}
+                  {fd.steps && Array.isArray(fd.steps) && (
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-4">Brand Performance Summary</h3>
-                      {ps.intro && (
-                        <p className="text-white leading-relaxed mb-4">{ps.intro}</p>
-                      )}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                        <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
-                          <p className="text-white/70 text-sm">Total Sales</p>
-                          <p className="text-white font-semibold">{ps.totalSales}</p>
-                        </div>
-                        <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
-                          <p className="text-white/70 text-sm">Net Profit</p>
-                          <p className="text-white font-semibold">{ps.netProfit}</p>
-                        </div>
-                        <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
-                          <p className="text-white/70 text-sm">Advertising Cost</p>
-                          <p className="text-white font-semibold">{ps.advertisingCost}</p>
-                        </div>
-                        <div className="rounded-lg border border-gray-700 bg-gray-900/50 p-4">
-                          <p className="text-white/70 text-sm">Profit Margin</p>
-                          <p className="text-white font-semibold">{ps.profitMargin}</p>
-                        </div>
-                      </div>
-                      <p className="text-white leading-relaxed mb-4">{ps.paragraph}</p>
-                      {ps.paragraph2 && (
-                        <p className="text-white leading-relaxed">{ps.paragraph2}</p>
-                      )}
-                    </div>
-                  );
-                })() : null}
-
-                {/* PPC stats block (Supplement) */}
-                {fd.ppcStats ? ((): ReactNode => {
-                  const ppc = fd.ppcStats as { headline: string; intro: string; stats: Array<{ label: string; value: string }> };
-                  return (
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-3">{ppc.headline}</h3>
-                      <p className="text-white/90 mb-4 leading-relaxed">{ppc.intro}</p>
-                      <ul className="space-y-2">
-                        {ppc.stats.map((s, i) => (
-                          <li key={i} className="text-white flex flex-wrap gap-2">
-                            <span className="font-semibold">{s.label}:</span>
-                            <span>{s.value}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })() : null}
-
-                {/* Steps (Supplement) */}
-                {fd.steps && Array.isArray(fd.steps) && (
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Our Approach</h3>
-                    <div className="space-y-6">
-                      {(fd.steps as Array<{ stepNumber: number; title: string; body: string }>).map((step) => (
-                        <div key={step.stepNumber}>
-                          <h4 className="text-white font-semibold mb-2">
-                            Step {step.stepNumber}: {step.title}
-                          </h4>
-                          <p className="text-white/90 leading-relaxed pl-4 border-l-2 border-purple-500/50">{step.body}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Key takeaway (Supplement) */}
-                {fd.keyTakeaway && (
-                  <div className="rounded-lg bg-purple-500/10 border border-purple-500/30 p-4">
-                    <h4 className="text-white font-semibold mb-2">Key Takeaway</h4>
-                    <p className="text-white leading-relaxed">{String(fd.keyTakeaway)}</p>
-                  </div>
-                )}
-
-                {/* Case summary + YoY stats (Beauty) */}
-                {fd.caseSummary ? (
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Case Summary</h3>
-                    {String(fd.caseSummary)
-                      .split(/\n\n+/)
-                      .map((para, i) => (
-                        <p key={i} className="text-white leading-relaxed mb-4">
-                          {para.trim()}
-                        </p>
-                      ))}
-                    {fd.yoyStats && Array.isArray(fd.yoyStats) ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                        {(fd.yoyStats as Array<{ label: string; value: string }>).map((s: { label: string; value: string }, i: number) => (
-                          <div key={i} className="rounded border border-gray-700 bg-gray-900/50 px-3 py-2">
-                            <span className="text-white/70 text-sm">{s.label}</span>
-                            <p className="text-white font-medium">{s.value}</p>
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        Our Approach
+                      </h3>
+                      <div className="space-y-6">
+                        {(
+                          fd.steps as Array<{
+                            stepNumber: number;
+                            title: string;
+                            body: string;
+                          }>
+                        ).map((step) => (
+                          <div key={step.stepNumber}>
+                            <h4 className="text-white font-semibold mb-2">
+                              Step {step.stepNumber}: {step.title}
+                            </h4>
+                            <p className="text-white/90 leading-relaxed pl-4 border-l-2 border-purple-500/50">
+                              {step.body}
+                            </p>
                           </div>
                         ))}
                       </div>
-                    ) : null}
-                  </div>
-                ) : null}
-
-                {/* Full case study layout (Home & Personal Care) */}
-                {fd.overview && (
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-3">Overview</h3>
-                      <p className="text-white leading-relaxed">{String(fd.overview)}</p>
                     </div>
-                    {fd.challenges && Array.isArray(fd.challenges) && (
+                  )}
+
+                  {/* Key takeaway (Supplement) */}
+                  {fd.keyTakeaway && (
+                    <div className="rounded-lg bg-purple-500/10 border border-purple-500/30 p-4">
+                      <h4 className="text-white font-semibold mb-2">
+                        Key Takeaway
+                      </h4>
+                      <p className="text-white leading-relaxed">
+                        {String(fd.keyTakeaway)}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Case summary + YoY stats (Beauty) */}
+                  {fd.caseSummary ? (
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        Case Summary
+                      </h3>
+                      {String(fd.caseSummary)
+                        .split(/\n\n+/)
+                        .map((para, i) => (
+                          <p
+                            key={i}
+                            className="text-white leading-relaxed mb-4"
+                          >
+                            {para.trim()}
+                          </p>
+                        ))}
+                      {fd.yoyStats && Array.isArray(fd.yoyStats) ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                          {(
+                            fd.yoyStats as Array<{
+                              label: string;
+                              value: string;
+                            }>
+                          ).map(
+                            (
+                              s: { label: string; value: string },
+                              i: number,
+                            ) => (
+                              <div
+                                key={i}
+                                className="rounded border border-gray-700 bg-gray-900/50 px-3 py-2"
+                              >
+                                <span className="text-white/70 text-sm">
+                                  {s.label}
+                                </span>
+                                <p className="text-white font-medium">
+                                  {s.value}
+                                </p>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+
+                  {/* Full case study layout (Home & Personal Care) */}
+                  {fd.overview && (
+                    <div className="space-y-6">
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Challenges</h3>
-                        <ul className="list-disc list-inside text-white space-y-1">
-                          {(fd.challenges as string[]).map((c, i) => (
-                            <li key={i}>{c}</li>
-                          ))}
-                        </ul>
+                        <h3 className="text-xl font-bold text-white mb-3">
+                          Overview
+                        </h3>
+                        <p className="text-white leading-relaxed">
+                          {String(fd.overview)}
+                        </p>
                       </div>
-                    )}
-                    {fd.ourStrategy && Array.isArray(fd.ourStrategy) && (
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Our Strategy</h3>
-                        <ul className="list-disc list-inside text-white space-y-1">
-                          {(fd.ourStrategy as string[]).map((s, i) => (
-                            <li key={i}>{s}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {fd.performanceResults && Array.isArray(fd.performanceResults) && (
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Performance Results (Monthly Overview – Last 3 Months)</h3>
-                        <ul className="text-white space-y-2">
-                          {(fd.performanceResults as string[]).map((r, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="text-green-400 mt-0.5">✓</span>
-                              <span>{r}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {selectedCaseStudy.id === 6 && (
-                      <div className="rounded-lg overflow-hidden">
-                        <img src={caseStudy1a} alt="Sales & Profit overview" className="w-full max-w-full h-auto object-cover rounded-lg" />
-                      </div>
-                    )}
-                    {fd.longTermGrowth && typeof fd.longTermGrowth === 'object' && (() => {
-                      const lt = fd.longTermGrowth as { period: string; paragraph: string };
-                      return (
+                      {fd.challenges && Array.isArray(fd.challenges) && (
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-3">Long-Term Growth Overview</h3>
-                          <p className="text-white/70 text-sm mb-2">Period: {lt.period}</p>
-                          <p className="text-white leading-relaxed">{lt.paragraph}</p>
+                          <h3 className="text-xl font-bold text-white mb-3">
+                            Challenges
+                          </h3>
+                          <ul className="list-disc list-inside text-white space-y-1">
+                            {(fd.challenges as string[]).map((c, i) => (
+                              <li key={i}>{c}</li>
+                            ))}
+                          </ul>
                         </div>
-                      );
-                    })()}
-                    {selectedCaseStudy.id === 6 && (
-                      <div className="rounded-lg overflow-hidden">
-                        <img src={caseStudy1b} alt="Sales and orders by month" className="w-full max-w-full h-auto object-cover rounded-lg" />
-                      </div>
-                    )}
-                    {fd.summary && Array.isArray(fd.summary) && (
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-3">Summary</h3>
-                        <ul className="text-white space-y-2">
-                          {(fd.summary as string[]).map((s, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="text-green-400 mt-0.5">✓</span>
-                              <span>{s}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {selectedCaseStudy.id === 6 && (
-                      <div className="rounded-lg overflow-hidden">
-                        <img src={casestudyNew} alt="Sales snapshot and compare sales" className="w-full max-w-full h-auto object-cover rounded-lg" />
-                      </div>
-                    )}
-
-                    {/* Case Study 2 (id 6 only) */}
-                    {fd.caseStudy2 && typeof fd.caseStudy2 === 'object' && (() => {
-                      const cs2 = fd.caseStudy2 as {
-                        title: string;
-                        intro: string;
-                        challenges: string[];
-                        howWeFixedIt: string[];
-                        baseLevelPpc: string[];
-                        conclusion: string;
-                      };
-                      return (
-                        <div className="border-t border-gray-800 pt-8 space-y-6">
-                          <h3 className="text-xl font-bold text-white">{cs2.title}</h3>
-                          <p className="text-white leading-relaxed">{cs2.intro}</p>
-                          {cs2.challenges && cs2.challenges.length > 0 && (
-                            <div>
-                              <h4 className="text-lg font-bold text-white mb-2">Challenges</h4>
-                              <ul className="list-disc list-inside text-white space-y-1">
-                                {cs2.challenges.map((c, i) => (
-                                  <li key={i}>{c}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                          {cs2.howWeFixedIt && cs2.howWeFixedIt.length > 0 && (
-                            <div>
-                              <h4 className="text-lg font-bold text-white mb-2">How we fixed it</h4>
-                              <ul className="text-white space-y-2">
-                                {cs2.howWeFixedIt.map((item, i) => (
-                                  <li key={i} className="flex items-start gap-2">
-                                    <span className="text-green-400 mt-0.5">✓</span>
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                          {cs2.baseLevelPpc && cs2.baseLevelPpc.length > 0 && (
-                            <div>
-                              <h4 className="text-lg font-bold text-white mb-2">Base-Level PPC Optimizations</h4>
-                              <ul className="text-white space-y-2">
-                                {cs2.baseLevelPpc.map((item, i) => (
-                                  <li key={i} className="flex items-start gap-2">
-                                    <span className="text-green-400 mt-0.5">✓</span>
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                          {cs2.conclusion && (
-                            <div>
-                              <h4 className="text-lg font-bold text-white mb-2">Conclusion</h4>
-                              <p className="text-white leading-relaxed">{cs2.conclusion}</p>
-                            </div>
-                          )}
+                      )}
+                      {fd.ourStrategy && Array.isArray(fd.ourStrategy) && (
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-3">
+                            Our Strategy
+                          </h3>
+                          <ul className="list-disc list-inside text-white space-y-1">
+                            {(fd.ourStrategy as string[]).map((s, i) => (
+                              <li key={i}>{s}</li>
+                            ))}
+                          </ul>
                         </div>
-                      );
-                    })()}
-                  </div>
-                )}
+                      )}
+                      {fd.performanceResults &&
+                        Array.isArray(fd.performanceResults) && (
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-3">
+                              Performance Results (Monthly Overview – Last 3
+                              Months)
+                            </h3>
+                            <ul className="text-white space-y-2">
+                              {(fd.performanceResults as string[]).map(
+                                (r, i) => (
+                                  <li
+                                    key={i}
+                                    className="flex items-start gap-2"
+                                  >
+                                    <span className="text-green-400 mt-0.5">
+                                      ✓
+                                    </span>
+                                    <span>{r}</span>
+                                  </li>
+                                ),
+                              )}
+                            </ul>
+                          </div>
+                        )}
+                      {selectedCaseStudy.id === 6 && (
+                        <div className="rounded-lg overflow-hidden">
+                          <img
+                            src={caseStudy1a}
+                            alt="Sales & Profit overview"
+                            className="w-full max-w-full h-auto object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
+                      {fd.longTermGrowth &&
+                        typeof fd.longTermGrowth === "object" &&
+                        (() => {
+                          const lt = fd.longTermGrowth as {
+                            period: string;
+                            paragraph: string;
+                          };
+                          return (
+                            <div>
+                              <h3 className="text-xl font-bold text-white mb-3">
+                                Long-Term Growth Overview
+                              </h3>
+                              <p className="text-white/70 text-sm mb-2">
+                                Period: {lt.period}
+                              </p>
+                              <p className="text-white leading-relaxed">
+                                {lt.paragraph}
+                              </p>
+                            </div>
+                          );
+                        })()}
+                      {selectedCaseStudy.id === 6 && (
+                        <div className="rounded-lg overflow-hidden">
+                          <img
+                            src={caseStudy1b}
+                            alt="Sales and orders by month"
+                            className="w-full max-w-full h-auto object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
+                      {fd.summary && Array.isArray(fd.summary) && (
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-3">
+                            Summary
+                          </h3>
+                          <ul className="text-white space-y-2">
+                            {(fd.summary as string[]).map((s, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <span className="text-green-400 mt-0.5">✓</span>
+                                <span>{s}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {selectedCaseStudy.id === 6 && (
+                        <div className="rounded-lg overflow-hidden">
+                          <img
+                            src={casestudyNew}
+                            alt="Sales snapshot and compare sales"
+                            className="w-full max-w-full h-auto object-cover rounded-lg"
+                          />
+                        </div>
+                      )}
 
-                {/* Fallback: quote + metrics + author (when no extended content) */}
-                {!hasExtended && (
-                  <>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-4">Overview</h3>
-                      <p className="text-white leading-relaxed">{selectedCaseStudy.fullDetails.quote}</p>
+                      {/* Case Study 2 (id 6 only) */}
+                      {fd.caseStudy2 &&
+                        typeof fd.caseStudy2 === "object" &&
+                        (() => {
+                          const cs2 = fd.caseStudy2 as {
+                            title: string;
+                            intro: string;
+                            challenges: string[];
+                            howWeFixedIt: string[];
+                            baseLevelPpc: string[];
+                            conclusion: string;
+                          };
+                          return (
+                            <div className="border-t border-gray-800 pt-8 space-y-6">
+                              <h3 className="text-xl font-bold text-white">
+                                {cs2.title}
+                              </h3>
+                              <p className="text-white leading-relaxed">
+                                {cs2.intro}
+                              </p>
+                              {cs2.challenges && cs2.challenges.length > 0 && (
+                                <div>
+                                  <h4 className="text-lg font-bold text-white mb-2">
+                                    Challenges
+                                  </h4>
+                                  <ul className="list-disc list-inside text-white space-y-1">
+                                    {cs2.challenges.map((c, i) => (
+                                      <li key={i}>{c}</li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                              {cs2.howWeFixedIt &&
+                                cs2.howWeFixedIt.length > 0 && (
+                                  <div>
+                                    <h4 className="text-lg font-bold text-white mb-2">
+                                      How we fixed it
+                                    </h4>
+                                    <ul className="text-white space-y-2">
+                                      {cs2.howWeFixedIt.map((item, i) => (
+                                        <li
+                                          key={i}
+                                          className="flex items-start gap-2"
+                                        >
+                                          <span className="text-green-400 mt-0.5">
+                                            ✓
+                                          </span>
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              {cs2.baseLevelPpc &&
+                                cs2.baseLevelPpc.length > 0 && (
+                                  <div>
+                                    <h4 className="text-lg font-bold text-white mb-2">
+                                      Base-Level PPC Optimizations
+                                    </h4>
+                                    <ul className="text-white space-y-2">
+                                      {cs2.baseLevelPpc.map((item, i) => (
+                                        <li
+                                          key={i}
+                                          className="flex items-start gap-2"
+                                        >
+                                          <span className="text-green-400 mt-0.5">
+                                            ✓
+                                          </span>
+                                          <span>{item}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              {cs2.conclusion && (
+                                <div>
+                                  <h4 className="text-lg font-bold text-white mb-2">
+                                    Conclusion
+                                  </h4>
+                                  <p className="text-white leading-relaxed">
+                                    {cs2.conclusion}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                     </div>
-                    {(selectedCaseStudy.fullDetails as unknown as { metrics?: Record<string, string> }).metrics && (
+                  )}
+
+                  {/* Fallback: quote + metrics + author (when no extended content) */}
+                  {!hasExtended && (
+                    <>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-4">Key Results</h3>
-                        <div className="space-y-2">
-                          {Object.entries((selectedCaseStudy.fullDetails as unknown as { metrics: Record<string, string> }).metrics).map(([key, value]) => (
-                            <p key={key} className="text-white">
-                              <span className="font-semibold capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span> {String(value)}
-                            </p>
-                          ))}
+                        <h3 className="text-xl font-bold text-white mb-4">
+                          Overview
+                        </h3>
+                        <p className="text-white leading-relaxed">
+                          {selectedCaseStudy.fullDetails.quote}
+                        </p>
+                      </div>
+                      {(
+                        selectedCaseStudy.fullDetails as unknown as {
+                          metrics?: Record<string, string>;
+                        }
+                      ).metrics && (
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-4">
+                            Key Results
+                          </h3>
+                          <div className="space-y-2">
+                            {Object.entries(
+                              (
+                                selectedCaseStudy.fullDetails as unknown as {
+                                  metrics: Record<string, string>;
+                                }
+                              ).metrics,
+                            ).map(([key, value]) => (
+                              <p key={key} className="text-white">
+                                <span className="font-semibold capitalize">
+                                  {key.replace(/([A-Z])/g, " $1").trim()}:
+                                </span>{" "}
+                                {String(value)}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {/* Gallery: real images or placeholders (skipped for id 6 – inline images used) */}
+                  {typeof fd.imageSlots === "number" &&
+                    fd.imageSlots > 0 &&
+                    selectedCaseStudy.id !== 6 && (
+                      <div className="border-t border-gray-800 pt-6">
+                        <h3 className="text-xl font-bold text-white mb-4">
+                          Gallery
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {MODAL_GALLERY_IMAGES[selectedCaseStudy.id]?.length
+                            ? MODAL_GALLERY_IMAGES[selectedCaseStudy.id].map(
+                                (src, i) => (
+                                  <div
+                                    key={i}
+                                    className="aspect-video rounded-lg overflow-hidden bg-gray-900/50"
+                                  >
+                                    <img
+                                      src={src}
+                                      alt={`${selectedCaseStudy.title} - ${i + 1}`}
+                                      className="w-full max-w-full h-full object-cover"
+                                    />
+                                  </div>
+                                ),
+                              )
+                            : Array.from(
+                                { length: fd.imageSlots as number },
+                                (_, i) => (
+                                  <div
+                                    key={i}
+                                    className="aspect-video rounded-lg border-2 border-dashed border-gray-600 bg-gray-900/50 flex items-center justify-center text-white/50 text-sm"
+                                    aria-label={`Image placeholder ${i + 1}`}
+                                  >
+                                    Image {i + 1}
+                                  </div>
+                                ),
+                              )}
                         </div>
                       </div>
                     )}
-                  </>
-                )}
 
-                {/* Gallery: real images or placeholders (skipped for id 6 – inline images used) */}
-                {typeof fd.imageSlots === 'number' && fd.imageSlots > 0 && selectedCaseStudy.id !== 6 && (
+                  {/* Author/role footer */}
                   <div className="border-t border-gray-800 pt-6">
-                    <h3 className="text-xl font-bold text-white mb-4">Gallery</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {MODAL_GALLERY_IMAGES[selectedCaseStudy.id]?.length
-                        ? MODAL_GALLERY_IMAGES[selectedCaseStudy.id].map((src, i) => (
-                            <div key={i} className="aspect-video rounded-lg overflow-hidden bg-gray-900/50">
-                              <img
-                                src={src}
-                                alt={`${selectedCaseStudy.title} - ${i + 1}`}
-                                className="w-full max-w-full h-full object-cover"
-                              />
-                            </div>
-                          ))
-                        : Array.from({ length: fd.imageSlots as number }, (_, i) => (
-                            <div
-                              key={i}
-                              className="aspect-video rounded-lg border-2 border-dashed border-gray-600 bg-gray-900/50 flex items-center justify-center text-white/50 text-sm"
-                              aria-label={`Image placeholder ${i + 1}`}
-                            >
-                              Image {i + 1}
-                            </div>
-                          ))}
-                    </div>
+                    <p className="font-bold text-white text-lg">
+                      — {selectedCaseStudy.fullDetails.author}
+                    </p>
+                    <p className="text-white">
+                      {selectedCaseStudy.fullDetails.role}
+                    </p>
                   </div>
-                )}
-
-                {/* Author/role footer */}
-                <div className="border-t border-gray-800 pt-6">
-                  <p className="font-bold text-white text-lg">— {selectedCaseStudy.fullDetails.author}</p>
-                  <p className="text-white">{selectedCaseStudy.fullDetails.role}</p>
                 </div>
               </div>
-            </div>
-          );
-        })()}
+            );
+          })()}
       </Modal>
     </>
   );
 }
-

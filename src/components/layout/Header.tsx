@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaEnvelope, FaWhatsapp, FaBars, FaTimes } from 'react-icons/fa';
-import { NAV_ITEMS, CONTACT_INFO, SOCIAL_LINKS } from '../../utils/constants';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaEnvelope, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
+import { NAV_ITEMS, CONTACT_INFO, SOCIAL_LINKS } from "../../utils/constants";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,34 +16,35 @@ export default function Header() {
       setIsScrolled(window.scrollY > scrollThreshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     // Check initial scroll position
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   // Check if a nav item is active
   const isActive = (path: string) => {
     // Hash links (like #free-audit) are not routes, so they're never active
-    if (path.startsWith('#')) {
+    if (path.startsWith("#")) {
       return false;
     }
-    // Blog is active on /blog and /blog/:slug
-    if (path === '/blog') {
-      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    // Blog is active on /blogs and /blogs/:slug
+    if (path === "/blogs") {
+      return (
+        location.pathname === "/blogs" ||
+        location.pathname.startsWith("/blogs/")
+      );
     }
     return location.pathname === path;
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 purple-glow-header w-full transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black/95 backdrop-blur-sm' 
-          : 'bg-transparent'
+        isScrolled ? "bg-black/95 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4 max-w-full overflow-x-hidden">
@@ -57,35 +58,49 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6 relative">
-            {NAV_ITEMS.filter(item => item.label !== 'Free Audit').map((item) => {
-              const active = isActive(item.path);
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`relative px-4 py-2 transition-all duration-300 ${
-                    active 
-                      ? 'bg-gray-600/40 border border-white rounded-md text-white shadow-lg shadow-white/20' 
-                      : 'text-white hover:text-white/80'
-                  }`}
-                  style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}
-                >
-                  <span className="relative z-10 font-bold" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>{item.label}</span>
-                </Link>
-              );
-            })}
+            {NAV_ITEMS.filter((item) => item.label !== "Book a Call").map(
+              (item) => {
+                const active = isActive(item.path);
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`relative px-4 py-2 transition-all duration-300 ${
+                      active
+                        ? "bg-gray-600/40 border border-white rounded-md text-white shadow-lg shadow-white/20"
+                        : "text-white hover:text-white/80"
+                    }`}
+                    style={{ textShadow: "0 2px 4px rgba(0, 0, 0, 0.8)" }}
+                  >
+                    <span
+                      className="relative z-10 font-bold"
+                      style={{ textShadow: "0 2px 4px rgba(0, 0, 0, 0.8)" }}
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                );
+              },
+            )}
           </div>
 
           {/* Free Audit Button and Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
             {/* Free Audit Button */}
-            <Link 
+            <Link
               to="/contact#schedule-call"
               className="px-6 py-2 border rounded-md border-white bg-primary/30 backdrop-blur-md text-[11px] font-bold tracking-[0.2em] uppercase "
             >
-              Free Audit
+              Book a Call
             </Link>
-            
+
+            <a
+              href="/form.php"
+              className="px-6 py-2 border rounded-md border-white/40 bg-black/40 backdrop-blur-md text-[11px] font-bold tracking-[0.2em] uppercase hover:border-white hover:bg-primary/20 transition-colors"
+            >
+              Free Audit
+            </a>
+
             {/* Email & WhatsApp */}
             <div className="flex items-center space-x-3">
               <a
@@ -113,7 +128,11 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <FaTimes className="w-6 h-6" />
+            ) : (
+              <FaBars className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -121,27 +140,29 @@ export default function Header() {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden mt-4 space-y-2"
           >
-            {NAV_ITEMS.map((item) => {
-              const active = isActive(item.path);
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block px-4 py-2 font-bold transition-colors ${
-                    active
-                      ? 'text-purple-400'
-                      : 'text-white hover:text-purple-400'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+            {NAV_ITEMS.filter((item) => item.label !== "Book a Call").map(
+              (item) => {
+                const active = isActive(item.path);
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-4 py-2 font-bold transition-colors rounded-md ${
+                      active
+                        ? "text-purple-400"
+                        : "text-white hover:text-purple-400"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              },
+            )}
             <div className="flex items-center space-x-4 px-4 py-2">
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
@@ -160,17 +181,24 @@ export default function Header() {
                 <FaWhatsapp className="w-5 h-5" />
               </a>
             </div>
-            <Link 
+            <Link
               to="/contact#schedule-call"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="px-6 py-2 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
+              className="mt-3 w-full px-6 py-3 bg-[#8B5CF6] text-white rounded-md font-bold text-sm hover:bg-[#7C3AED] transition-colors block text-center"
+            >
+              Book a Call
+            </Link>
+
+            <a
+              href="/form.php"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mt-2 w-full px-6 py-3 border border-white/40 text-white rounded-md font-bold text-sm hover:border-white hover:bg-primary/20 transition-colors block text-center"
             >
               Free Audit
-            </Link>
+            </a>
           </motion.div>
         )}
       </nav>
     </header>
   );
 }
-

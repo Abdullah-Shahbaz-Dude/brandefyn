@@ -143,7 +143,7 @@ export default function ResourcesPage() {
         </div>
       </div>
 
-      <div className="py-24 purple-glow-bg ">
+      <div className="py-24 purple-glow-bg relative mt-[-200px] sm:mt-[-280px] md:mt-0">
         <div className="container mx-auto px-4 max-w-[1400px] ">
           {/* Heading Section */}
           <motion.div

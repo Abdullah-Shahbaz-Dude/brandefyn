@@ -37,7 +37,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section - sized like home page */}
-      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden purple-glow-bg py-12 md:py-24">
+      <div className="relative w-full min-h-[700px] sm:min-h-[800px] md:min-h-[900px] md:h-[900px] flex flex-col items-center overflow-hidden purple-glow-bg pt-12 md:pt-24 pb-8 md:pb-12">
         {/* Background Image */}
         <img
           src={heroImage}
@@ -120,7 +120,7 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      <div className="py-24 purple-glow-bg relative min-h-screen">
+      <div className="pt-12 md:pt-16 pb-24 purple-glow-bg relative min-h-screen mt-[-200px] sm:mt-[-280px] md:mt-[-100px]">
         {/* Circular Wave Background Overlays */}
 
         <div className="container mx-auto px-4 max-w-[1280px] relative z-10">
